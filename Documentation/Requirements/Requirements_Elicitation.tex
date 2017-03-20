@@ -2,10 +2,49 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 
-\title{Requirements\_Documentation}
-\author{}
-\date{March 2017}
 
+% ------------ Title section
+
+\newcommand\BackgroundPic{
+    \put(-2,-3){
+    \includegraphics[keepaspectratio,scale=0.3]{img/lnu_etch.png} % Background picture
+    }
+}
+\newcommand\BackgroundPicLogo{
+    \put(30,740){
+    \includegraphics[keepaspectratio,scale=0.10]{img/logo.png} % Logo in upper left corner
+    }
+}
+
+\title{	
+\vspace{-8cm}
+\begin{flushleft}
+    \vspace{10cm}
+    \normalfont \normalsize
+    %\Huge Bachelor/Master Thesis Project \\
+    \vspace{-1.3cm}
+\end{flushleft}
+\vspace{3cm}
+\begin{flushleft}
+    \huge Face Recognition System \\ 
+    \LARGE  Requirements Elicitation\\
+\end{flushleft}
+\null
+\vfill
+\begin{minipage}{\textwidth}
+\begin{flushleft} \large
+\emph{Authors:} Walid Balegh, Jakob Heyde, Sarpreet Singh \\ \hspace{45pt} Henry Pap and Oscar Maris \\ % Author
+%\emph{Supervisor:} Name of your supervisor\\ % Supervisor
+%\emph{Examiner:} Dr.~Mark \textsc{Brown}\\ % Examiner (course manager)
+\emph{Semester:} VT 2017\\ % 
+%\emph{Subject:} Computer Science\\ % Subject area
+\end{flushleft}
+\end{minipage}
+}
+
+\date{}
+
+% ------------- Document beginning
 \begin{document}
 
 \maketitle
@@ -25,6 +64,7 @@
 %-> inputs , outputs , data , computation, timing (of system)
 %-> traceable to rational (real world problem from customer)
 %  ############ NOTES ################
+\newpage
 
 \section{Introduction}
 
@@ -66,13 +106,14 @@ N/A
 \end{itemize}
 
 \subsection{Overview}
-
 The rest of this document contains an overall description of the Face Recognition System and the constraints (section 2), the specific functional requirements for the system (section 3) and the Use case and scenario modeling for functional requirements (section 4).
 
+\newpage
 \section{Overall description}
 
 \subsection{Product perspective}
 In some services such as financial or official matters there is a need to identify a person fast and securely. The FRS can provide this functionality and make the process easier and more reliable.
+
 \subsubsection{System Interfaces}
 The FRS depends on an external face recognition API to compare the photos. This service can be developed in house or made use of existing systems. Beside the external dependency it consists of four different modules: the User Client Module (UCM), the User Server Module (USM), the Admin Server Module (ASM) and a database. (see figure 1)
 \begin{figure}[h!]
@@ -87,17 +128,22 @@ The UCM allows User services to log on to the FRS and request a personal number 
 \newline
 \noindent
 The User Client Module can be \textit{any} verified and registered Application which depends on the USM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies. 
+
 \subsubsection{User Interfaces}
 The User Client Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface. 
 \subsubsection{Hardware Interfaces}
 All components must be able to execute on a personal computer.
+
 \subsubsection{Software Interfaces}
 The software interfaces of the modules will be further defined in the FRS Design Document.
+
 \subsubsection{Communication Interfaces}
 The client, server modules and the EFR communication will be over a TCP/IP connection.
 The PN-database will be located locally or interacted remotely over a TCP/IP connection, this will be further defined in the FRS Design Document.
+
 \subsubsection{Security constraints}
 All sent personal numbers must be encrypted end to end. Services must be authenticated to interact with the API. The external service does not have any information about the personal numbers or other high security informations saved and only the images are shared.
+
 \subsection{Product functions}
 The two main functions of the Face Recognition System are to allow user services to retrieve a personal number corresponding to a photo of a face, and to allow administrators to manage the data.
 \newline
