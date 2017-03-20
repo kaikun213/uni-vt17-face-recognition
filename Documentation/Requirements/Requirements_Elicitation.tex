@@ -28,14 +28,37 @@
 \section{Introduction}
 
 \subsection{Purpose}
+The purpose of this document is to describe the requirements for a face recognition system which matches a photo and a Swedish personal number by exposing a well defined API. Additionally it will describe the requirements for a sample client user system which uses the API.
+\newline
+\noindent
+The intended audience includes the software developers and the respective clients assessment person.
 
 \subsection{Scope}
 
+The software system to be produced is a Face Recognition System, which will be referred  to as "FRS" through this document.
+\newline
+\noindent
+The Face Recognition System will allow authenticated services to request a personal number with a given photo.
+FRS could be used in bank-, state systems or other services where identification of a person is critical.
+The administrative entity could be a state or other high security organization which provides the data used from the FRS.
+FRS administrators will be able to register, delete, update and list user data.
+Therefore the FRS is split into a user component and an administrative component, which each needs different authentication and are logically separate from each other.
+The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems.
+ 
 \subsection{Definitions, acronyms and abbreviations}
+\begin{itemize}
+\item \textbf{USM : User Server Module}
+\item \textbf{ASM : Admin Server Module}
+\item \textbf{UCM : User Client Module}
+\item \textbf{EFR : External Face Recognition API}
+\item \textbf{FRS : Face Recognition System to be developed}
+\end{itemize}
 
 \subsection{References}
 
 \subsection{Overview}
+
+The rest of this document contains an overall description of the Face Recognition System and the constraints (section 2), the specific functional requirements for the system (section 3) and the Use case and scenario modeling for functional requirements (section 4).
 
 \section{Overall description}
 
