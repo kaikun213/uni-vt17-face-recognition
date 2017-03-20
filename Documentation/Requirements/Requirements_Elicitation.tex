@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
 \title{Requirements\_Documentation}
 \author{}
@@ -43,7 +44,7 @@ FRS could be used in bank-, state systems or other services where identification
 The administrative entity could be a state or other high security organization which provides the data used from the FRS.
 FRS administrators will be able to register, delete, update and list user data.
 Therefore the FRS is split into a user component and an administrative component, which each needs different authentication and are logically separate from each other.
-The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems.
+
  
 \subsection{Definitions, acronyms and abbreviations}
 \begin{itemize}
@@ -52,15 +53,65 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \item \textbf{UCM : User Client Module}
 \item \textbf{EFR : External Face Recognition API}
 \item \textbf{FRS : Face Recognition System to be developed}
+\item \textbf{PN : Swedish Personal Number}
 \end{itemize}
 
 \subsection{References}
+N/A
+\subsection{Roles} \label{Roles}
+\begin{itemize}
+\item \textbf{User :} Verified and registered service which is authenticated to use the the User API. E.g. Skatteverket or Swedbank.
+\item \textbf{Admin :} Verified and registered partner which provides the trusted information and has full control over the application and data.
+\item \textbf{Developer :} Fully privileged people which develop the system and have access to the Admin-,User interfaces and the source code during development. 
+\end{itemize}
 
 \subsection{Overview}
 
 The rest of this document contains an overall description of the Face Recognition System and the constraints (section 2), the specific functional requirements for the system (section 3) and the Use case and scenario modeling for functional requirements (section 4).
 
 \section{Overall description}
+
+\subsection{Product perspective}
+In some services such as financial or official matters there is a need to identify a person fast and securely. The FRS can provide this functionality and make the process easier and more reliable.
+\subsubsection{System Interfaces}
+The FRS depends on an external face recognition API to compare the photos. This service can be developed in house or made use of existing systems. Beside the external dependency it consists of four different modules: the User Client Module (UCM), the User Server Module (USM), the Admin Server Module (ASM) and a database. (see figure 1)
+\begin{figure}[h!]
+	\centering
+	\label{System Interfaces}
+	\includegraphics[width=0.95\textwidth,keepaspectratio]{images/Overview\string_System\string_Interfaces.png} 
+	\caption{Overview over the system interfaces}
+\end{figure}
+\newpage
+\noindent
+The UCM allows User services to log on to the FRS and request a personal number with a given image. The USM is a daemon that accepts connections from the UCM and serves with the requested information. The USM is dependent on the External Face Recogntion API (EFR) to match the given photo to a registered one. The Admin Server Module serves the API for the ACM to register, delete, update and get user data. It directly interacts with the PN-Database and indirectly uses the EFR to modify the Image-Database.
+\newline
+\noindent
+The User Client Module can be \textit{any} verified and registered Application which depends on the USM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies. 
+\subsubsection{User Interfaces}
+The User Client Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface. 
+\subsubsection{Hardware Interfaces}
+All components must be able to execute on a personal computer.
+\subsubsection{Software Interfaces}
+The software interfaces of the modules will be further defined in the FRS Design Document.
+\subsubsection{Communication Interfaces}
+The client, server modules and the EFR communication will be over a TCP/IP connection.
+The PN-database will be located locally or interacted remotely over a TCP/IP connection, this will be further defined in the FRS Design Document.
+\subsubsection{Security constraints}
+All sent personal numbers must be encrypted end to end. Services must be authenticated to interact with the API. The external service does not have any information about the personal numbers or other high security informations saved and only the images are shared.
+\subsection{Product functions}
+The two main functions of the Face Recognition System are to allow user services to retrieve a personal number corresponding to a photo of a face, and to allow administrators to manage the data.
+\newline
+\noindent
+For managerial purposes it is useful to have the option to \textit{RETRIEVE} all persons and then have the basic REST functionality to \textit{ADD},\textit{UPDATE} or \textit{DELETE} a person. A person entity consists of a personal number and an biometric picture of the person.
+
+\subsection{User characteristics}
+The User as defined in \ref{Roles} is a verified and registered service which provides the User Client Module to interact with the USM.
+
+\subsection{Constraints}
+The system should enforce User and Admin authentication security and guarantee encrypted communication of critical data.
+ 
+\subsection{Assumptions and Dependencies}
+The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems. The system is developed under the assumption that the external component is reliable, secure, scalable and functional. 
 
 \section{Specific functional requirements}
 
