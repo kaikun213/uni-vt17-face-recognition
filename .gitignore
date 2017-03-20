@@ -16,3 +16,5 @@ hs_err_pid*
 *.log
 *.synctex.gz
 *.pdf
+
+Documentation/\.DS_Store
