@@ -1,9 +1,10 @@
-\documentclass{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[none]{hyphenat}
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
 
 % ------------ Title section
 
@@ -172,55 +173,112 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{Admin Server Module}
 % Add, Delete, Update, Get multiple users
 
+\newpage
 \section{Modeling of functional requirements}
 % Use cases with scenarios model
 
-\begin{tabular}{|p{3cm}|p{8cm}|} \hline
-    \textbf{Title} &   
-        
-    
-    \\ \hline \rowcolor{Gray} & \\ \hline
-        
-    
-    \textbf{Description} &   
-        
+\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+    \textbf{Title} &   Admin \emph{ADD} a new user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    
-    \textbf{Primary actor} &   
+    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FNS which include user's image and PN(YYYYMMDD-XXXX). In result, admin receives an appropriate notification from the FNS.
         
-    
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Primary actor} & Admin  
+        
     \\ \hline \rowcolor{Gray} & \\ \hline 
-         
+          
+    \textbf{Pre-conditions} &   Admin must be authenticated
         
-    \textbf{Pre-conditions} &   
-        
-    
     \\ \hline \rowcolor{Gray} & \\ \hline
          
-    
-    \textbf{Post-conditions} &   
+    \textbf{Post-conditions} &   Admin must receive a notification
         
-    
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    
-    \textbf{Initiation} &   
+    \textbf{Initiation} & Admin send POST request to FNS
         
-    
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    
-    \textbf{Primary flow} &   
+    \textbf{Primary flow} & 
+    1) FNS receive a POST request \\&
+    2) FNS accept the request and save the user's image and PN \\&
+    3) FNS send a success notification to admin \\&
+    4) Admin receive a success notification
         
-    
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
+    \textbf{Secondary flow (1)} & 
+    2a) FNS reject the request because user's image file is corrupted \\&
+    2b) FNS send a failure notification to admin\\&
+    2c) Admin receive a failure notification \\& 
+     
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+     
+    \textbf{Secondary flow (2)} & 
+    2a) FNS reject the request because user's PN format is incorrect \\&
+    2b) FNS send a failure notification to admin\\&
+    2c) Admin receive a failure notification \\& 
     
-    \textbf{Secondary flow} &   
+   \\ \hline \rowcolor{Gray} & \\ \hline
+    
+    \textbf{Secondary flow (3)} & 
+    2a) FNS reject the request because user's PN is invalid \\&
+    2b) FNS send a failure notification \\&
+    2c) Admin receive a failure notification \\&
+    
+    \\ \hline 
+\end{tabular}
+
+
+\newpage
+\noindent
+\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+    \textbf{Title} &   Admin \emph{DELETE} a user
         
-    
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Description} &  Admin want to delete a user. In order to delete a new user, admin send a DELETE request to FNS which include user's unique id(should be integer). In result, admin receives an appropriate notification from the FNS.
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Primary actor} & Admin  
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+          
+    \textbf{Pre-conditions} &   Admin must be authenticated
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+         
+    \textbf{Post-conditions} &   Admin must receive a notification
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Initiation} & Admin send DELETE request to FNS
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Primary flow} & 
+    1) FNS receive a DELETE request \\&
+    2) FNS accept the request and delete the requested user's data(image and PN) \\&
+    3) FNS send a success notification to admin \\&
+    4) Admin receive a success notification
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow (1)} & 
+    2a) FNS reject the request because user's unique id is not found \\&
+    2b) FNS send a failure notification to admin\\&
+    2c) Admin receive a failure notification \\& 
+     
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+     
+    \textbf{Secondary flow (2)} & 
+    2a) FNS reject the request because user's unique id format is incorrect \\&
+    2b) FNS send a failure notification to admin\\&
+    2c) Admin receive a failure notification \\&
     \\ \hline 
 \end{tabular}
 
