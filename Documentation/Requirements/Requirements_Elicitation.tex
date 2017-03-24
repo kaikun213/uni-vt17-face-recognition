@@ -180,9 +180,9 @@ The FRS will depend on an external face recognition API to compare photos. This 
 				\item When a user presses the login button, the UCM shall send a request to the USM to login the user.
 			\end{enumerate}
 		\item If and only if the logging of a user is successful (see \ref{UCMLogging}) the UCM shall display the USW and the user shall be able to use the functionality of the application.
-		\item When the user presses the "GET PN" Button in the USW the UCM shall open the camera.
+		\item \label{UCMGETsend} When the user presses the "GET PN" Button in the USW the UCM shall open the camera.
 		\item If the camera returns a picture the UCM shall send a request to the USM with the taken picture.
-		\item The UCM shall display responses from the USM and provide a button to return to the USW.
+		\item \label{UCMGETret} The UCM shall display responses from the USM and provide a button to return to the USW.
 		\item The UCM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
 \end{enumerate}
 
@@ -219,7 +219,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 %USER
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   User \emph{GET} personal number
+    \textbf{Title} &   User \emph{GET} personal number 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -231,7 +231,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   User must be authenticated
+    \textbf{Pre-conditions} &   User must be authenticated (see \ref{UCMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -244,17 +244,17 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    \textbf{1)} The User provides an image of a person's face \\&
-    \textbf{2)} The User receives a matching PN \\&
+    \textbf{1)} The User provides an image of a person's face (see \ref{UCMGETsend}) \\&
+    \textbf{2)} The User receives a matching PN (see \ref{UCMGETret}) \\&
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The User receives an error message dependant on the issue at hand
-    
+    \\ \hline 
 \end{tabular}
 
-%ADMIN lol
+%ADMIN kek
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{GET} list of personal numbers
@@ -289,7 +289,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The amin receives an error if the server is inactive (or other issue)
-
+    \\ \hline 
 \end{tabular}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
