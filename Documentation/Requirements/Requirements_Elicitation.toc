@@ -1,0 +1,31 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {subsection}{\numberline {1.1}Purpose}{3}
+\contentsline {subsection}{\numberline {1.2}Scope}{3}
+\contentsline {subsection}{\numberline {1.3}Definitions, acronyms and abbreviations}{3}
+\contentsline {subsection}{\numberline {1.4}References}{3}
+\contentsline {subsection}{\numberline {1.5}Roles}{3}
+\contentsline {subsection}{\numberline {1.6}Overview}{3}
+\contentsline {section}{\numberline {2}Overall description}{4}
+\contentsline {subsection}{\numberline {2.1}Product perspective}{4}
+\contentsline {subsubsection}{\numberline {2.1.1}System Interfaces}{4}
+\contentsline {subsubsection}{\numberline {2.1.2}User Interfaces}{5}
+\contentsline {subsubsection}{\numberline {2.1.3}Hardware Interfaces}{5}
+\contentsline {subsubsection}{\numberline {2.1.4}Software Interfaces}{5}
+\contentsline {subsubsection}{\numberline {2.1.5}Communication Interfaces}{5}
+\contentsline {subsubsection}{\numberline {2.1.6}Security constraints}{5}
+\contentsline {subsection}{\numberline {2.2}Product functions}{5}
+\contentsline {subsection}{\numberline {2.3}User characteristics}{5}
+\contentsline {subsection}{\numberline {2.4}Constraints}{5}
+\contentsline {subsection}{\numberline {2.5}Assumptions and Dependencies}{6}
+\contentsline {section}{\numberline {3}Specific functional requirements}{6}
+\contentsline {subsection}{\numberline {3.1}User Client Module}{6}
+\contentsline {subsection}{\numberline {3.2}User Server Module}{6}
+\contentsline {subsection}{\numberline {3.3}Admin Server Module}{6}
+\contentsline {section}{\numberline {4}Modeling of functional requirements}{8}
+\contentsline {subsection}{\numberline {4.1}UCM GET Personal Number}{8}
+\contentsline {subsection}{\numberline {4.2}ACM Get List of User-Entities}{9}
+\contentsline {subsection}{\numberline {4.3}ACM: Add an User-Entity}{10}
+\contentsline {subsection}{\numberline {4.4}ACM: Delete an User-Entity}{11}
+\contentsline {subsection}{\numberline {4.5}ACM: Update User-Entity}{12}
+\contentsline {subsection}{\numberline {4.6}ACM: Authenticate Admin}{13}
+\contentsline {subsection}{\numberline {4.7}USM: Authenticate User}{14}
