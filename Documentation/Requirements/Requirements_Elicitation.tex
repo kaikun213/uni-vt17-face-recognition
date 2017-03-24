@@ -180,9 +180,9 @@ The FRS will depend on an external face recognition API to compare photos. This 
 				\item When a user presses the login button, the UCM shall send a request to the USM to login the user.
 			\end{enumerate}
 		\item If and only if the logging of a user is successful (see \ref{UCMLogging}) the UCM shall display the USW and the user shall be able to use the functionality of the application.
-		\item \label{UCMGETsend} When the user presses the "GET PN" Button in the USW the UCM shall open the camera.
+		\item When the user presses the "GET PN" Button in the USW the UCM shall open the camera.
 		\item If the camera returns a picture the UCM shall send a request to the USM with the taken picture.
-		\item \label{UCMGETret} The UCM shall display responses from the USM and provide a button to return to the USW.
+		\item The UCM shall display responses from the USM and provide a button to return to the USW.
 		\item The UCM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
 \end{enumerate}
 
@@ -206,8 +206,8 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item The ASM shall be able to authenticate Admins.
 		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The ASM only replies to authenticated requests.
-		\item The ASM shall validate and execute all requests from an authenticated ACM.
-		\item \label{ASMReq} The ASM shall be able to make requests to the Database.
+		\item \label{ASMRequest}The ASM shall validate and execute all requests from an authenticated ACM.
+		\item The ASM shall be able to make requests to the Database.
 		\item The ASM shall be able to make requests to the EFR.
 		\item The ASM shall be able to receive and process responses of the EFR.
 \end{enumerate}
@@ -219,11 +219,11 @@ The FRS will depend on an external face recognition API to compare photos. This 
 %USER
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   User \emph{GET} personal number 
+    \textbf{Title} &   User \emph{GET} personal number
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM (see \ref{UCMGETsend}). Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image (see \ref{UCMGETret}). In the event that request fails an error message will be provided to the user further specifying the issue.
+    \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -231,7 +231,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   User must be authenticated (see \ref{UCMLogging})
+    \textbf{Pre-conditions} &   User must be authenticated
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -251,17 +251,17 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The User receives an error message dependant on the issue at hand
-    \\ \hline 
+    
 \end{tabular}
 
-%ADMIN kek
+%ADMIN lol
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{GET} list of personal numbers
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN (see \ref{ASMReq}).
+    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN. 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -289,14 +289,18 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The amin receives an error if the server is inactive (or other issue)
-    \\ \hline 
+
 \end{tabular}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
+    
+    \textbf{Covered requirements} &  \ref{ASMRequest}
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline
+    
     \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN(YYYYMMDD-XXXX). In result, admin receives an appropriate notification from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
@@ -317,46 +321,38 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Primary flow} & 
-    \textbf{1)} FRS receive a POST request \\&
-    \textbf{2)} FRS accept the request and save the user's image and PN \\&
-    \textbf{3)} FRS send a success notification to admin \\&
-    \textbf{4)} Admin receive a success notification
+    \textbf{Primary flow} &
+    \textbf{1)} Admin receive a success notification from FCS
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
-    \textbf{2a)} FRS reject the request because user's image file is corrupted \\&
-    \textbf{2b)} FRS send a failure notification to admin\\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's image file is corrupted \\&
+    \textbf{1b)} Admin receive a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
     \textbf{Secondary flow(2)} & 
-    \textbf{2a)} FRS reject the request because user's PN format is incorrect \\&
-    \textbf{2b)} FRS send a failure notification to admin\\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's PN format is incorrect \\&
+    \textbf{1b)} Admin receive a failure notification
     
    \\ \hline \rowcolor{Gray} & \\ \hline
     
     \textbf{Secondary flow(3)} & 
-    \textbf{2a)} FNS reject the request because user's PN is invalid \\&
-    \textbf{2b)} FNS send a failure notification \\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's PN is invalid \\&
+    \textbf{1b)} Admin receive a failure notification
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
     \textbf{Secondary flow(4)} & 
-    \textbf{2a)} FNS reject the request because user's image is corrupted and PN is invalid\\&
-    \textbf{2b)} FNS send a failure notification \\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's image is corrupted and PN is invalid\\&
+    \textbf{1b)} Admin receive a failure notification
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
     \textbf{Secondary flow(5)} & 
-    \textbf{2a)} FNS reject the request because user's image is corrupted and PN format is incorrect\\&
-    \textbf{2b)} FNS send a failure notification \\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's image is corrupted and PN format is incorrect\\&
+    \textbf{1b)} Admin receive a failure notification
     \\\hline 
 \end{tabular}
 
@@ -366,6 +362,10 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+    
+    \textbf{Covered requirements} &  \ref{ASMRequest}
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -390,24 +390,19 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    \textbf{1)} FNS receive a DELETE request \\&
-    \textbf{2)} FNS accept the request and delete the requested user's data(image and PN) \\&
-    \textbf{3)} FNS send a success notification to admin \\&
-    \textbf{4)} Admin receive a success notification
+    \textbf{1)} Admin receive a success notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
-    \textbf{2a)} FNS reject the request because user's unique id is not found \\&
-    \textbf{2b)} FNS send a failure notification to admin\\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's unique id is not found \\&
+    \textbf{1b)} Admin receive a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
     \textbf{Secondary flow(2)} & 
-    \textbf{2a)} FNS reject the request because user's unique id format is incorrect \\&
-    \textbf{2b)} FNS send a failure notification to admin\\&
-    \textbf{2c)} Admin receive a failure notification
+    \textbf{1a)} The user's unique id format is incorrect \\&
+    \textbf{1b)} Admin receive a failure notification
     \\ \hline 
 \end{tabular}
 
