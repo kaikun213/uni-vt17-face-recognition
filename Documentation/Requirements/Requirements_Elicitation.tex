@@ -219,9 +219,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
 %USER
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   User \emph{GET} personal number
+    \textbf{Title} &   User \emph{GET} personal number 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
+        
+            \textbf{Covered requirements} &  \ref{UCMGETsend} , \ref{UCMGETret}
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
         
     \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
         
@@ -231,7 +236,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   User must be authenticated
+    \textbf{Pre-conditions} &   User must be authenticated (see \ref{UCMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -251,17 +256,21 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The User receives an error message dependant on the issue at hand
-    
+    \\ \hline 
 \end{tabular}
 
-%ADMIN lol
+%ADMIN kek
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{GET} list of personal numbers
         
     \\ \hline \rowcolor{Gray} & \\ \hline
+    
+                \textbf{Covered requirements} &  \ref{ASMReq}
         
-    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN. 
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN (see \ref{ASMReq}).
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -288,9 +297,10 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
-    \textbf{2a)} The amin receives an error if the server is inactive (or other issue)
-
+    \textbf{2a)} The admin receives an error if the server is inactive (or other issue)
+    \\ \hline 
 \end{tabular}
+
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
