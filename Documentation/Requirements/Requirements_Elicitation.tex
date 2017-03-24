@@ -207,7 +207,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The ASM only replies to authenticated requests.
 		\item The ASM shall validate and execute all requests from an authenticated ACM.
-		\item \label{ASMGET} The ASM shall be able to make requests to the Database.
+		\item \label{ASMReq} The ASM shall be able to make requests to the Database.
 		\item The ASM shall be able to make requests to the EFR.
 		\item The ASM shall be able to receive and process responses of the EFR.
 \end{enumerate}
@@ -223,7 +223,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
+    \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM (see \ref{UCMGETsend}). Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image (see \ref{UCMGETret}). In the event that request fails an error message will be provided to the user further specifying the issue.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -244,8 +244,8 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    \textbf{1)} The User provides an image of a person's face (see \ref{UCMGETsend}) \\&
-    \textbf{2)} The User receives a matching PN (see \ref{UCMGETret}) \\&
+    \textbf{1)} The User provides an image of a person's face \\&
+    \textbf{2)} The User receives a matching PN \\&
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
@@ -261,7 +261,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN (see \ref{ASMGET}).
+    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN (see \ref{ASMReq}).
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
