@@ -4,7 +4,7 @@
 \usepackage[none]{hyphenat}
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
-\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
 
 % ------------ Title section
 
@@ -177,7 +177,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \section{Modeling of functional requirements}
 % Use cases with scenarios model
 
-\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+\begin{tabular}{|p{4cm}|p{11cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
@@ -229,13 +229,26 @@ The FRS will depend on an external face recognition API to compare photos. This 
     2b) FNS send a failure notification \\&
     2c) Admin receive a failure notification \\&
     
-    \\ \hline 
+    \\ \hline \rowcolor{Gray} & \\ \hline
+    
+    \textbf{Secondary flow (4)} & 
+    2a) FNS reject the request because user's image is corrupted and PN is invalid\\&
+    2b) FNS send a failure notification \\&
+    2c) Admin receive a failure notification \\&
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline
+    
+    \textbf{Secondary flow (5)} & 
+    2a) FNS reject the request because user's image is corrupted and PN format is incorrect\\&
+    2b) FNS send a failure notification \\&
+    2c) Admin receive a failure notification
+    \\\hline 
 \end{tabular}
 
 
 \newpage
 \noindent
-\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+\begin{tabular}{|p{4cm}|p{11cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
@@ -278,7 +291,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \textbf{Secondary flow (2)} & 
     2a) FNS reject the request because user's unique id format is incorrect \\&
     2b) FNS send a failure notification to admin\\&
-    2c) Admin receive a failure notification \\&
+    2c) Admin receive a failure notification
     \\ \hline 
 \end{tabular}
 
