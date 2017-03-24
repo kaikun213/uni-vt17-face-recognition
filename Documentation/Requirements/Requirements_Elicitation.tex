@@ -177,12 +177,88 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \section{Modeling of functional requirements}
 % Use cases with scenarios model
 
+%USER
+
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
+    \textbf{Title} &   User \emph{GET} personal number
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Primary actor} & User  
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+          
+    \textbf{Pre-conditions} &   User must be authenticated
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+         
+    \textbf{Post-conditions} &   User must receive a notification
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Initiation} & User sends a GET request to FRS
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Primary flow} & 
+    \textbf{1)} The User provides an image of a person's face \\&
+    \textbf{2)} The User receives a matching PN \\&
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow(1)} & 
+    \textbf{2a)} The User receives an error message dependant on the issue at hand
+    
+\end{tabular}
+
+%ADMIN lol
+
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
+    \textbf{Title} &   Admin \emph{GET} list personal numbers
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN. 
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+        
+    \textbf{Primary actor} & Admin  
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+          
+    \textbf{Pre-conditions} &   Admin must be authenticated
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline
+         
+    \textbf{Post-conditions} &   Admin must receive a notification
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Initiation} & Admin sends a GET request to FRS
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Primary flow} & 
+    \textbf{1)} The admin sends a GET request \\&
+    \textbf{2)} The admin then receives a list of all the PNs currently on the server. \\&
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow(1)} & 
+    \textbf{2a)} The amin receives an error if the server is inactive (or other issue)
+
+\end{tabular}
+
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FNS which include user's image and PN(YYYYMMDD-XXXX). In result, admin receives an appropriate notification from the FNS.
+    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN(YYYYMMDD-XXXX). In result, admin receives an appropriate notification from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -203,23 +279,23 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    \textbf{1)} FNS receive a POST request \\&
-    \textbf{2)} FNS accept the request and save the user's image and PN \\&
-    \textbf{3)} FNS send a success notification to admin \\&
+    \textbf{1)} FRS receive a POST request \\&
+    \textbf{2)} FRS accept the request and save the user's image and PN \\&
+    \textbf{3)} FRS send a success notification to admin \\&
     \textbf{4)} Admin receive a success notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
-    \textbf{2a)} FNS reject the request because user's image file is corrupted \\&
-    \textbf{2b)} FNS send a failure notification to admin\\&
+    \textbf{2a)} FRS reject the request because user's image file is corrupted \\&
+    \textbf{2b)} FRS send a failure notification to admin\\&
     \textbf{2c)} Admin receive a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
     \textbf{Secondary flow(2)} & 
-    \textbf{2a)} FNS reject the request because user's PN format is incorrect \\&
-    \textbf{2b)} FNS send a failure notification to admin\\&
+    \textbf{2a)} FRS reject the request because user's PN format is incorrect \\&
+    \textbf{2b)} FRS send a failure notification to admin\\&
     \textbf{2c)} Admin receive a failure notification
     
    \\ \hline \rowcolor{Gray} & \\ \hline
@@ -248,6 +324,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \newpage
 \noindent
+
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
         
