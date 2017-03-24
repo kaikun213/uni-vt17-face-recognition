@@ -36,7 +36,7 @@
 \vfill
 \begin{minipage}{\textwidth}
 \begin{flushleft} \large
-\emph{Authors:} Walid Balegh, Jakob Heyder, Sarpreet Singh Buttar \\ \hspace{45pt} Henry Pap and Oscar Maris \\ % Author
+\emph{Authors:} Walid Balegh, Jakob Heyder, Sarpreet Singh Buttar, Henry Pap\\ \hspace{45pt} and Oscar Maris \\ % Author
 %\emph{Supervisor:} Name of your supervisor\\ % Supervisor
 %\emph{Examiner:} Dr.~Mark \textsc{Brown}\\ % Examiner (course manager)
 \emph{Semester:} VT 2017\\ % 
@@ -177,7 +177,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \section{Modeling of functional requirements}
 % Use cases with scenarios model
 
-\begin{tabular}{|p{4cm}|p{11cm}|} \hline
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
@@ -203,52 +203,52 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    1) FNS receive a POST request \\&
-    2) FNS accept the request and save the user's image and PN \\&
-    3) FNS send a success notification to admin \\&
-    4) Admin receive a success notification
+    \textbf{1)} FNS receive a POST request \\&
+    \textbf{2)} FNS accept the request and save the user's image and PN \\&
+    \textbf{3)} FNS send a success notification to admin \\&
+    \textbf{4)} Admin receive a success notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Secondary flow (1)} & 
-    2a) FNS reject the request because user's image file is corrupted \\&
-    2b) FNS send a failure notification to admin\\&
-    2c) Admin receive a failure notification \\& 
+    \textbf{Secondary flow(1)} & 
+    \textbf{2a)} FNS reject the request because user's image file is corrupted \\&
+    \textbf{2b)} FNS send a failure notification to admin\\&
+    \textbf{2c)} Admin receive a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
-    \textbf{Secondary flow (2)} & 
-    2a) FNS reject the request because user's PN format is incorrect \\&
-    2b) FNS send a failure notification to admin\\&
-    2c) Admin receive a failure notification \\& 
+    \textbf{Secondary flow(2)} & 
+    \textbf{2a)} FNS reject the request because user's PN format is incorrect \\&
+    \textbf{2b)} FNS send a failure notification to admin\\&
+    \textbf{2c)} Admin receive a failure notification
     
    \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Secondary flow (3)} & 
-    2a) FNS reject the request because user's PN is invalid \\&
-    2b) FNS send a failure notification \\&
-    2c) Admin receive a failure notification \\&
+    \textbf{Secondary flow(3)} & 
+    \textbf{2a)} FNS reject the request because user's PN is invalid \\&
+    \textbf{2b)} FNS send a failure notification \\&
+    \textbf{2c)} Admin receive a failure notification
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Secondary flow (4)} & 
-    2a) FNS reject the request because user's image is corrupted and PN is invalid\\&
-    2b) FNS send a failure notification \\&
-    2c) Admin receive a failure notification \\&
+    \textbf{Secondary flow(4)} & 
+    \textbf{2a)} FNS reject the request because user's image is corrupted and PN is invalid\\&
+    \textbf{2b)} FNS send a failure notification \\&
+    \textbf{2c)} Admin receive a failure notification
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Secondary flow (5)} & 
-    2a) FNS reject the request because user's image is corrupted and PN format is incorrect\\&
-    2b) FNS send a failure notification \\&
-    2c) Admin receive a failure notification
+    \textbf{Secondary flow(5)} & 
+    \textbf{2a)} FNS reject the request because user's image is corrupted and PN format is incorrect\\&
+    \textbf{2b)} FNS send a failure notification \\&
+    \textbf{2c)} Admin receive a failure notification
     \\\hline 
 \end{tabular}
 
 
 \newpage
 \noindent
-\begin{tabular}{|p{4cm}|p{11cm}|} \hline
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
@@ -274,24 +274,24 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    1) FNS receive a DELETE request \\&
-    2) FNS accept the request and delete the requested user's data(image and PN) \\&
-    3) FNS send a success notification to admin \\&
-    4) Admin receive a success notification
+    \textbf{1)} FNS receive a DELETE request \\&
+    \textbf{2)} FNS accept the request and delete the requested user's data(image and PN) \\&
+    \textbf{3)} FNS send a success notification to admin \\&
+    \textbf{4)} Admin receive a success notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Secondary flow (1)} & 
-    2a) FNS reject the request because user's unique id is not found \\&
-    2b) FNS send a failure notification to admin\\&
-    2c) Admin receive a failure notification \\& 
+    \textbf{Secondary flow(1)} & 
+    \textbf{2a)} FNS reject the request because user's unique id is not found \\&
+    \textbf{2b)} FNS send a failure notification to admin\\&
+    \textbf{2c)} Admin receive a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
-    \textbf{Secondary flow (2)} & 
-    2a) FNS reject the request because user's unique id format is incorrect \\&
-    2b) FNS send a failure notification to admin\\&
-    2c) Admin receive a failure notification
+    \textbf{Secondary flow(2)} & 
+    \textbf{2a)} FNS reject the request because user's unique id format is incorrect \\&
+    \textbf{2b)} FNS send a failure notification to admin\\&
+    \textbf{2c)} Admin receive a failure notification
     \\ \hline 
 \end{tabular}
 
