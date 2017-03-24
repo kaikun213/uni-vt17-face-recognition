@@ -19,6 +19,10 @@
     }
 }
 
+\renewcommand{\theenumi}{\thesubsection.\arabic{enumi}}
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
 \title{	
 \vspace{-8cm}
 \begin{flushleft}
@@ -94,9 +98,11 @@ Therefore the FRS is split into a user component and an administrative component
 \item \textbf{USM : User Server Module}
 \item \textbf{ASM : Admin Server Module}
 \item \textbf{UCM : User Client Module}
+\item \textbf{ACM : Admin Client Module}
 \item \textbf{EFR : External Face Recognition API}
 \item \textbf{FRS : Face Recognition System to be developed}
 \item \textbf{PN : Swedish Personal Number}
+\item \textbf{USW : User Starting Window (Mainpage)}
 \end{itemize}
 
 \subsection{References}
@@ -166,12 +172,45 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{User Client Module}
 % Get Personal Number from Photo (Client view)
+\begin{enumerate}
+		\item \label{UCMLogging} The UCM shall support the logging of users
+			\stepcounter{enumii}
+			\begin{enumerate}
+				\item The initial window of the UCM shall contain a field for user name, a field for a password and button labeled "login". The password field shall be a "secret" field, which does not display what the user types.
+				\item When a user presses the login button, the UCM shall send a request to the USM to login the user.
+			\end{enumerate}
+		\item If and only if the logging of a user is successful (see \ref{UCMLogging}) the UCM shall display the USW and the user shall be able to use the functionality of the application.
+		\item When the user presses the "GET PN" Button in the USW the UCM shall open the camera.
+		\item If the camera returns a picture the UCM shall send a request to the USM with the taken picture.
+		\item The UCM shall display responses from the USM and provide a button to return to the USW.
+		\item The UCM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
+\end{enumerate}
 
 \subsection{User Server Module}
 % Get Personal Number from Photo (Server view)
+\begin{enumerate}
+		\item Upon successful login request from the UCM the USM shall produce the USW as specified in \ref{UCMLogging}.
+		\item The USM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
+		\item The USM only replies to authenticated requests.
+		\item The USM shall be able to classify a picture it gets from a request and possibly match it with a corresponded PN.
+		\begin{enumerate}
+			\item If the USM receives a request it shall forward a request to the EFR with the received picture.
+			\item The USM shall be able to receive a response from the EFR and process it.
+		\end{enumerate}  
+		\item The USM shall be able to send a well formated response to the UCM.
+\end{enumerate}
 
 \subsection{Admin Server Module}
 % Add, Delete, Update, Get multiple users
+\begin{enumerate}
+		\item The ASM shall be able to authenticate Admins.
+		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
+		\item The ASM only replies to authenticated requests.
+		\item The ASM shall validate and execute all requests from an authenticated ACM.
+		\item The ASM shall be able to make requests to the Database.
+		\item The ASM shall be able to make requests to the EFR.
+		\item The ASM shall be able to receive and process responses of the EFR.
+\end{enumerate}
 
 \newpage
 \section{Modeling of functional requirements}
