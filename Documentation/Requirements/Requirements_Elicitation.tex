@@ -209,7 +209,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{Admin Server Module}
 % Add, Delete, Update, Get multiple users
 \begin{enumerate}
-		\item The ASM shall be able to authenticate Admins.
+		\item \label{ACMLogging} The ASM shall be able to authenticate Admins.
 		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The ASM only replies to authenticated requests.
 		\item \label{ASMRequest}The ASM shall validate and execute all requests from an authenticated ACM.
@@ -271,7 +271,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{ACM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   Admin \emph{GET} list of entities
+    \textbf{Title} &   Admin \emph{GET} list of user-entities
         
     \\ \hline \rowcolor{Gray} & \\ \hline
     
@@ -279,7 +279,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN.
+    \textbf{Description} &  The admin should be able to get a list of all the user-entities from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -301,7 +301,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Primary flow} & 
     \textbf{1)} The admin sends a GET request \\&
-    \textbf{2)} The admin then receives a list of all the PNs currently on the server. \\&
+    \textbf{2)} The admin then receives a list of all the user-entities currently on the FRS. \\&
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
@@ -392,7 +392,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  Admin want to delete a user. In order to delete a user, admin send a DELETE request to FNS which include user's unique id(should be integer). In result, admin receives an appropriate notification from the FNS.
+    \textbf{Description} &  Admin want to delete a user. In order to delete a user, admin send a DELETE request to FRS which include user's unique id(should be integer). In result, admin receives an appropriate notification from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -408,7 +408,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Initiation} & Admin send DELETE request to FNS
+    \textbf{Initiation} & Admin send DELETE request to FRS
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
@@ -435,7 +435,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
   \textbf{Title} &   Admin \emph{Update} a user 
    
     \\ \hline \rowcolor{Gray} & \\ \hline 
-    \textbf{Requirements} &     
+    \textbf{Covered requirements} &  \ref{ASMRequest}   
     \\ \hline \rowcolor{Gray} & \\ \hline 
    
   \textbf{Description} &  Admin want to update a user. In order to update a user, admin sends an update request to FRS which includes the user's new unique id(should be integer) and/or the new photo. In result, admin receives an appropriate notification from the FRS. 
@@ -489,7 +489,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
   \textbf{Title} &   Admin \emph{authenticates}  
    
   \\ \hline \rowcolor{Gray} & \\ \hline 
-  \textbf{Requirements} &     
+  \textbf{Covered requirements} &  \ref{ACMLogging}
   \\ \hline \rowcolor{Gray} & \\ \hline 
   \textbf{Description} &  Admin want to authenticate. In order to authenticate, admin sends an authentication request to FRS which includes the correct username and password. In result, admin can access the system. 
    
@@ -531,7 +531,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
    
   \\  
   \\ \hline \rowcolor{Gray} & \\ \hline 
-  \textbf{Requirements} &     
+  \textbf{Covered requirements} & \ref{UCMLogging}
   \\ \hline \rowcolor{Gray} & \\ \hline 
   \textbf{Description} &  User want to authenticate. In order to authenticate, user sends an authentication request to FRS which includes the correct username and password. In result, user can access the system. 
    
