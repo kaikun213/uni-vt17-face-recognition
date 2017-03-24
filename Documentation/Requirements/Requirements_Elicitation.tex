@@ -416,4 +416,135 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline 
 \end{tabular}
 
+\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+	\textbf{Title} &   Admin \emph{Update} a user
+	
+		\\ \hline \rowcolor{Gray} & \\ \hline
+		\textbf{Requirements} &    
+		\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Description} &  Admin want to update a user. In order to update a user, admin sends an update request to FRS which includes the user's new unique id(should be integer) and/or the new photo. In result, admin receives an appropriate notification from the FRS.
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Primary actor} & Admin  
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Pre-conditions} &   Admin must be authenticated
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Post-conditions} &   Admin must receive a notification
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Initiation} & Admin sends an update request to FRS.
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Primary flow} & 
+	1) The admin sends the new PN and picture \\&
+	2) The Admin receives a success notification.
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Secondary flow (1)} & 
+	2a) FRS rejects the request because user's unique id is not found \\&
+	2b) Admin receives a failure notification \\& 
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Secondary flow (2)} & 
+	2a) FRS rejects the request because user's unique id format is incorrect \\&
+	2b) The Admin receives a failure notification \\&
+	
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Secondary flow (3)} & 
+	2a) FRS rejects the request because user's new photo is corrupted\\&
+	2b) The Admin receives a failure notification \\&
+	\\ \hline  
+\end{tabular}
+
+\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+	\textbf{Title} &   Admin \emph{authentificates} 
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	\textbf{Requirements} &    
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	\textbf{Description} &  Admin want to authentificate. In order to authentificate, admin sends an authentification request to FRS which includes the correct username and password. In result, admin can access the system.
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Primary actor} & Admin  
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Pre-conditions} &   Admin accessed to the main page of the system
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Post-conditions} &   Admin receives access to the system
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Initiation} & Admin accessed to the main page of the system
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Primary flow} & 
+	1) The admin sends an authentication request with a username and password  \\&
+	2) The admin gets a successful response and access to the FRS \\&
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Secondary flow (1)} & 
+	2a) The admin gets an error message that the username or password is incorrect \\& 
+	
+	
+	\\ \hline  
+\end{tabular}
+
+\begin{tabular}{|p{4cm}|p{10cm}|} \hline
+	\textbf{Title} &   User \emph{authentificates} 
+	
+	\\ 
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	\textbf{Requirements} &    
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	\textbf{Description} &  User want to authenticate. In order to authenticate, user sends an authentication request to FRS which includes the correct username and password. In result, user can access the system.
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Primary actor} & User  
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Pre-conditions} &   User accessed to the main page of the system
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline
+	
+	\textbf{Post-conditions} &   User receives access to the system
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Initiation} & User accessed to the main page of the system
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Primary flow} & 
+	1) The user sends an authentication request with a username and password  \\&
+	2) User gets a successful response and access to the FRS \\&
+	
+	\\ \hline \rowcolor{Gray} & \\ \hline 
+	
+	\textbf{Secondary flow (1)} & 
+	2a) User gets an error message that the username or password is incorrect \\& 
+	
+	
+	\\ \hline  
+\end{tabular}
+
 \end{document}
