@@ -22,8 +22,8 @@
 \contentsline {subsection}{\numberline {3.2}User Server Module}{6}
 \contentsline {subsection}{\numberline {3.3}Admin Server Module}{6}
 \contentsline {section}{\numberline {4}Modeling of functional requirements}{8}
-\contentsline {subsection}{\numberline {4.1}UCM GET Personal Number}{8}
-\contentsline {subsection}{\numberline {4.2}ACM Get List of User-Entities}{9}
+\contentsline {subsection}{\numberline {4.1}UCM: GET Personal Number}{8}
+\contentsline {subsection}{\numberline {4.2}ACM: Get List of User-Entities}{9}
 \contentsline {subsection}{\numberline {4.3}ACM: Add an User-Entity}{10}
 \contentsline {subsection}{\numberline {4.4}ACM: Delete an User-Entity}{11}
 \contentsline {subsection}{\numberline {4.5}ACM: Update User-Entity}{12}

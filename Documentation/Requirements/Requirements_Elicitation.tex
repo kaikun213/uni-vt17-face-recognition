@@ -5,6 +5,7 @@
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
 \usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{enumitem}
 
 % ------------ Title section
 
@@ -178,7 +179,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{User Client Module}
 % Get Personal Number from Photo (Client view)
-\begin{enumerate}
+\begin{enumerate}[leftmargin=0.8in]
 		\item \label{UCMLogging} The UCM shall support the logging of users
 			\stepcounter{enumii}
 			\begin{enumerate}
@@ -194,7 +195,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{User Server Module}
 % Get Personal Number from Photo (Server view)
-\begin{enumerate}
+\begin{enumerate}[leftmargin=0.8in]
 		\item Upon successful login request from the UCM the USM shall produce the USW as specified in \ref{UCMLogging}.
 		\item The USM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The USM only replies to authenticated requests.
@@ -208,7 +209,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{Admin Server Module}
 % Add, Delete, Update, Get multiple users
-\begin{enumerate}
+\begin{enumerate}[leftmargin=0.8in]
 		\item \label{ACMLogging} The ASM shall be able to authenticate Admins.
 		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The ASM only replies to authenticated requests.
@@ -272,7 +273,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{ACM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   Admin \emph{GET} list of user-entities
+    \textbf{Title} &   Admin \emph{RETRIEVE} list of user-entities
         
     \\ \hline \rowcolor{Gray} & \\ \hline
     
@@ -288,7 +289,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   Admin must be authenticated
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -332,7 +333,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   Admin must be authenticated
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -403,7 +404,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   Admin must be authenticated
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -452,7 +453,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
    
-    \textbf{Pre-conditions} &   Admin must be authenticated 
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
    
     \\ \hline \rowcolor{Gray} & \\ \hline 
    
