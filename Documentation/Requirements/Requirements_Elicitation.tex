@@ -113,9 +113,10 @@ Therefore the FRS is split into a user component and an administrative component
 
 \subsection{References}
 N/A
-\subsection{Roles} \label{Roles}
+\subsection{Stakeholders} \label{Roles}
 \begin{itemize}
-\item \textbf{User :} Verified and registered service which is authenticated to use the the User API. E.g. Skatteverket or Swedbank.
+\item \textbf{Customer: } LNUs Teaching Team which represents a fictive company which wants the FRS.
+\item \textbf{User :} Verified and registered partner which is authenticated to use the the User API. E.g. Skatteverket or Swedbank.
 \item \textbf{Admin :} Verified and registered partner which provides the trusted information and has full control over the application and data.
 \item \textbf{Developer :} Fully privileged people which develop the system and have access to the Admin-,User interfaces and the source code during development. 
 \end{itemize}
@@ -174,6 +175,7 @@ The system should enforce User and Admin authentication security and guarantee e
 \subsection{Assumptions and Dependencies}
 The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems. The system is developed under the assumption that the external component is reliable, secure, scalable and functional. 
 
+\newpage
 \section{Specific functional requirements}
 
 \subsection{User Client Module}
@@ -219,7 +221,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \end{enumerate}
 
 \newpage
-\section{Modeling of functional requirements}
+\section{Modeling of functional requirements (Usecases \& Scenarios)}
 % Use cases with scenarios model
 
 %USER
@@ -268,7 +270,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \end{tabular}
 
 %ADMIN kek
-\subsection{ACM: Get List of User-Entities}
+\subsection{ASM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{GET} list of entities
@@ -311,7 +313,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \end{tabular}
 
 
-\subsection{ACM: Add an User-Entity}
+\subsection{ASM: Add an User-Entity}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
@@ -381,7 +383,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \newpage
 \noindent
 
-\subsection{ACM: Delete an User-Entity}
+\subsection{ASM: Delete an User-Entity}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
@@ -429,7 +431,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline 
 \end{tabular}
 
-\subsection{ACM: Update User-Entity}
+\subsection{ASM: Update User-Entity}
 
 \begin{tabular}{|p{4cm}|p{10cm}|} \hline 
   \textbf{Title} &   Admin \emph{Update} a user 
@@ -483,7 +485,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
   \\ \hline   
 \end{tabular} 
 
-\subsection{ACM: Authenticate Admin}
+\subsection{ASM: Authenticate Admin}
  
 \begin{tabular}{|p{4cm}|p{10cm}|} \hline 
   \textbf{Title} &   Admin \emph{authenticates}  
