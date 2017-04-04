@@ -254,18 +254,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Initiation} & User sends a GET request to FRS
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-         
     \textbf{Primary flow} & 
-    \textbf{1)} The User provides an image of a person's face \\&
-    \textbf{2)} The User receives a matching PN
+    \textbf{1)} User send an image of a person's face \\&
+    \textbf{2)} User receives a success notification and matching PN
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Secondary flow(1)} & 
-    \textbf{2a)} The User receives an error message dependant on the issue at hand
+    \textbf{Secondary flow} \emph{(Face does not match)} & 
+    \textbf{2a)} User receives a failure notification
     
     \\ \hline 
 \end{tabular}
@@ -296,21 +292,17 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
          
     \textbf{Post-conditions} &   Admin must receive a notification
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-         
-    \textbf{Initiation} & Admin sends a GET request to FRS
-        
+                
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Primary flow} & 
-    \textbf{1)} The admin sends a GET request \\&
-    \textbf{2)} The admin then receives a list of all the user-entities currently on the FRS. \\&
+    \textbf{1)} Admin sends a GET request \\&
+    \textbf{2)} Admin receives a success notification and list of all the user-entities currently
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Secondary flow(1)} & 
-    \textbf{2a)} The admin receives an error if the server is inactive (or other issue)
+    \textbf{Secondary flow} \emph{(Internal server error)} & 
+    \textbf{2a)} Admin receives a failure notification
     
     \\ \hline 
 \end{tabular}
@@ -327,7 +319,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN(YYYYMMDD-XXXX). In result, admin receives an appropriate notification from the FRS.
+    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN. In result, admin receives an appropriate notification from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -343,42 +335,34 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Initiation} & Admin send POST request to FRS
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-         
     \textbf{Primary flow} &
-    \textbf{1)} Admin receive a success notification from FRS
+    \textbf{1)} Admin sends a POST request \\&
+    \textbf{2)} Admin receives a success notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Secondary flow(1)} & 
-    \textbf{1a)} The user's image file is corrupted \\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User image is corrupted)} & 
+    \textbf{2a)} Admin receives a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
-    \textbf{Secondary flow(2)} & 
-    \textbf{1a)} The user's PN format is incorrect \\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User PN format is incorrect)} & 
+    \textbf{2a)} Admin receives a failure notification
     
    \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Secondary flow(3)} & 
-    \textbf{1a)} The user's PN is invalid \\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User PN is invalid)} & 
+    \textbf{2a)} Admin receives a failure notification
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Secondary flow(4)} & 
-    \textbf{1a)} The user's image is corrupted and PN is invalid\\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User image is corrupted and PN is invalid)} & 
+    \textbf{2a)} Admin receives a failure notification
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Secondary flow(5)} & 
-    \textbf{1a)} The user's image is corrupted and PN format is incorrect\\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User image is corrupted and PN format is incorrect)} & 
+    \textbf{2a)} Admin receive a failure notification
     
     \\\hline 
 \end{tabular}
@@ -414,24 +398,19 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Initiation} & Admin send DELETE request to FRS
+    \textbf{Primary flow} &
+    \textbf{1)} Admin sends a DELETE request \\&
+    \textbf{2)} Admin receives a success notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Primary flow} & 
-    \textbf{1)} Admin receive a success notification
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-         
-    \textbf{Secondary flow(1)} & 
-    \textbf{1a)} The user's unique id is not found \\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User id not found)} & 
+    \textbf{2a)} Admin receives a failure notification
      
     \\ \hline \rowcolor{Gray} & \\ \hline 
      
-    \textbf{Secondary flow(2)} & 
-    \textbf{1a)} The user's unique id format is incorrect \\&
-    \textbf{1b)} Admin receive a failure notification
+    \textbf{Secondary flow} \emph{(User id format is incorrect)} & 
+    \textbf{2a)} Admin receives a failure notification
     
     \\ \hline 
 \end{tabular}
@@ -463,31 +442,29 @@ The FRS will depend on an external face recognition API to compare photos. This 
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
    
-    \textbf{Initiation} & Admin sends an update request to FRS. 
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline  
-   
     \textbf{Primary flow} &  
-    \textbf{1)} The admin sends the new PN and picture \\& 
+    \textbf{1)} The admin sends the new PN and/or picture \\& 
     \textbf{2)} The Admin receives a success notification. 
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
      
-    \textbf{Secondary flow(1)} &  
-    \textbf{2a)} FRS rejects the request because user's unique id is not found \\&
-    \textbf{2b)} Admin receives a failure notification  
+    \textbf{Secondary flow} \emph{(User id not found)} &  
+    \textbf{2a)} Admin receives a failure notification  
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
    
-    \textbf{Secondary flow(2)} &  
-    \textbf{2a)} FRS rejects the request because user's unique id format is incorrect \\& 
-    \textbf{2b)} The Admin receives a failure notification
+    \textbf{Secondary flow} \emph{(User PN format is incorrect)} &  
+    \textbf{2a)} Admin receives a failure notification
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
    
-    \textbf{Secondary flow(3)} &  
-    \textbf{2a)} FRS rejects the request because user's new photo is corrupted\\&
-    \textbf{2b)} The Admin receives a failure notification 
+    \textbf{Secondary flow} \emph{(User PN is invalid)} &  
+    \textbf{2a)} Admin receives a failure notification
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(User new image is corrupted)} &  
+    \textbf{2a)} Admin receives a failure notification 
     
     \\ \hline   
 \end{tabular} 
@@ -519,18 +496,27 @@ The FRS will depend on an external face recognition API to compare photos. This 
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
    
-    \textbf{Initiation} & Admin accessed to the main page of the system 
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline  
-   
     \textbf{Primary flow} &  
-    \textbf{1)} The admin sends an authentication request with a username and password  \\& 
-    \textbf{2)} The admin gets a successful response and access to the FRS
-   
+    \textbf{1)} Admin sends an authentication request with a username and password  \\& 
+    \textbf{2)} Access granted
+    
     \\ \hline \rowcolor{Gray} & \\ \hline  
    
-    \textbf{Secondary flow(1)} &  
-    \textbf{2a)} The admin gets an error message that the username or password is incorrect 
+    \textbf{Secondary flow} \emph{(Username is incorrect)} &  
+    \textbf{2a)} Admin receives a failure notification \\ &
+    \textbf{2b)} Access denied
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(Password is incorrect)} &  
+    \textbf{2a)} Admin receives a failure notification \\ &
+    \textbf{2b)} Access denied
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(Username and Password is incorrect)} &  
+    \textbf{2a)} Admin receives a failure notification \\ &
+    \textbf{2b)} Access denied
     
     \\ \hline   
 \end{tabular}
@@ -562,19 +548,28 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \textbf{Post-conditions} &   User receives access to the system 
    
     \\ \hline \rowcolor{Gray} & \\ \hline  
-   
-    \textbf{Initiation} & User accessed to the main page of the system 
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline  
-   
+    
     \textbf{Primary flow} &  
-    \textbf{1)} The user sends an authentication request with a username and password  \\& 
-    \textbf{2)} User gets a successful response and access to the FRS
-   
+    \textbf{1)} User sends an authentication request with a username and password  \\& 
+    \textbf{2)} Access granted
+    
     \\ \hline \rowcolor{Gray} & \\ \hline  
-   
-    \textbf{Secondary flow(1)} &  
-    \textbf{2a)} User gets an error message that the username or password is incorrect
+    
+    \textbf{Secondary flow} \emph{(Username is incorrect)} &  
+    \textbf{2a)} User receives a failure notification \\ &
+    \textbf{2b)} Access denied
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(Password is incorrect)} &  
+    \textbf{2a)} User receives a failure notification \\ &
+    \textbf{2b)} Access denied
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(Username and Password is incorrect)} &  
+    \textbf{2a)} User receives a failure notification \\ &
+    \textbf{2b)} Access denied
     
     \\ \hline   
 \end{tabular} 
