@@ -102,10 +102,10 @@ Therefore the FRS is split into a user component and an administrative component
  
 \subsection{Definitions, acronyms and abbreviations}
 \begin{itemize}
-\item \textbf{USM : User Server Module}
-\item \textbf{ASM : Admin Server Module}
-\item \textbf{UCM : User Client Module}
-\item \textbf{ACM : Admin Client Module}
+\item \textbf{URM : User Repository Module}
+\item \textbf{ARM : Admin Repository Module}
+\item \textbf{UAM : User Application Module}
+\item \textbf{AAM : Admin Application Module}
 \item \textbf{EFR : External Face Recognition API}
 \item \textbf{FRS : Face Recognition System to be developed}
 \item \textbf{PN : Swedish Personal Number}
@@ -114,9 +114,10 @@ Therefore the FRS is split into a user component and an administrative component
 
 \subsection{References}
 N/A
-\subsection{Roles} \label{Roles}
+\subsection{Stakeholders} \label{Roles}
 \begin{itemize}
-\item \textbf{User :} Verified and registered service which is authenticated to use the the User API. E.g. Skatteverket or Swedbank.
+\item \textbf{Customer: } LNUs Teaching Team which represents a fictive company which wants the FRS.
+\item \textbf{User :} Verified and registered partner which is authenticated to use the the User API. E.g. Skatteverket or Swedbank.
 \item \textbf{Admin :} Verified and registered partner which provides the trusted information and has full control over the application and data.
 \item \textbf{Developer :} Fully privileged people which develop the system and have access to the Admin-,User interfaces and the source code during development. 
 \end{itemize}
@@ -131,7 +132,7 @@ The rest of this document contains an overall description of the Face Recognitio
 In some services such as financial or official matters there is a need to identify a person fast and securely. The FRS can provide this functionality and make the process easier and more reliable.
 
 \subsubsection{System Interfaces}
-The FRS depends on an external face recognition API to compare the photos. This service can be developed in house or made use of existing systems. Beside the external dependency it consists of four different modules: the User Client Module (UCM), the User Server Module (USM), the Admin Server Module (ASM) and a database. (see figure 1)
+The FRS depends on an external face recognition API to compare the photos. This service can be developed in house or made use of existing systems. Beside the external dependency it consists of four different modules: the User Application Module (UCM), the User Repository Module (URM), the Admin Repository Module (ARM) and a database. (see figure 1)
 \begin{figure}[h!]
 	\centering
 	\label{System Interfaces}
@@ -140,13 +141,13 @@ The FRS depends on an external face recognition API to compare the photos. This 
 \end{figure}
 \newpage
 \noindent
-The UCM allows User services to log on to the FRS and request a personal number with a given image. The USM is a daemon that accepts connections from the UCM and serves with the requested information. The USM is dependent on the External Face Recogntion API (EFR) to match the given photo to a registered one. The Admin Server Module serves the API for the ACM to register, delete, update and get user data. It directly interacts with the PN-Database and indirectly uses the EFR to modify the Image-Database.
+The UCM allows User services to log on to the FRS and request a personal number with a given image. The URM is a daemon that accepts connections from the UCM and serves with the requested information. The URM is dependent on the External Face Recogntion API (EFR) to match the given photo to a registered one. The Admin Repository Module serves the API for the ACM to register, delete, update and get user data. It directly interacts with the PN-Database and indirectly uses the EFR to modify the Image-Database.
 \newline
 \noindent
-The User Client Module can be \textit{any} verified and registered Application which depends on the USM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies. 
+The User Application Module can be \textit{any} verified and registered Application which depends on the URM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies. 
 
 \subsubsection{User Interfaces}
-The User Client Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface. 
+The User Application Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface. 
 \subsubsection{Hardware Interfaces}
 All components must be able to execute on a personal computer.
 
@@ -167,7 +168,7 @@ The two main functions of the Face Recognition System are to allow user services
 For managerial purposes it is useful to have the option to \textit{RETRIEVE} all persons and then have the basic REST functionality to \textit{ADD},\textit{UPDATE} or \textit{DELETE} a person. A person entity consists of a personal number and an biometric picture of the person.
 
 \subsection{User characteristics}
-The User as defined in \ref{Roles} is a verified and registered service which provides the User Client Module to interact with the USM.
+The User as defined in \ref{Roles} is a verified and registered service which provides the User Application Module to interact with the URM.
 
 \subsection{Constraints}
 The system should enforce User and Admin authentication security and guarantee encrypted communication of critical data.
@@ -175,68 +176,69 @@ The system should enforce User and Admin authentication security and guarantee e
 \subsection{Assumptions and Dependencies}
 The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems. The system is developed under the assumption that the external component is reliable, secure, scalable and functional. 
 
+\newpage
 \section{Specific functional requirements}
 
-\subsection{User Client Module}
-% Get Personal Number from Photo (Client view)
+\subsection{User Application Module}
+% Get Personal Number from Photo (Application view)
 \begin{enumerate}[leftmargin=0.8in]
-		\item \label{UCMLogging} The UCM shall support the logging of users
+		\item \label{UAMLogging} The UAM shall support the logging of users
 			\stepcounter{enumii}
 			\begin{enumerate}
-				\item The initial window of the UCM shall contain a field for user name, a field for a password and button labeled "login". The password field shall be a "secret" field, which does not display what the user types.
-				\item When a user presses the login button, the UCM shall send a request to the USM to login the user.
+				\item The initial window of the UAM shall contain a field for user name, a field for a password and button labeled "login". The password field shall be a "secret" field, which does not display what the user types.
+				\item When a user presses the login button, the UAM shall send a request to the URM to login the user.
 			\end{enumerate}
-		\item If and only if the logging of a user is successful (see \ref{UCMLogging}) the UCM shall display the USW and the user shall be able to use the functionality of the application.
-		\item When the user presses the "GET PN" Button in the USW the UCM shall open the camera.
-		\item \label{UCMCAM} If the camera returns a picture the UCM shall send a request to the USM with the taken picture.
-		\item \label{UCMRet} The UCM shall display responses from the USM and provide a button to return to the USW.
-		\item The UCM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
+		\item If and only if the logging of a user is successful (see \ref{UAMLogging}) the UAM shall display the USW and the user shall be able to use the functionality of the application.
+		\item When the user presses the "GET PN" Button in the USW the UAM shall open the camera.
+		\item \label{UAMCAM} If the camera returns a picture the UAM shall send a request to the URM with the taken picture.
+		\item \label{UAMRet} The UAM shall display responses from the URM and provide a button to return to the USW.
+		\item The UAM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
 \end{enumerate}
 
-\subsection{User Server Module}
-% Get Personal Number from Photo (Server view)
+\subsection{User Repository Module}
+% Get Personal Number from Photo (Repository view)
 \begin{enumerate}[leftmargin=0.8in]
-		\item Upon successful login request from the UCM the USM shall produce the USW as specified in \ref{UCMLogging}.
-		\item The USM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
-		\item The USM only replies to authenticated requests.
-		\item The USM shall be able to classify a picture it gets from a request and possibly match it with a corresponded PN.
+		\item Upon successful login request from the UAM the URM shall produce the USW as specified in \ref{UAMLogging}.
+		\item The URM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
+		\item The URM only replies to authenticated requests.
+		\item The URM shall be able to classify a picture it gets from a request and possibly match it with a corresponded PN.
 		\begin{enumerate}
-			\item If the USM receives a request it shall forward a request to the EFR with the received picture.
-			\item The USM shall be able to receive a response from the EFR and process it.
+			\item If the URM receives a request it shall forward a request to the EFR with the received picture.
+			\item The URM shall be able to receive a response from the EFR and process it.
 		\end{enumerate}  
-		\item The USM shall be able to send a well formated response to the UCM.
+		\item The URM shall be able to send a well formated response to the UAM.
 \end{enumerate}
 
-\subsection{Admin Server Module}
+\subsection{Admin Repository Module}
 % Add, Delete, Update, Get multiple users
 \begin{enumerate}[leftmargin=0.8in]
-		\item \label{ACMLogging} The ASM shall be able to authenticate Admins.
-		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
-		\item The ASM only replies to authenticated requests.
-		\item \label{ASMRequest}The ASM shall validate and execute all requests from an authenticated ACM.
-		\item The ASM shall be able to make requests to the Database.
-		\item The ASM shall be able to make requests to the EFR.
-		\item The ASM shall be able to receive and process responses of the EFR.
+		\item \label{ACMLogging} The ARM shall be able to authenticate Admins.
+		\item The ARM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
+		\item The ARM only replies to authenticated requests.
+		\item \label{ARMRequest}The ARM shall validate and execute all requests from an authenticated ACM.
+		\item The ARM shall be able to make requests to the Database.
+		\item The ARM shall be able to make requests to the EFR.
+		\item The ARM shall be able to receive and process responses of the EFR.
 \end{enumerate}
 
 \newpage
-\section{Modeling of functional requirements}
+\section{Modeling of functional requirements (Usecases \& Scenarios)}
 % Use cases with scenarios model
 
 %USER
 
-\subsection{UCM: GET Personal Number}
+\subsection{UAM: GET Personal Number}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &  User \emph{GET} personal number 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Covered requirements} &  \ref{UCMCAM} and \ref{UCMRet}
+    \textbf{Covered requirements} &  \ref{UAMCAM} and \ref{UAMRet}
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
+    \textbf{Description} &  The user should be able to provide an image of a person's face within the UAM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -244,7 +246,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   User must be authenticated (see \ref{UCMLogging})
+    \textbf{Pre-conditions} &   User must be authenticated (see \ref{UAMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -270,14 +272,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 
 %ADMIN kek
-\subsection{ACM: Get List of User-Entities}
+\subsection{ARM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{RETRIEVE} list of user-entities
         
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Covered requirements} &  \ref{ASMRequest}
+    \textbf{Covered requirements} &  \ref{ARMRequest}
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -314,14 +316,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \end{tabular}
 
 
-\subsection{ACM: Add an User-Entity}
+\subsection{ARM: Add an User-Entity}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Covered requirements} &  \ref{ASMRequest}
+    \textbf{Covered requirements} &  \ref{ARMRequest}
     
     \\ \hline \rowcolor{Gray} & \\ \hline
     
@@ -385,14 +387,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \newpage
 \noindent
 
-\subsection{ACM: Delete an User-Entity}
+\subsection{ARM: Delete an User-Entity}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
         
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-    \textbf{Covered requirements} &  \ref{ASMRequest}
+    \textbf{Covered requirements} &  \ref{ARMRequest}
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -434,14 +436,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline 
 \end{tabular}
 
-\subsection{ACM: Update User-Entity}
+\subsection{ARM: Update User-Entity}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
     \textbf{Title} &   Admin \emph{UPDATE} a user 
    
     \\ \hline \rowcolor{Gray} & \\ \hline 
     
-    \textbf{Covered requirements} &  \ref{ASMRequest}   
+    \textbf{Covered requirements} &  \ref{ARMRequest}   
     
     \\ \hline \rowcolor{Gray} & \\ \hline 
    
@@ -490,7 +492,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline   
 \end{tabular} 
 
-\subsection{ACM: Authenticate Admin}
+\subsection{ARM: Authenticate Admin}
  
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
     \textbf{Title} &   Admin \emph{AUTHENTICATES}  
@@ -534,14 +536,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \end{tabular}
 
 
-\subsection{USM: Authenticate User}
+\subsection{URM: Authenticate User}
  
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
     \textbf{Title} &   User \emph{AUTHENTICATES}  
     
     \\ \hline \rowcolor{Gray} & \\ \hline 
   
-    \textbf{Covered requirements} & \ref{UCMLogging}
+    \textbf{Covered requirements} & \ref{UAMLogging}
   
     \\ \hline \rowcolor{Gray} & \\ \hline 
   
