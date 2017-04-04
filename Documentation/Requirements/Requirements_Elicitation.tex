@@ -1,6 +1,7 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{pdfpages}
 \usepackage[none]{hyphenat}
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
@@ -211,9 +212,9 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \newpage
 \section{Modeling of functional requirements (Usecases \& Scenarios)}
-% Use cases with scenarios model
-
-%USER
+\subsection{Overview Use cases}
+\vspace{1.6cm}
+\includegraphics[scale=0.9]{images/UserCaseDiagram.pdf}
 
 \subsection{UAM: GET Personal Number}
 
@@ -255,7 +256,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \end{tabular}
 
 
-%ADMIN kek
+%ADMIN
 \subsection{ARM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
