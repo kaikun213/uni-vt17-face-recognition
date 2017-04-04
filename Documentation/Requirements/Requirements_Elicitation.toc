@@ -22,10 +22,11 @@
 \contentsline {subsection}{\numberline {3.2}User Repository Module}{8}
 \contentsline {subsection}{\numberline {3.3}Admin Repository Module}{8}
 \contentsline {section}{\numberline {4}Modeling of functional requirements (Usecases \& Scenarios)}{9}
-\contentsline {subsection}{\numberline {4.1}UAM: GET Personal Number}{9}
-\contentsline {subsection}{\numberline {4.2}ARM: Get List of User-Entities}{10}
-\contentsline {subsection}{\numberline {4.3}ARM: Add an User-Entity}{11}
-\contentsline {subsection}{\numberline {4.4}ARM: Delete an User-Entity}{12}
-\contentsline {subsection}{\numberline {4.5}ARM: Update User-Entity}{13}
-\contentsline {subsection}{\numberline {4.6}ARM: Authenticate Admin}{14}
-\contentsline {subsection}{\numberline {4.7}URM: Authenticate User}{15}
+\contentsline {subsection}{\numberline {4.1}Overview Use cases}{9}
+\contentsline {subsection}{\numberline {4.2}UAM: GET Personal Number}{10}
+\contentsline {subsection}{\numberline {4.3}ARM: Get List of User-Entities}{11}
+\contentsline {subsection}{\numberline {4.4}ARM: Add an User-Entity}{12}
+\contentsline {subsection}{\numberline {4.5}ARM: Delete an User-Entity}{13}
+\contentsline {subsection}{\numberline {4.6}ARM: Update User-Entity}{14}
+\contentsline {subsection}{\numberline {4.7}ARM: Authenticate Admin}{15}
+\contentsline {subsection}{\numberline {4.8}URM: Authenticate User}{16}
