@@ -5,6 +5,7 @@
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
 \usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{enumitem}
 
 % ------------ Title section
 
@@ -180,7 +181,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{User Client Module}
 % Get Personal Number from Photo (Client view)
-\begin{enumerate}
+\begin{enumerate}[leftmargin=0.8in]
 		\item \label{UCMLogging} The UCM shall support the logging of users
 			\stepcounter{enumii}
 			\begin{enumerate}
@@ -196,7 +197,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{User Server Module}
 % Get Personal Number from Photo (Server view)
-\begin{enumerate}
+\begin{enumerate}[leftmargin=0.8in]
 		\item Upon successful login request from the UCM the USM shall produce the USW as specified in \ref{UCMLogging}.
 		\item The USM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The USM only replies to authenticated requests.
@@ -210,8 +211,8 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{Admin Server Module}
 % Add, Delete, Update, Get multiple users
-\begin{enumerate}
-		\item The ASM shall be able to authenticate Admins.
+\begin{enumerate}[leftmargin=0.8in]
+		\item \label{ACMLogging} The ASM shall be able to authenticate Admins.
 		\item The ASM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The ASM only replies to authenticated requests.
 		\item \label{ASMRequest}The ASM shall validate and execute all requests from an authenticated ACM.
@@ -229,14 +230,13 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{UCM: GET Personal Number}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   UCM: User \emph{GET} personal number 
+    \textbf{Title} &  User \emph{GET} personal number 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-            \textbf{Covered requirements} &  \ref{UCMCAM} , \ref{UCMRet}
+    \textbf{Covered requirements} &  \ref{UCMCAM} and \ref{UCMRet}
         
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
         
     \textbf{Description} &  The user should be able to provide an image of a person's face within the UCM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
         
@@ -260,28 +260,30 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Primary flow} & 
     \textbf{1)} The User provides an image of a person's face \\&
-    \textbf{2)} The User receives a matching PN \\&
+    \textbf{2)} The User receives a matching PN
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The User receives an error message dependant on the issue at hand
+    
     \\ \hline 
 \end{tabular}
+
 
 %ADMIN kek
 \subsection{ASM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &   Admin \emph{GET} list of entities
+    \textbf{Title} &   Admin \emph{RETRIEVE} list of user-entities
         
     \\ \hline \rowcolor{Gray} & \\ \hline
     
-                \textbf{Covered requirements} &  \ref{ASMRequest}
+    \textbf{Covered requirements} &  \ref{ASMRequest}
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  The admin should be able to get a list of all the PNs from the ASN.
+    \textbf{Description} &  The admin should be able to get a list of all the user-entities from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -289,7 +291,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   Admin must be authenticated
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -303,12 +305,13 @@ The FRS will depend on an external face recognition API to compare photos. This 
          
     \textbf{Primary flow} & 
     \textbf{1)} The admin sends a GET request \\&
-    \textbf{2)} The admin then receives a list of all the PNs currently on the server. \\&
+    \textbf{2)} The admin then receives a list of all the user-entities currently on the FRS. \\&
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
     \textbf{Secondary flow(1)} & 
     \textbf{2a)} The admin receives an error if the server is inactive (or other issue)
+    
     \\ \hline 
 \end{tabular}
 
@@ -332,7 +335,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   Admin must be authenticated
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -376,6 +379,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \textbf{Secondary flow(5)} & 
     \textbf{1a)} The user's image is corrupted and PN format is incorrect\\&
     \textbf{1b)} Admin receive a failure notification
+    
     \\\hline 
 \end{tabular}
 
@@ -394,7 +398,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
-    \textbf{Description} &  Admin want to delete a user. In order to delete a user, admin send a DELETE request to FNS which include user's unique id(should be integer). In result, admin receives an appropriate notification from the FNS.
+    \textbf{Description} &  Admin want to delete a user. In order to delete a user, admin send a DELETE request to FRS which include user's unique id(should be integer). In result, admin receives an appropriate notification from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
         
@@ -402,7 +406,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
           
-    \textbf{Pre-conditions} &   Admin must be authenticated
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
         
     \\ \hline \rowcolor{Gray} & \\ \hline
          
@@ -410,7 +414,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
-    \textbf{Initiation} & Admin send DELETE request to FNS
+    \textbf{Initiation} & Admin send DELETE request to FRS
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
          
@@ -428,145 +432,150 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \textbf{Secondary flow(2)} & 
     \textbf{1a)} The user's unique id format is incorrect \\&
     \textbf{1b)} Admin receive a failure notification
+    
     \\ \hline 
 \end{tabular}
 
 \subsection{ASM: Update User-Entity}
 
-\begin{tabular}{|p{4cm}|p{10cm}|} \hline 
-  \textbf{Title} &   Admin \emph{Update} a user 
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
+    \textbf{Title} &   Admin \emph{UPDATE} a user 
    
     \\ \hline \rowcolor{Gray} & \\ \hline 
-    \textbf{Requirements} &     
+    
+    \textbf{Covered requirements} &  \ref{ASMRequest}   
+    
     \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \textbf{Description} &  Admin want to update a user. In order to update a user, admin sends an update request to FRS which includes the user's new unique id(should be integer) and/or the new photo. In result, admin receives an appropriate notification from the FRS. 
+    \textbf{Description} &  Admin want to update a user. In order to update a user, admin sends an update request to FRS which includes the user's new unique id(should be integer) and/or the new photo. In result, admin receives an appropriate notification from the FRS. 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \textbf{Primary actor} & Admin   
+    \textbf{Primary actor} & Admin   
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Pre-conditions} &   Admin must be authenticated 
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \textbf{Post-conditions} &   Admin must receive a notification 
+    \textbf{Post-conditions} &   Admin must receive a notification 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Initiation} & Admin sends an update request to FRS. 
+    \textbf{Initiation} & Admin sends an update request to FRS. 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Primary flow} &  
-  1) The admin sends the new PN and picture \\& 
-  2) The Admin receives a success notification. 
+    \textbf{Primary flow} &  
+    \textbf{1)} The admin sends the new PN and picture \\& 
+    \textbf{2)} The Admin receives a success notification. 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+     
+    \textbf{Secondary flow(1)} &  
+    \textbf{2a)} FRS rejects the request because user's unique id is not found \\&
+    \textbf{2b)} Admin receives a failure notification  
    
-  \textbf{Secondary flow (1)} &  
-  2a) FRS rejects the request because user's unique id is not found \\& 
-  2b) Admin receives a failure notification \\&  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \textbf{Secondary flow(2)} &  
+    \textbf{2a)} FRS rejects the request because user's unique id format is incorrect \\& 
+    \textbf{2b)} The Admin receives a failure notification
    
-  \textbf{Secondary flow (2)} &  
-  2a) FRS rejects the request because user's unique id format is incorrect \\& 
-  2b) The Admin receives a failure notification \\& 
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-   
-  \\ \hline \rowcolor{Gray} & \\ \hline  
-   
-  \textbf{Secondary flow (3)} &  
-  2a) FRS rejects the request because user's new photo is corrupted\\& 
-  2b) The Admin receives a failure notification \\& 
-  \\ \hline   
+    \textbf{Secondary flow(3)} &  
+    \textbf{2a)} FRS rejects the request because user's new photo is corrupted\\&
+    \textbf{2b)} The Admin receives a failure notification 
+    
+    \\ \hline   
 \end{tabular} 
 
 \subsection{ASM: Authenticate Admin}
  
-\begin{tabular}{|p{4cm}|p{10cm}|} \hline 
-  \textbf{Title} &   Admin \emph{authenticates}  
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
+    \textbf{Title} &   Admin \emph{AUTHENTICATES}  
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
-  \textbf{Requirements} &     
-  \\ \hline \rowcolor{Gray} & \\ \hline 
-  \textbf{Description} &  Admin want to authenticate. In order to authenticate, admin sends an authentication request to FRS which includes the correct username and password. In result, admin can access the system. 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+  
+    \textbf{Covered requirements} &  \ref{ACMLogging}
+  
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+  
+    \textbf{Description} &  Admin want to authenticate. In order to authenticate, admin sends an authentication request to FRS which includes the correct username and password. In result, admin can access the system. 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \textbf{Primary actor} & Admin   
+    \textbf{Primary actor} & Admin   
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Pre-conditions} &   Admin accessed to the main page of the system 
+    \textbf{Pre-conditions} &   Admin accessed to the main page of the system 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \textbf{Post-conditions} &   Admin receives access to the system 
+    \textbf{Post-conditions} &   Admin receives access to the system 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Initiation} & Admin accessed to the main page of the system 
+    \textbf{Initiation} & Admin accessed to the main page of the system 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Primary flow} &  
-  1) The admin sends an authentication request with a username and password  \\& 
-  2) The admin gets a successful response and access to the FRS \\& 
+    \textbf{Primary flow} &  
+    \textbf{1)} The admin sends an authentication request with a username and password  \\& 
+    \textbf{2)} The admin gets a successful response and access to the FRS
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \textbf{Secondary flow (1)} &  
-  2a) The admin gets an error message that the username or password is incorrect \\&  
-   
-   
-  \\ \hline   
-\end{tabular} 
+    \textbf{Secondary flow(1)} &  
+    \textbf{2a)} The admin gets an error message that the username or password is incorrect 
+    
+    \\ \hline   
+\end{tabular}
+
 
 \subsection{USM: Authenticate User}
  
-\begin{tabular}{|p{4cm}|p{10cm}|} \hline 
-  \textbf{Title} &   User \emph{authentificates}  
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
+    \textbf{Title} &   User \emph{AUTHENTICATES}  
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+  
+    \textbf{Covered requirements} & \ref{UCMLogging}
+  
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+  
+    \textbf{Description} &  User want to authenticate. In order to authenticate, user sends an authentication request to FRS which includes the correct username and password. In result, user can access the system. 
    
-  \\  
-  \\ \hline \rowcolor{Gray} & \\ \hline 
-  \textbf{Requirements} &     
-  \\ \hline \rowcolor{Gray} & \\ \hline 
-  \textbf{Description} &  User want to authenticate. In order to authenticate, user sends an authentication request to FRS which includes the correct username and password. In result, user can access the system. 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
+    \textbf{Primary actor} & User   
    
-  \textbf{Primary actor} & User   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \textbf{Pre-conditions} &   User accessed to the main page of the system 
    
-  \textbf{Pre-conditions} &   User accessed to the main page of the system 
+    \\ \hline \rowcolor{Gray} & \\ \hline 
    
-  \\ \hline \rowcolor{Gray} & \\ \hline 
+    \textbf{Post-conditions} &   User receives access to the system 
    
-  \textbf{Post-conditions} &   User receives access to the system 
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \textbf{Initiation} & User accessed to the main page of the system 
    
-  \textbf{Initiation} & User accessed to the main page of the system 
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
+    \textbf{Primary flow} &  
+    \textbf{1)} The user sends an authentication request with a username and password  \\& 
+    \textbf{2)} User gets a successful response and access to the FRS
    
-  \textbf{Primary flow} &  
-  1) The user sends an authentication request with a username and password  \\& 
-  2) User gets a successful response and access to the FRS \\& 
+    \\ \hline \rowcolor{Gray} & \\ \hline  
    
-  \\ \hline \rowcolor{Gray} & \\ \hline  
-   
-  \textbf{Secondary flow (1)} &  
-  2a) User gets an error message that the username or password is incorrect \\&  
-   
-   
-  \\ \hline   
+    \textbf{Secondary flow(1)} &  
+    \textbf{2a)} User gets an error message that the username or password is incorrect
+    
+    \\ \hline   
 \end{tabular} 
- 
-
 \end{document}
