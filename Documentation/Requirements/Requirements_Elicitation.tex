@@ -24,7 +24,7 @@
 \renewcommand{\labelenumii}{\theenumii}
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
 
-\title{	
+\title{
 \vspace{-8cm}
 \begin{flushleft}
     \vspace{10cm}
@@ -34,7 +34,7 @@
 \end{flushleft}
 \vspace{3cm}
 \begin{flushleft}
-    \huge Face Recognition System \\ 
+    \huge Face Recognition System \\
     \LARGE  Requirements Elicitation\\
 \end{flushleft}
 \null
@@ -44,7 +44,7 @@
 \emph{Authors:} Walid Balegh, Jakob Heyder, Sarpreet Singh Buttar, Henry Pap\\ \hspace{45pt} and Oscar Maris \\ % Author
 %\emph{Supervisor:} Name of your supervisor\\ % Supervisor
 %\emph{Examiner:} Dr.~Mark \textsc{Brown}\\ % Examiner (course manager)
-\emph{Semester:} VT 2017\\ % 
+\emph{Semester:} VT 2017\\ %
 %\emph{Subject:} Computer Science\\ % Subject area
 \end{flushleft}
 \end{minipage}
@@ -64,7 +64,7 @@
 \newpage
 
 %  ############ NOTES ################
-%  Roles [Admin, User, System] - Description, Objectives 
+%  Roles [Admin, User, System] - Description, Objectives
 
 %Introduction [Scope(exclude to broad goals), Purpose etc.]
 
@@ -99,7 +99,7 @@ The administrative entity could be a state or other high security organization w
 FRS administrators will be able to register, delete, update and list user data.
 Therefore the FRS is split into a user component and an administrative component, which each needs different authentication and are logically separate from each other.
 
- 
+
 \subsection{Definitions, acronyms and abbreviations}
 \begin{itemize}
 \item \textbf{URM : User Repository Module}
@@ -119,7 +119,7 @@ N/A
 \item \textbf{Customer: } LNUs Teaching Team which represents a fictive company which wants the FRS.
 \item \textbf{User :} Verified and registered partner which is authenticated to use the the User API. E.g. Skatteverket or Swedbank.
 \item \textbf{Admin :} Verified and registered partner which provides the trusted information and has full control over the application and data.
-\item \textbf{Developer :} Fully privileged people which develop the system and have access to the Admin-,User interfaces and the source code during development. 
+\item \textbf{Developer :} Fully privileged people which develop the system and have access to the Admin-,User interfaces and the source code during development.
 \end{itemize}
 
 \subsection{Overview}
@@ -136,7 +136,7 @@ The FRS depends on an external face recognition API to compare the photos. This 
 \begin{figure}[h!]
 	\centering
 	\label{System Interfaces}
-	\includegraphics[width=0.95\textwidth,keepaspectratio]{images/Overview\string_System\string_Interfaces.png} 
+	\includegraphics[width=0.95\textwidth,keepaspectratio]{images/Overview\string_System\string_Interfaces.png}
 	\caption{Overview over the system interfaces}
 \end{figure}
 \newpage
@@ -144,10 +144,10 @@ The FRS depends on an external face recognition API to compare the photos. This 
 The UCM allows User services to log on to the FRS and request a personal number with a given image. The URM is a daemon that accepts connections from the UCM and serves with the requested information. The URM is dependent on the External Face Recogntion API (EFR) to match the given photo to a registered one. The Admin Repository Module serves the API for the ACM to register, delete, update and get user data. It directly interacts with the PN-Database and indirectly uses the EFR to modify the Image-Database.
 \newline
 \noindent
-The User Application Module can be \textit{any} verified and registered Application which depends on the URM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies. 
+The User Application Module can be \textit{any} verified and registered Application which depends on the URM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies.
 
 \subsubsection{User Interfaces}
-The User Application Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface. 
+The User Application Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface.
 \subsubsection{Hardware Interfaces}
 All components must be able to execute on a personal computer.
 
@@ -172,9 +172,9 @@ The User as defined in \ref{Roles} is a verified and registered service which pr
 
 \subsection{Constraints}
 The system should enforce User and Admin authentication security and guarantee encrypted communication of critical data.
- 
+
 \subsection{Assumptions and Dependencies}
-The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems. The system is developed under the assumption that the external component is reliable, secure, scalable and functional. 
+The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems. The system is developed under the assumption that the external component is reliable, secure, scalable and functional.
 
 \newpage
 \section{Specific functional requirements}
@@ -182,43 +182,31 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{User Application Module}
 % Get Personal Number from Photo (Application view)
 \begin{enumerate}[leftmargin=0.8in]
-		\item \label{UAMLogging} The UAM shall support the logging of users
-			\stepcounter{enumii}
-			\begin{enumerate}
-				\item The initial window of the UAM shall contain a field for user name, a field for a password and button labeled "login". The password field shall be a "secret" field, which does not display what the user types.
-				\item When a user presses the login button, the UAM shall send a request to the URM to login the user.
-			\end{enumerate}
-		\item If and only if the logging of a user is successful (see \ref{UAMLogging}) the UAM shall display the USW and the user shall be able to use the functionality of the application.
-		\item When the user presses the "GET PN" Button in the USW the UAM shall open the camera.
-		\item \label{UAMCAM} If the camera returns a picture the UAM shall send a request to the URM with the taken picture.
-		\item \label{UAMRet} The UAM shall display responses from the URM and provide a button to return to the USW.
+		\item \label{UAMLogging} The UAM shall support the log in of users
+    \item If and only if the log in of a user is successful (see \ref{UAMLogging}) the user shall be able to use the functionality of the application.
+		\item \label{UAMCAM} The UAM should be able to access the camera of a users device.
+    \item \label{UAMCAM} The UAM should be able to send a picture to the URM.
+    \item \label{UAMRet} The UAM should process responses from the URM.
 		\item The UAM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
 \end{enumerate}
 
 \subsection{User Repository Module}
 % Get Personal Number from Photo (Repository view)
 \begin{enumerate}[leftmargin=0.8in]
-		\item Upon successful login request from the UAM the URM shall produce the USW as specified in \ref{UAMLogging}.
+		\item Upon successful login request from the UAM the URM shall grant access. \ref{UAMLogging}.
 		\item The URM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
-		\item The URM only replies to authenticated requests.
+		\item The URM should only process requests from authenticated users.
 		\item The URM shall be able to classify a picture it gets from a request and possibly match it with a corresponded PN.
-		\begin{enumerate}
-			\item If the URM receives a request it shall forward a request to the EFR with the received picture.
-			\item The URM shall be able to receive a response from the EFR and process it.
-		\end{enumerate}  
 		\item The URM shall be able to send a well formated response to the UAM.
 \end{enumerate}
 
 \subsection{Admin Repository Module}
 % Add, Delete, Update, Get multiple users
 \begin{enumerate}[leftmargin=0.8in]
-		\item \label{ACMLogging} The ARM shall be able to authenticate Admins.
+		\item \label{ACMLogging} The ARM shall be able to authenticate admins.
 		\item The ARM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
-		\item The ARM only replies to authenticated requests.
-		\item \label{ARMRequest}The ARM shall validate and execute all requests from an authenticated ACM.
-		\item The ARM shall be able to make requests to the Database.
-		\item The ARM shall be able to make requests to the EFR.
-		\item The ARM shall be able to receive and process responses of the EFR.
+		\item \label{ARMRequest} The ARM should only process requests from authenticated admins.
+		\item The ARM should be able to READ, DELETE, CREATE, UPDATE user data.
 \end{enumerate}
 
 \newpage
@@ -230,26 +218,26 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \subsection{UAM: GET Personal Number}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
-    \textbf{Title} &  User \emph{GET} personal number 
-        
+    \textbf{Title} &  User \emph{GET} personal number
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
+
     \textbf{Covered requirements} &  \ref{UAMCAM} and \ref{UAMRet}
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
+
     \textbf{Description} &  The user should be able to provide an image of a person's face within the UAM. Using the EFR the image will be compared to other images within the server. The user will then receive a PN matching the originally provided image. In the event that request fails an error message will be provided to the user further specifying the issue.
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
-    \textbf{Primary actor} & User  
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-          
+
+    \textbf{Primary actor} & User
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Pre-conditions} &   User must be authenticated (see \ref{UAMLogging})
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-         
+
     \textbf{Post-conditions} &   User must receive a notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
@@ -272,25 +260,25 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{RETRIEVE} list of user-entities
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-    
+
     \textbf{Covered requirements} &  \ref{ARMRequest}
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
+
     \textbf{Description} &  The admin should be able to get a list of all the user-entities from the FRS.
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
-    \textbf{Primary actor} & Admin  
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-          
+
+    \textbf{Primary actor} & Admin
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-         
+
     \textbf{Post-conditions} &   Admin must receive a notification
                 
     \\ \hline \rowcolor{Gray} & \\ \hline 
@@ -312,25 +300,25 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{ADD} a new user
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-    
+
     \textbf{Covered requirements} &  \ref{ARMRequest}
-    
+
     \\ \hline \rowcolor{Gray} & \\ \hline
     
     \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN. In result, admin receives an appropriate notification from the FRS.
         
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
-    \textbf{Primary actor} & Admin  
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-          
-    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
-        
+
+    \textbf{Primary actor} & Admin
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-         
+
+    \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Post-conditions} &   Admin must receive a notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
@@ -375,25 +363,25 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
     \textbf{Title} &   Admin \emph{DELETE} a user
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-    
+
     \textbf{Covered requirements} &  \ref{ARMRequest}
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
+
     \textbf{Description} &  Admin want to delete a user. In order to delete a user, admin send a DELETE request to FRS which include user's unique id(should be integer). In result, admin receives an appropriate notification from the FRS.
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-        
-    \textbf{Primary actor} & Admin  
-        
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-          
+
+    \textbf{Primary actor} & Admin
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
-        
+
     \\ \hline \rowcolor{Gray} & \\ \hline
-         
+
     \textbf{Post-conditions} &   Admin must receive a notification
         
     \\ \hline \rowcolor{Gray} & \\ \hline 
@@ -417,23 +405,23 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 \subsection{ARM: Update User-Entity}
 
-\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
-    \textbf{Title} &   Admin \emph{UPDATE} a user 
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-    
-    \textbf{Covered requirements} &  \ref{ARMRequest}   
-    
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-   
-    \textbf{Description} &  Admin want to update a user. In order to update a user, admin sends an update request to FRS which includes the user's new unique id(should be integer) and/or the new photo. In result, admin receives an appropriate notification from the FRS. 
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-   
-    \textbf{Primary actor} & Admin   
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline  
-   
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
+    \textbf{Title} &   Admin \emph{UPDATE} a user
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
+    \textbf{Covered requirements} &  \ref{ARMRequest}
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
+    \textbf{Description} &  Admin want to update a user. In order to update a user, admin sends an update request to FRS which includes the user's new unique id(should be integer) and/or the new photo. In result, admin receives an appropriate notification from the FRS.
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
+    \textbf{Primary actor} & Admin
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
    
     \\ \hline \rowcolor{Gray} & \\ \hline 
@@ -469,13 +457,16 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline   
 \end{tabular} 
 
+    \\ \hline
+\end{tabular}
+
 \subsection{ARM: Authenticate Admin}
- 
-\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
-    \textbf{Title} &   Admin \emph{AUTHENTICATES}  
-   
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-  
+
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
+    \textbf{Title} &   Admin \emph{AUTHENTICATES}
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Covered requirements} &  \ref{ACMLogging}
   
     \\ \hline \rowcolor{Gray} & \\ \hline 
@@ -523,12 +514,12 @@ The FRS will depend on an external face recognition API to compare photos. This 
 
 
 \subsection{URM: Authenticate User}
- 
-\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline 
-    \textbf{Title} &   User \emph{AUTHENTICATES}  
-    
-    \\ \hline \rowcolor{Gray} & \\ \hline 
-  
+
+\begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
+    \textbf{Title} &   User \emph{AUTHENTICATES}
+
+    \\ \hline \rowcolor{Gray} & \\ \hline
+
     \textbf{Covered requirements} & \ref{UAMLogging}
   
     \\ \hline \rowcolor{Gray} & \\ \hline 
