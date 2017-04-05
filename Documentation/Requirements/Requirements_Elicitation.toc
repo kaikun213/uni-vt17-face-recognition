@@ -18,14 +18,15 @@
 \contentsline {subsection}{\numberline {2.4}Constraints}{6}
 \contentsline {subsection}{\numberline {2.5}Assumptions and Dependencies}{7}
 \contentsline {section}{\numberline {3}Specific functional requirements}{8}
-\contentsline {subsection}{\numberline {3.1}User Client Module}{8}
-\contentsline {subsection}{\numberline {3.2}User Server Module}{8}
-\contentsline {subsection}{\numberline {3.3}Admin Server Module}{8}
+\contentsline {subsection}{\numberline {3.1}User Application Module}{8}
+\contentsline {subsection}{\numberline {3.2}User Repository Module}{8}
+\contentsline {subsection}{\numberline {3.3}Admin Repository Module}{8}
 \contentsline {section}{\numberline {4}Modeling of functional requirements (Usecases \& Scenarios)}{9}
-\contentsline {subsection}{\numberline {4.1}UCM: GET Personal Number}{9}
-\contentsline {subsection}{\numberline {4.2}ASM: Get List of User-Entities}{10}
-\contentsline {subsection}{\numberline {4.3}ASM: Add an User-Entity}{11}
-\contentsline {subsection}{\numberline {4.4}ASM: Delete an User-Entity}{12}
-\contentsline {subsection}{\numberline {4.5}ASM: Update User-Entity}{13}
-\contentsline {subsection}{\numberline {4.6}ASM: Authenticate Admin}{14}
-\contentsline {subsection}{\numberline {4.7}USM: Authenticate User}{15}
+\contentsline {subsection}{\numberline {4.1}Overview Use cases}{9}
+\contentsline {subsection}{\numberline {4.2}UAM: GET Personal Number}{10}
+\contentsline {subsection}{\numberline {4.3}ARM: Get List of User-Entities}{11}
+\contentsline {subsection}{\numberline {4.4}ARM: Add an User-Entity}{12}
+\contentsline {subsection}{\numberline {4.5}ARM: Delete an User-Entity}{13}
+\contentsline {subsection}{\numberline {4.6}ARM: Update User-Entity}{14}
+\contentsline {subsection}{\numberline {4.7}ARM: Authenticate Admin}{15}
+\contentsline {subsection}{\numberline {4.8}URM: Authenticate User}{16}

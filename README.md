@@ -11,6 +11,8 @@ Software Design course. Development of an application matching photos to persona
 | 27/03/17 | All | 1h | Meeting with Customer |
 | 30/03/17 | All | 3h | Finalize Requirements Doc |
 | 04/04/17 | All | 4h | Group meeting |
+| 04/04/17 | All | 30min | Meeting Customer |
+| 04/04/17 | Jakob | 3h | Design Document Major Issues |
 
 
 

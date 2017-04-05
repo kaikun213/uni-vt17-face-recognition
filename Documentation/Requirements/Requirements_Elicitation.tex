@@ -1,6 +1,7 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{pdfpages}
 \usepackage[none]{hyphenat}
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
@@ -8,17 +9,6 @@
 \usepackage{enumitem}
 
 % ------------ Title section
-
-\newcommand\BackgroundPic{
-    \put(-2,-3){
-    \includegraphics[keepaspectratio,scale=0.3]{img/lnu_etch.png} % Background picture
-    }
-}
-\newcommand\BackgroundPicLogo{
-    \put(30,740){
-    \includegraphics[keepaspectratio,scale=0.10]{img/logo.png} % Logo in upper left corner
-    }
-}
 
 \renewcommand{\theenumi}{\thesubsection.\arabic{enumi}}
 \renewcommand{\labelenumii}{\theenumii}
@@ -101,6 +91,7 @@ Therefore the FRS is split into a user component and an administrative component
 
 
 \subsection{Definitions, acronyms and abbreviations}
+\label{ReqDefinitions}
 \begin{itemize}
 \item \textbf{URM : User Repository Module}
 \item \textbf{ARM : Admin Repository Module}
@@ -109,7 +100,8 @@ Therefore the FRS is split into a user component and an administrative component
 \item \textbf{EFR : External Face Recognition API}
 \item \textbf{FRS : Face Recognition System to be developed}
 \item \textbf{PN : Swedish Personal Number}
-\item \textbf{USW : User Starting Window (Mainpage)}
+\item \textbf{Repository: Module where the data can be accessed and processed}
+\item \textbf{User-Entity: A User entity consists of a personal number and a picture of the person}
 \end{itemize}
 
 \subsection{References}
@@ -136,7 +128,7 @@ The FRS depends on an external face recognition API to compare the photos. This 
 \begin{figure}[h!]
 	\centering
 	\label{System Interfaces}
-	\includegraphics[width=0.95\textwidth,keepaspectratio]{images/Overview\string_System\string_Interfaces.png}
+	\includegraphics[width=0.95\textwidth,keepaspectratio]{images/Overview\string_System\string_Interfaces.jpg}
 	\caption{Overview over the system interfaces}
 \end{figure}
 \newpage
@@ -147,7 +139,7 @@ The UCM allows User services to log on to the FRS and request a personal number 
 The User Application Module can be \textit{any} verified and registered Application which depends on the URM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies.
 
 \subsubsection{User Interfaces}
-The User Application Module must provide an interface to manage the API. This will be a mobile (Android/iOS) or web (WWW Browser) interface.
+The User Application Module must provide an interface to manage the API. This will be a mobile (e.g. Android/iOS) or web (WWW Browser) interface.
 \subsubsection{Hardware Interfaces}
 All components must be able to execute on a personal computer.
 
@@ -155,23 +147,24 @@ All components must be able to execute on a personal computer.
 The software interfaces of the modules will be further defined in the FRS Design Document.
 
 \subsubsection{Communication Interfaces}
-The client, server modules and the EFR communication will be over a TCP/IP connection.
-The PN-database will be located locally or interacted remotely over a TCP/IP connection, this will be further defined in the FRS Design Document.
+All communication will be over the Internet.
+The PN-database will be located locally or interacted remotely over an Internet connection, this will be further defined in the FRS Design Document.
 
 \subsubsection{Security constraints}
 All sent personal numbers must be encrypted end to end. Services must be authenticated to interact with the API. The external service does not have any information about the personal numbers or other high security informations saved and only the images are shared.
 
 \subsection{Product functions}
-The two main functions of the Face Recognition System are to allow user services to retrieve a personal number corresponding to a photo of a face, and to allow administrators to manage the data.
+The two main functions of the Face Recognition System are to allow user services to retrieve a PN corresponding to a photo of a face, and to allow administrators to manage User-Entities.
 \newline
 \noindent
-For managerial purposes it is useful to have the option to \textit{RETRIEVE} all persons and then have the basic REST functionality to \textit{ADD},\textit{UPDATE} or \textit{DELETE} a person. A person entity consists of a personal number and an biometric picture of the person.
+For managerial purposes it is useful to have the option to \textit{RETRIEVE} all persons and then have the basic REST functionality to \textit{ADD},\textit{UPDATE} or \textit{DELETE} User-Entities. A User entity consists of a personal number and a (optimally biometric) picture of the person.
 
 \subsection{User characteristics}
 The User as defined in \ref{Roles} is a verified and registered service which provides the User Application Module to interact with the URM.
 
 \subsection{Constraints}
 The system should enforce User and Admin authentication security and guarantee encrypted communication of critical data.
+The system should not take more than 5seconds response time when retrieving a PN with a photo.
 
 \subsection{Assumptions and Dependencies}
 The FRS will depend on an external face recognition API to compare photos. This can be developed in house or made use from existing systems. The system is developed under the assumption that the external component is reliable, secure, scalable and functional.
@@ -186,7 +179,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \item If and only if the log in of a user is successful (see \ref{UAMLogging}) the user shall be able to use the functionality of the application.
 		\item \label{UAMCAM} The UAM should be able to access the camera of a users device.
     \item \label{UAMCAM} The UAM should be able to send a picture to the URM.
-    \item \label{UAMRet} The UAM should process responses from the URM.
+    \item \label{UAMRet} The UAM should be able to process and show PNs.
 		\item The UAM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
 \end{enumerate}
 
@@ -196,7 +189,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item Upon successful login request from the UAM the URM shall grant access. \ref{UAMLogging}.
 		\item The URM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item The URM should only process requests from authenticated users.
-		\item The URM shall be able to classify a picture it gets from a request and possibly match it with a corresponded PN.
+		\item The URM shall be able to retrieve a PN from a Photo.
 		\item The URM shall be able to send a well formated response to the UAM.
 \end{enumerate}
 
@@ -206,14 +199,14 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item \label{ACMLogging} The ARM shall be able to authenticate admins.
 		\item The ARM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item \label{ARMRequest} The ARM should only process requests from authenticated admins.
-		\item The ARM should be able to READ, DELETE, CREATE, UPDATE user data.
+		\item The ARM should be able to READ, DELETE, CREATE, UPDATE User-Entities.
 \end{enumerate}
 
 \newpage
 \section{Modeling of functional requirements (Usecases \& Scenarios)}
-% Use cases with scenarios model
-
-%USER
+\subsection{Overview Use cases}
+\vspace{1.6cm}
+\includegraphics[scale=0.9]{images/UserCaseDiagram.pdf}
 
 \subsection{UAM: GET Personal Number}
 
@@ -239,27 +232,23 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Post-conditions} &   User must receive a notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & User sends a GET request to FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary flow} &
-    \textbf{1)} The User provides an image of a person's face \\&
-    \textbf{2)} The User receives a matching PN
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{2a)} The User receives an error message dependant on the issue at hand
-
-    \\ \hline
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Primary flow} & 
+    \textbf{1)} User send an image of a person's face \\&
+    \textbf{2)} User receives a success notification and matching PN
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow} \emph{(Face does not match)} & 
+    \textbf{2a)} User receives a failure notification
+    
+    \\ \hline 
 \end{tabular}
 
 
-%ADMIN kek
+%ADMIN
 \subsection{ARM: Get List of User-Entities}
 
 \begin{tabular}{|p{3.5cm}|p{11.5cm}|} \hline
@@ -284,23 +273,19 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Post-conditions} &   Admin must receive a notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & Admin sends a GET request to FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary flow} &
-    \textbf{1)} The admin sends a GET request \\&
-    \textbf{2)} The admin then receives a list of all the user-entities currently on the FRS. \\&
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{2a)} The admin receives an error if the server is inactive (or other issue)
-
-    \\ \hline
+                
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Primary flow} & 
+    \textbf{1)} Admin sends a GET request \\&
+    \textbf{2)} Admin receives a success notification and list of all the user-entities currently
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow} \emph{(Internal server error)} & 
+    \textbf{2a)} Admin receives a failure notification
+    
+    \\ \hline 
 \end{tabular}
 
 
@@ -314,9 +299,9 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \textbf{Covered requirements} &  \ref{ARMRequest}
 
     \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN(YYYYMMDD-XXXX). In result, admin receives an appropriate notification from the FRS.
-
+    
+    \textbf{Description} &  Admin want to add a new user. In order to add a new user, admin send a POST request to FRS which include user's image and PN. In result, admin receives an appropriate notification from the FRS.
+        
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Primary actor} & Admin
@@ -328,47 +313,39 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Post-conditions} &   Admin must receive a notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & Admin send POST request to FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
     \textbf{Primary flow} &
-    \textbf{1)} Admin receive a success notification from FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{1a)} The user's image file is corrupted \\&
-    \textbf{1b)} Admin receive a failure notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(2)} &
-    \textbf{1a)} The user's PN format is incorrect \\&
-    \textbf{1b)} Admin receive a failure notification
-
+    \textbf{1)} Admin sends a POST request \\&
+    \textbf{2)} Admin receives a success notification
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow} \emph{(User image is corrupted)} & 
+    \textbf{2a)} Admin receives a failure notification
+     
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+     
+    \textbf{Secondary flow} \emph{(User PN format is incorrect)} & 
+    \textbf{2a)} Admin receives a failure notification
+    
    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(3)} &
-    \textbf{1a)} The user's PN is invalid \\&
-    \textbf{1b)} Admin receive a failure notification
-
+    
+    \textbf{Secondary flow} \emph{(User PN is invalid)} & 
+    \textbf{2a)} Admin receives a failure notification
+    
     \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(4)} &
-    \textbf{1a)} The user's image is corrupted and PN is invalid\\&
-    \textbf{1b)} Admin receive a failure notification
-
+    
+    \textbf{Secondary flow} \emph{(User image is corrupted and PN is invalid)} & 
+    \textbf{2a)} Admin receives a failure notification
+    
     \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(5)} &
-    \textbf{1a)} The user's image is corrupted and PN format is incorrect\\&
-    \textbf{1b)} Admin receive a failure notification
-
-    \\\hline
+    
+    \textbf{Secondary flow} \emph{(User image is corrupted and PN format is incorrect)} & 
+    \textbf{2a)} Admin receive a failure notification
+    
+    \\\hline 
 \end{tabular}
 
 
@@ -399,29 +376,24 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Post-conditions} &   Admin must receive a notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & Admin send DELETE request to FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
     \textbf{Primary flow} &
-    \textbf{1)} Admin receive a success notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{1a)} The user's unique id is not found \\&
-    \textbf{1b)} Admin receive a failure notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(2)} &
-    \textbf{1a)} The user's unique id format is incorrect \\&
-    \textbf{1b)} Admin receive a failure notification
-
-    \\ \hline
+    \textbf{1)} Admin sends a DELETE request \\&
+    \textbf{2)} Admin receives a success notification
+        
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+         
+    \textbf{Secondary flow} \emph{(User id not found)} & 
+    \textbf{2a)} Admin receives a failure notification
+     
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+     
+    \textbf{Secondary flow} \emph{(User id format is incorrect)} & 
+    \textbf{2a)} Admin receives a failure notification
+    
+    \\ \hline 
 \end{tabular}
 
 \subsection{ARM: Update User-Entity}
@@ -444,41 +416,39 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Pre-conditions} &   Admin must be authenticated (see \ref{ACMLogging})
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Post-conditions} &   Admin must receive a notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & Admin sends an update request to FRS.
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary flow} &
-    \textbf{1)} The admin sends the new PN and picture \\&
-    \textbf{2)} The Admin receives a success notification.
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{2a)} FRS rejects the request because user's unique id is not found \\&
-    \textbf{2b)} Admin receives a failure notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(2)} &
-    \textbf{2a)} FRS rejects the request because user's unique id format is incorrect \\&
-    \textbf{2b)} The Admin receives a failure notification
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(3)} &
-    \textbf{2a)} FRS rejects the request because user's new photo is corrupted\\&
-    \textbf{2b)} The Admin receives a failure notification
-
-    \\ \hline
-\end{tabular}
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+   
+    \textbf{Post-conditions} &   Admin must receive a notification 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Primary flow} &  
+    \textbf{1)} The admin sends the new PN and/or picture \\& 
+    \textbf{2)} The Admin receives a success notification. 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+     
+    \textbf{Secondary flow} \emph{(User id not found)} &  
+    \textbf{2a)} Admin receives a failure notification  
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Secondary flow} \emph{(User PN format is incorrect)} &  
+    \textbf{2a)} Admin receives a failure notification
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Secondary flow} \emph{(User PN is invalid)} &  
+    \textbf{2a)} Admin receives a failure notification
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(User new image is corrupted)} &  
+    \textbf{2a)} Admin receives a failure notification 
+    
+    \\ \hline   
+\end{tabular} 
 
 \subsection{ARM: Authenticate Admin}
 
@@ -488,39 +458,36 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Covered requirements} &  \ref{ACMLogging}
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Description} &  Admin want to authenticate. In order to authenticate, admin sends an authentication request to FRS which includes the correct username and password. In result, admin can access the system.
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary actor} & Admin
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Pre-conditions} &   Admin accessed to the main page of the system
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Post-conditions} &   Admin receives access to the system
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & Admin accessed to the main page of the system
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary flow} &
-    \textbf{1)} The admin sends an authentication request with a username and password  \\&
-    \textbf{2)} The admin gets a successful response and access to the FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{2a)} The admin gets an error message that the username or password is incorrect
-
-    \\ \hline
+  
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+  
+    \textbf{Description} &  Admin want to authenticate. In order to authenticate, admin sends an authentication request to FRS which includes the correct credentials. In result, admin can access the system. 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+   
+    \textbf{Primary actor} & Admin   
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Pre-conditions} &   Admin accessed to the main page of the system 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+   
+    \textbf{Post-conditions} &   Admin receives access to the system 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Primary flow} &  
+    \textbf{1)} Admin sends an authentication request with credentials  \\& 
+    \textbf{2)} Access granted
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Secondary flow} \emph{(Credentials are incorrect)} &  
+    \textbf{2a)} Admin receives a failure notification \\ &
+    \textbf{2b)} Access denied
+    
+    \\ \hline   
 \end{tabular}
 
 
@@ -532,38 +499,35 @@ The FRS will depend on an external face recognition API to compare photos. This 
     \\ \hline \rowcolor{Gray} & \\ \hline
 
     \textbf{Covered requirements} & \ref{UAMLogging}
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Description} &  User want to authenticate. In order to authenticate, user sends an authentication request to FRS which includes the correct username and password. In result, user can access the system.
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary actor} & User
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Pre-conditions} &   User accessed to the main page of the system
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Post-conditions} &   User receives access to the system
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Initiation} & User accessed to the main page of the system
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Primary flow} &
-    \textbf{1)} The user sends an authentication request with a username and password  \\&
-    \textbf{2)} User gets a successful response and access to the FRS
-
-    \\ \hline \rowcolor{Gray} & \\ \hline
-
-    \textbf{Secondary flow(1)} &
-    \textbf{2a)} User gets an error message that the username or password is incorrect
-
-    \\ \hline
-\end{tabular}
+  
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+  
+    \textbf{Description} &  User want to authenticate. In order to authenticate, user sends an authentication request to FRS which includes the correct credentials. In result, user can access the system. 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+   
+    \textbf{Primary actor} & User   
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+   
+    \textbf{Pre-conditions} &   User accessed to the main page of the system 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline 
+   
+    \textbf{Post-conditions} &   User receives access to the system 
+   
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Primary flow} &  
+    \textbf{1)} User sends an authentication request with credentials.  \\& 
+    \textbf{2)} Access granted
+    
+    \\ \hline \rowcolor{Gray} & \\ \hline  
+    
+    \textbf{Secondary flow} \emph{(Credentials are incorrect)} &  
+    \textbf{2a)} User receives a failure notification \\ &
+    \textbf{2b)} Access denied
+    
+    \\ \hline   
+\end{tabular} 
 \end{document}

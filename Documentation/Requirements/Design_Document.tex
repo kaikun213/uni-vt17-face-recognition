@@ -1,35 +1,158 @@
 \documentclass[a4paper,11pt]{article}
 
+% ------------ Renew commands to have correct counting in enumerate env
+
+\renewcommand{\theenumi}{\thesubsection.\arabic{enumi}}
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+% ------------ Import Requirements Elicitation for Referencing
+\usepackage{xr}
+\externaldocument{Requirements_Elicitation}
+
+
+% ------------ Title section
+\title{
+\vspace{-8cm}
+\begin{flushleft}
+    \vspace{10cm}
+    \normalfont \normalsize
+    %\Huge Bachelor/Master Thesis Project \\
+    \vspace{-1.3cm}
+\end{flushleft}
+\vspace{3cm}
+\begin{flushleft}
+    \huge Face Recognition System \\
+    \LARGE  Design Document\\
+\end{flushleft}
+\null
+\vfill
+\begin{minipage}{\textwidth}
+\begin{flushleft} \large
+\emph{Authors:} Walid Balegh, Jakob Heyder, Sarpreet Singh Buttar, Henry \hspace{45pt} Pap and Oscar Maris \\ % Author
+%\emph{Supervisor:} Name of your supervisor\\ % Supervisor
+%\emph{Examiner:} Dr.~Mark \textsc{Brown}\\ % Examiner (course manager)
+\emph{Semester:} VT 2017\\ %
+%\emph{Subject:} Computer Science\\ % Subject area
+\end{flushleft}
+\end{minipage}
+}
+
+\date{}
+
 \begin{document}
 
-Languages:
-Java - great flexibility \& portability
-	 - high productivity because of existing frameworks \& previous knowledge 
+\maketitle
 
-Spring - great portability/support in the cloud 
-	   - easy and fast to bootstrap application with embedded application server
-	   - Component based systems (Beans etc.)
-	   - fast and uncomplicated support of REST-API features
-	   
-ORM = SpringData 
-	- supports most DB-Technologies and reduces boiler plate code
+\newpage
 
-Cloud platform/Server = Heroku
-	- Ease of cloud deployment and continuous development 
-	- Free Account for development directly integrated with code sharing platforms like GitHub. Supports Continuous integration!
+\tableofcontents
+
+\newpage
+
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+\subsection{Priorities}
+%Priorities
+%	- Security - Encryption and Authentication , sensible data
+%	- Portability/Integration \& Usability - clear defined API
+%	- Reliability
+
+\subsection{Overview}
+
+\section{Major Design Issues}
+In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented and the detail of evaluating the alternatives depends on the trade off the decision has. 
+
+\section{Architectural Design}
+As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference Server or Client in general if  the reference is to both components - User and Admin module.
+
+\subsection{Languages \& Frameworks}
+\subsubsection{Server-side}
+For the Server the \textbf{Java programming language} is one of the most used. Especially REST functionality is supported by various frameworks with large communities. Rationals which led to the choice are listed below.
+\begin{itemize}
+\item Great flexibility \& portability due to platform independence with the JVM.
+\item High productivity because of existing frameworks and solutions
+\item Good support by a large community of developers
+\end{itemize}
+\textit{Concerns are that it is more difficult for multi-threaded development and reactive programming. The scalability can still be guaranteed because ... => frameworks}
+
+The Spring Framework will be used on the server side of the system. More detailed the Spring Web, Security, Data and Boot modules.
+The Spring Framework allows fast, enterprise scale development of applications by providing features for security, RESTful applications and Data Management. Rationals for using the different modules are listed below.
+\begin{itemize}
+\item Great Portability and Integration - it is supported by various cloud providers to make deployment and continuous development possible.
+\item Spring Boot provides an embedded application server which allows fast and easy setup of an application.
+\item Configurability - Spring is easily set up and gives good default solutions but also provides the possibility to configure the details to the application needs
+\item The Spring framework provides RESTful support which is asked for from the customer and fills the application needs.
+\item Spring Data provides a convenient way to implement CRUD functionality for accessing and modifying data. It supports various Database technologies such as JPA and generates boilerplate code at run time which reduces developing costs.
+\item Spring Security provides enterprise ready security features for authentication and encryption without much setup.
+\end{itemize}
+
+\subsubsection{Client-side}
+
+%Javascript/HTML/CSS
+
+%Bootstrap framework
+
+%Cross platform framework?
+%Angular?
+
+
+\subsection{Platforms \& Technologies}
+
+\subsubsection{Communication}
+The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application.
+\textit{=> Read up about SSL/TLS and HTTPS what does it secure how does it work?}
+
+\subsubsection{Platform Server}
+The Server will run on a cloud platform. This gives several advantages which are listed below. Especially easy setup and management are essential for this project during development and by using Java the components are platform independent which allows later changes during production.
+\begin{itemize}
+\item Easy to manage and setup - no System administrator needed
+\item Allows fast and continuous development and testing
+\item Cheap and scalable solution
+\end{itemize}
+
+\subsubsection{Platform Client}
+The Client, more specific the in the to be developed UAM will be Web compatible. Since it is written in Javascript
+Mobile Development = iOs/ Android / WEB
+	- Market share
+	- Cross platform frameworks 
+	- WEB can be accessed by every device with a browser
 	
-External Face Recognition API 
-	- SkyBioMetric(Free), LambdaLabs(Best support, but costly), OpenFace(OpenSource, more work) 
+\subsection{External Services}
+
+\subsubsection{Cloud Platform}
+For the development in the cloud, Heroku is among AWS, Microsoft Azure, Google application engine and others a common choice. It supports good conditions for development and support frameworks for features such as database deployment. This gives a convenient way to get the system fastly up and working. Listed are features it provides.
+\begin{itemize}
+\item Native support for Java and Spring Boot application deployment
+\item Addon support for rational Databases (e.g. MYSQL)
+\item Github integration for continuous development
+\item Free use for small scale applications (development)
+\end{itemize}
+
+\subsubsection{External Face Recognition API}
+\textit{Comparison of 
+	- SkyBioMetric(Free), LambdaLabs(Best support, but costly), OpenFace(OpenSource, more work)} 
 	
+\subsection{Application specific}
+Authentication will be done by providing a username and password for registered Users and Admins. The Registration will be exclusive over  a non automated channel by contacting the Customer/Developers to verify a service. The in the Requirements Elicitation mentioned credentials refer further to a user name and password.
 
+\subsection{Database and data format}
+The data will be formatted in standard JSON for communications between the server and the client. The format is human-readable and widely supported. It also supports the requirements of a RESTful application.
+\newline
+\newline
+\noindent
+The database will be MYSQL a rational database. 
+It is one of the most used rational databases and therefore provides sufficient features, support and scalability for the application. It is also compatible with the used Spring framework and the Heroku cloud platform. It validates data and ensures integrity. 
 
-Priorities
-	- Security - Encryption and Authentication , sensible data
-	- Portability/Integration \& Usability - clear defined API
-	- Reliability
+\section{Architecture (Component Diagram)}
+
+IDEAS ---------------------------------------------------
+
+Client-Server architecture => Repositories
 	
-
-Design Issues:
 
 Used architectural patterns:
 Layered Approach 
@@ -39,15 +162,12 @@ Client/Server architecture
 	- ~> Service oriented architecture (External Service, ASM, USM) supports continuous development, integration and is very scalable. JSON Communication as standard
 MVC 
 	- Flexibility, Testability increased, separate components as Client/Server and separate logic and data etc.
-	
-	
 
+END IDEAS ---------------------------------------------------
 
+\section{Components - Static modeling (Class Diagrams)}
 
-1) Authentication - expires when? Usability vs. Security
-2) Data storage   - who stores data? PNs/Images Security vs. Performance/Cost
-3) All in one component? - Extendability/Security vs. Developing Cost,Cost of component interaction(messaging...)
-4) 
+\section{Use cases - Behavioral modeling (Sequence Diagrams)}
 
 
 \end{document}
