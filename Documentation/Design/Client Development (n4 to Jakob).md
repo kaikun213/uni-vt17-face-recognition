@@ -21,3 +21,7 @@ There is plenty more but there is one last option that we want to consider which
 - **Semantic UI** - a fresh framework that has grown quite popular in the last couple of years. It uses the JavaScript jQuery framework which is easy to use and has great AJAX calls which can be helpful.   
 
 This is only a design option and we will go with the Semantic UI because it has a suiting design, and for the use of jQuery.
+
+##### To summarize
+We will use basic WEB development for our application as the requirement only says that it should work on iOS, Android etc.
+The framework that will be in used for WEB development is Semantic UI for CSS and jQuery for JavaScript as it comes with Semantic UI. 
