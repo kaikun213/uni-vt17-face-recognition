@@ -10,6 +10,11 @@
 \usepackage{xr}
 \externaldocument{Requirements_Elicitation}
 
+\usepackage[utf8]{inputenc}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage[none]{hyphenat}
+\usepackage{xcolor,colortbl}
+\definecolor{Gray}{rgb}{0.9,0.9,0.9}
 
 % ------------ Title section
 \title{
@@ -133,8 +138,19 @@ For the development in the cloud, Heroku is among AWS, Microsoft Azure, Google a
 \end{itemize}
 
 \subsubsection{External Face Recognition API}
-\textit{Comparison of 
-	- SkyBioMetric(Free), LambdaLabs(Best support, but costly), OpenFace(OpenSource, more work)} 
+%\textit{Comparison of 
+%	- SkyBioMetric(Free), LambdaLabs(Best support, but costly), OpenFace(OpenSource, more work)}
+%
+There are some External Face Recognition API out there such as
+\begin{itemize}
+\item \emph{SkyBiometry: } It is a cloud-based face detection and recognition software which provides a high-precision biometric identification for over 20 years. In addition, it also provide API client libraries in various languages such as Java, C\#, Pyton etc for giving a quick start to the developers. Regarding the usage limits, it has a free subscription which allows 100 methods calls hourly and 5000 monthly. It provide SSL support and its API uses REST interface which means all the API methods are called over the Internet using standard HTTP methods and responses are generated in XML or JSON.
+\item \emph{Lambda Labs: } It permits developers to send an image link to their service for the identification. In addition, it also allow to create an album of photos, analyze and compare new images with existing ones. Regarding the usage limits, it has a no free subscription and minimum cost is \$9/month. It does not provide SSL support and its API also uses REST interface and responses are generated in JSON.
+\item \emph{OpenFace: } It is a open source web service which provide facial detection technologies. Its API uses REST interface and accept image from the developer and return a JSON response. Currently, it does not support SSL and can only detect up to 80 points on a given image.
+\end{itemize}
+We have found that \emph{OpenFace} does not provide sufficient functionality as compare to others wheres \emph{Lamba Labs} does provide needed functionality but with a cost of \$9/month. In result, \emph{SkyBiometry} is the free and suitable option for our project.
+	
+	
+	
 	
 \subsection{Application specific}
 Authentication will be done by providing a username and password for registered Users and Admins. The Registration will be exclusive over  a non automated channel by contacting the Customer/Developers to verify a service. The in the Requirements Elicitation mentioned credentials refer further to a user name and password.
