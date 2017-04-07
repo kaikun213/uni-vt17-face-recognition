@@ -69,7 +69,7 @@
 \subsection{Overview}
 
 \section{Major Design Issues}
-In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented and the detail of evaluating the alternatives depends on the trade off the decision has. 
+In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented and the detail of evaluating the alternatives depends on the trade off the decision has.
 
 \section{Architectural Design}
 As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference Server or Client in general if  the reference is to both components - User and Admin module.
@@ -97,13 +97,64 @@ The Spring Framework allows fast, enterprise scale development of applications b
 
 \subsubsection{Client-side}
 
-%Javascript/HTML/CSS
 
-%Bootstrap framework
+\noindent The client application has to be working on iOS, Android, Microsoft
+phone and WEB, there is a ton of Cross Platform Mobile development tools
+out there.
 
-%Cross platform framework?
-%Angular?
+\noindent For example
 
+\begin{itemize}
+\item
+  \textbf{Xamarin} - which is the most popular choice, a free trail is
+  available and it use the language C\#. This will make it more
+  structured as C\# is an \emph{OO} language.
+\item
+  \textbf{Phone Gap} - which is the most well known tool, it is open
+  source meaning that it is free. It uses the common web languages to
+  create hybrid apps i.e.~HTML, CSS, JavaScript.
+\item
+  \textbf{appcelerator} - lets developers use JavaScript to build their
+  apps, provide mobile testing, it has a GUI to create design (which
+  uses common HTML and CSS), and lastly it is free.
+\end{itemize}
+
+\noindent There is plenty more but there is one last option that we want to
+consider which is to create it only to WEB, the question we need to ask
+ourselves is: \emph{are we going to produce a app for the different app
+stores or do we only want it to work on the different devices (Android,
+iOS, Microsoft phone)?} We will not create an app for the different app
+stores out there since that is not in the requirements, because of this
+the application will be built using common WEB languages. We will use
+responsive design to style our app so it will be desktop, tablet and
+mobile friendly. For this we will use a CSS framework, all CSS
+frameworks comes also with a JavaScript framework for design purpose
+(animation etc.).
+
+\noindent CSS frameworks:
+
+\begin{itemize}
+\item
+  \textbf{Bootstrap} - the most common framework out there, easy to use
+  and creates fast design. Great for dynamic designing thanks to its
+  grid system. The major drawback is that it will look boring and old.
+\item
+  \textbf{Material Framework} - Google's own framework, a google look
+  alike framework.
+\item
+  \textbf{Semantic UI} - a fresh framework that has grown quite popular
+  in the last couple of years. It uses the JavaScript jQuery framework
+  which is easy to use and has great AJAX calls which can be helpful.
+\end{itemize}
+
+\noindent This is only a design option and we will go with the Semantic UI because
+it has a suiting design, and for the use of jQuery.
+
+\subparagraph{To summarize}\label{to-summarize}
+We will use basic WEB development for our application as the requirement
+only says that it should work on iOS, Android etc.\\
+The framework that will be in used for WEB development is Semantic UI
+for CSS and jQuery for JavaScript as it comes with Semantic UI.
 
 \subsection{Platforms \& Technologies}
 
@@ -123,9 +174,9 @@ The Server will run on a cloud platform. This gives several advantages which are
 The Client, more specific the in the to be developed UAM will be Web compatible. Since it is written in Javascript
 Mobile Development = iOs/ Android / WEB
 	- Market share
-	- Cross platform frameworks 
+	- Cross platform frameworks
 	- WEB can be accessed by every device with a browser
-	
+
 \subsection{External Services}
 
 \subsubsection{Cloud Platform}
@@ -138,7 +189,7 @@ For the development in the cloud, Heroku is among AWS, Microsoft Azure, Google a
 \end{itemize}
 
 \subsubsection{External Face Recognition API}
-%\textit{Comparison of 
+%\textit{Comparison of
 %	- SkyBioMetric(Free), LambdaLabs(Best support, but costly), OpenFace(OpenSource, more work)}
 %
 There are some External Face Recognition API out there such as
@@ -148,10 +199,10 @@ There are some External Face Recognition API out there such as
 \item \emph{OpenFace: } It is a open source web service which provide facial detection technologies. Its API uses REST interface and accept image from the developer and return a JSON response. Currently, it does not support SSL and can only detect up to 80 points on a given image.
 \end{itemize}
 We have found that \emph{OpenFace} does not provide sufficient functionality as compare to others wheres \emph{Lamba Labs} does provide needed functionality but with a cost of \$9/month. In result, \emph{SkyBiometry} is the free and suitable option for our project.
-	
-	
-	
-	
+
+
+
+
 \subsection{Application specific}
 Authentication will be done by providing a username and password for registered Users and Admins. The Registration will be exclusive over  a non automated channel by contacting the Customer/Developers to verify a service. The in the Requirements Elicitation mentioned credentials refer further to a user name and password.
 
@@ -160,23 +211,23 @@ The data will be formatted in standard JSON for communications between the serve
 \newline
 \newline
 \noindent
-The database will be MYSQL a rational database. 
-It is one of the most used rational databases and therefore provides sufficient features, support and scalability for the application. It is also compatible with the used Spring framework and the Heroku cloud platform. It validates data and ensures integrity. 
+The database will be MYSQL a rational database.
+It is one of the most used rational databases and therefore provides sufficient features, support and scalability for the application. It is also compatible with the used Spring framework and the Heroku cloud platform. It validates data and ensures integrity.
 
 \section{Architecture (Component Diagram)}
 
 IDEAS ---------------------------------------------------
 
 Client-Server architecture => Repositories
-	
+
 
 Used architectural patterns:
-Layered Approach 
-	- Access Layer (Client/UI/API), Database layer (ORM), Data .. 
+Layered Approach
+	- Access Layer (Client/UI/API), Database layer (ORM), Data ..
 Client/Server architecture
 	- Separate development, Server provides API (cohesive service)
 	- ~> Service oriented architecture (External Service, ASM, USM) supports continuous development, integration and is very scalable. JSON Communication as standard
-MVC 
+MVC
 	- Flexibility, Testability increased, separate components as Client/Server and separate logic and data etc.
 
 END IDEAS ---------------------------------------------------
