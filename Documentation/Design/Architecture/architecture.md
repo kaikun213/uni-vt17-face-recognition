@@ -33,4 +33,10 @@ As for the server components they should only work with authenticated users or a
 
 All components have an important common requirement and that's "decrypt and encrypt all incoming and outgoing messages".
 
-/*choose a Architecture pattern - explain*/
+
+#### Architecture pattern
+Good cohesion and low coupling is important as well as good abstraction in order to have these components separate and changeable (without noticeable side effects). The two patterns that most resembles our project is the *client-server* and *Service-oriented* pattern. We choose the client-server as we will not have a lot of services, therefor we can exclude the Service-oriented and focus on the client-server pattern.
+
+##### Diagrams
+- Component
+![Component Diagram](images/ComponentDiagram.png "Component Diagram")
