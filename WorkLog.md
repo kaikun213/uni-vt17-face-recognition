@@ -15,4 +15,4 @@ Log your work with start and end [*date*+*time*]
 | Henry | 2017-04-20 07:42 | 2h 32min | architecture design 3rd attempt.. |
 | Henry | 2017-04-21 07:00 | 3h | using skybiometry to understand for ARC design |
 | Henry | 2017-04-21 16:00 | 2h | using skybiometry to understand for ARC design |
-| Henry | 2017-04-21 20:00 | 4h | architecture design |
+| Henry | 2017-04-21 20:00 | 4h | architecture design  |
