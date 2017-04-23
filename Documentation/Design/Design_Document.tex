@@ -57,8 +57,12 @@
 
 
 \section{Introduction}
+The FRS (face recognition system) design document is intended to be the groundwork of how the software should be built.
+%still working on the indroduction don't want it to sound too much like purpose
 
 \subsection{Purpose}
+The design documentation of the FRS is intended to create a mutual understanding of the software's functionality and contents. This document should contain all necessary information to start development of the face recognition system. This includes all known technologies, pitfalls and the architecture for the FRS as a whole.
+
 
 \subsection{Priorities}
 %Priorities
@@ -66,7 +70,17 @@
 %	- Portability/Integration \& Usability - clear defined API
 %	- Reliability
 
+Security: As we are dealing with users private information it imperative that the system is both secure and has limited access for both users and administrators. The primary methods to achieve this will be: The use of HTTPS SSL/TLS and both admin and user authentication.
+
+Reliability: When the user requests a PN from the server there needs to be a certain guarantee that that the PN returned matches the image provided.
+
+Portability: Creating a application that uses the FRS should be both possible and simple for a variety of devices and there operating systems. It should also be reliable on a number of different operating systems that come with these devices.
+
+Usability: The system should have clear defined methods and structure that will not be misinterpreted. The user application developed, should also be user friendly with the user interface having clear definitions.
+
 \subsection{Overview}
+This design document is for the face recognition software. The FRS purpose is to provide a PN (swedish Personal Number) using a comparison of a user provided image of a person's face. There should also be authentication to both users and administrators in place. Administrators should also have access to a list of the PNs from the database. Administrators are also able to add, edit and delete entries from the database.
+Additionally to the FRS a user application will also be developed to present the user functionality of the system. Said application should include the ability to authenticate the user and request PNs using images.
 
 \section{Major Design Issues}
 In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented and the detail of evaluating the alternatives depends on the trade off the decision has.
