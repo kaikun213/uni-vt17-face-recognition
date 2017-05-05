@@ -14,5 +14,6 @@ Log your work with start and end [*date*+*time*]
 | Henry | 2017-04-19 12:00 | 3h 48min | group meeting |
 | Henry | 2017-04-20 07:42 | 2h 32min | architecture design 3rd attempt.. |
 | Henry | 2017-04-21 07:00 | 3h | using skybiometry to understand for ARC design |
-| Henry | 2017-04-21 16:00 | 2h | using skybiometry to understand for ARC design |
-| Henry | 2017-04-21 20:00 | 4h | architecture design  |
+| Henry | 2017-04-24 11:30 | 1h 30min | group meeting |
+| Henry | 2017-05-03 12:00 | 1h 30min | group meeting |
+| Henry | 2017-05-05 06:15 | 1h 49min | component diagrams |
