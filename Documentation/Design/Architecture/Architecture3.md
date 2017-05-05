@@ -25,7 +25,7 @@ The admin component is a core component that will hold all the admin responsibil
 - DELETE  : removes an existing user by id
 
 ##### 4. user
-The user component is also a core component that will be responsible of getting a Swedish social security number based on a image. The required interface is the face and the provided interface is "*uploading a picture*"
+The user component is also a core component that will be responsible of getting a Swedish social security number based on a image. The required interface is the face, database and the provided interface is "*uploading a picture*"
 
 ##### 4. face
 The face is the main component of this system (FRS), this needs to be as independent as possible in order of our system to be adaptive to changes (i.e. face-recognition algorithm may be replaced in the future for a better one). The required interface that is needed is skyBiometry (the face-recognition api) and the provided interface is CRUD methods which allows admins to manage client faces as well as letting user component get a PN based on a picture.
@@ -61,4 +61,6 @@ We will use a combined pattern, Multi-layers pattern (for developed component) a
 
 ### Diagrams
 #### Component Diagram
- 
+![ComponentDiagram](ComponentDiagram.png "Component Diagram")
+#### Deployment Diagram
+![DeploymentDiagram](DeploymentDiagram.png "Deployment Diagram")
