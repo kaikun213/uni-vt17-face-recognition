@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head.ejs %>
+  </head>
+  <body>
+    <% if(type == 'user') { %>
+      <% include partials/user.html %>
+
+    <% } else if(type == 'admin') { %>
+      <% include partials/admin.html %>
+
+    <% } else { %>
+      <% include partials/login.html %>
+    <% } %>
+    <% include partials/footer.html %>
+  </body>
+</html>

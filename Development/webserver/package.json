@@ -1,0 +1,29 @@
+{
+  "name": "face_webserver",
+  "version": "1.0.0",
+  "description": "just a example display how to use our face application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaikun213/Uni_VT17_FaceRecognition.git"
+  },
+  "keywords": [
+    "webserver",
+    "pages"
+  ],
+  "author": "Henry Pap",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaikun213/Uni_VT17_FaceRecognition/issues"
+  },
+  "homepage": "https://github.com/kaikun213/Uni_VT17_FaceRecognition#readme",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "path": "^0.12.7"
+  }
+}
