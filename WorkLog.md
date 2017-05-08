@@ -17,3 +17,4 @@ Log your work with start and end [*date*+*time*]
 | Henry | 2017-04-24 11:30 | 1h 30min | group meeting |
 | Henry | 2017-05-03 12:00 | 1h 30min | group meeting |
 | Henry | 2017-05-05 06:15 | 1h 49min | component diagrams |
+| Henry | 2017-05-08 12:00 |  | group meeting |
