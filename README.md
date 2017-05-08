@@ -50,16 +50,16 @@ Portability - Where in the requirements? Usability too.
 
 ## **=> STRONG: All sections MUST reference requirements!!**
 
-Done-table:
+### Done-table:
 
-| Section        | Done           |
-| : ------------- : |:-------------:|
-| **ClassDiagrams**      |  |
+| Section | Done |
+| :-------------: |:-------------:|
+| **ClassDiagrams** |  |
 | Connection | [] |
 | Split | [] |
 | Include | [] |
 | Reference | [] |
-| **Architecture**      |  |
+| **Architecture** |  |
 | Text for Client | [] |
 | Reference | [] |
 | **Sequence Diagrams** |  |
@@ -71,6 +71,6 @@ Done-table:
 | Priorities section | [] |
 | Terminology | [] |
 | Reference | [] |
-| **Major Design Issues** | < |
+| **Major Design Issues** | |
 | Reorder | [] |
 | Reference | [] |
