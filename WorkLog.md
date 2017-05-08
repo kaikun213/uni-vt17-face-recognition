@@ -3,7 +3,7 @@ Log your work with start and end [*date*+*time*]
 
 ### table
 | name | start | end | activity |
-| :--------: | :-------- | --------: |
+| :--------: | :-------- | :-------- | --------: |
 | Henry | 2017-04-04 09:00 | 4h | group meeting |
 | Henry | 2017-04-05 ??? | 4h | group meeting |
 | henry | ??? | 3h | writing client development |
