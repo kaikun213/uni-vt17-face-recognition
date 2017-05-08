@@ -1,4 +1,4 @@
-package com.faceRecognition.Utils;
+package com.faceRecognition.utils;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
