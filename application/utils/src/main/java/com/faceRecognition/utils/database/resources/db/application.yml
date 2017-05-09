@@ -14,6 +14,8 @@ logging:
 spring:
     profiles: normal
     datasource: 
-        url: jdbc:postgresql://eu-cdbr-west-01.cleardb.com/ heroku_88cc93af71af49e
-        username: b3bddc1c4235ad
-        password: 66cd63d8
+        url: postgres://vlfznvwftfnuuj:82b85a6ab3a4541d704ac63ed888e554e26da05d5d5993fcd6f0beb8fcf15485@ec2-107-20-163-238.compute-1.amazonaws.com:5432/dcj1jnrvuukn1e
+        user: vlfznvwftfnuuj
+        password: 82b85a6ab3a4541d704ac63ed888e554e26da05d5d5993fcd6f0beb8fcf15485 #66cd63d8
+        database: dcj1jnrvuukn1e
+        host: ec2-107-20-163-238.compute-1.amazonaws.com
