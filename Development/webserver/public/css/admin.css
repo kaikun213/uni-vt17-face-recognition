@@ -1,0 +1,19 @@
+body > .grid {
+  height: 100%;
+}
+
+body > div > div {
+  display: none;
+}
+
+.modal {
+  display: none;
+}
+
+.modal > .content > p, .actions {
+  text-align: center !important;
+}
+
+.ui.error.message {
+  display: none;
+}

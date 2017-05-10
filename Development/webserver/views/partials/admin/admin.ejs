@@ -1,0 +1,50 @@
+<script type="text/javascript" src="js/admin.js"></script>
+<header class="ui secondary pointing menu">
+  <a class="item active" show="list">
+    List
+  </a>
+  <a class="item" show="create">
+    Create
+  </a>
+  <a class="item" show="remove">
+    Remove
+  </a>
+  <a class="item" show="update">
+    Update
+  </a>
+</header>
+
+<div class="ui grid">
+  <div class="sixteen wide column list ui container text">
+    <% include partials/list.html %>
+  </div>
+  <div class="sixteen wide column create ui container text">
+    <% include partials/create.html %>
+  </div>
+  <div class="sixteen wide column remove ui container text">
+    <% include partials/remove.html %>
+  </div>
+  <div class="sixteen wide column update ui container text">
+    <% include partials/update.html %>
+  </div>
+</div>
+
+<div class="ui basic small modal remove">
+  <div class="ui icon header">
+    <i class="archive icon"></i>
+    Before we continue
+  </div>
+  <div class="content">
+    <p>Are you sure you want to remove client?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+    <div class="ui green ok inverted button" onclick="remove();">
+      <i class="checkmark icon"></i>
+      Yes
+    </div>
+  </div>
+</div>

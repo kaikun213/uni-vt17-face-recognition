@@ -1,0 +1,22 @@
+<h3 class="ui top attached header">
+  Update Client
+</h3>
+<div class="ui attached segment">
+  <form class="ui form">
+    <div class="field">
+      <label>Client ID</label>
+      <input type="text" id="update_id" placeholder="Client ID">
+    </div>
+    <div class="field">
+      <label>Client PN</label>
+      <input type="text" name="update_pn" placeholder="YYYYMMDD-XXXX">
+    </div>
+    <div class="field">
+      <label for="update_photo" style="width: 180px;" class="ui icon button">
+        <i class="file image outline icon"></i>
+        Open Image</label>
+      <input type="file" style="display: none;" id="update_photo" accept="image/*">
+    </div>
+    <button class="ui button" onclick="update();" type="button">Submit</button>
+  </form>
+</div>
