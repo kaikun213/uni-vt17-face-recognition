@@ -21,3 +21,11 @@ Documentation/\.DS_Store
 \.DS_Store
 a/
 Development/
+
+application/utils/\.settings/
+
+application/utils/target/
+
+application/utils/\.classpath
+
+application/utils/\.project
