@@ -74,3 +74,4 @@ Portability - Where in the requirements? Usability too.
 | **Major Design Issues** | |
 | Reorder | [] |
 | Reference | [] |
+| Make sure to follow tree order (design space - mauro lecture) | [] |
