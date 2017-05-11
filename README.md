@@ -19,6 +19,7 @@ Software Design course. Development of an application matching photos to persona
 | 04/05/17 | Walid | 2h | Designing part on the Sequence diagrams |
 | 08/05/17 | Jakob | 2h | Planning & Organizing |
 | 08/05/17 | All | 2h | Meeting Impl Challenges |
+| 09/05/17 | Walid | 3h | v1 of all Sequence diagrams done and added in the design document | 
 
 
 
