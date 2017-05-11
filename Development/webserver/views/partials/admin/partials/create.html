@@ -1,0 +1,18 @@
+<h3 class="ui top attached header">
+  Create new Client
+</h3>
+<div class="ui attached segment">
+  <form class="ui form">
+    <div class="field">
+      <label>Client PN</label>
+      <input type="text" name="create_pn" placeholder="YYYYMMDD-XXXX">
+    </div>
+    <div class="field">
+      <label for="create_photo" style="width: 180px;" class="ui icon button">
+        <i class="file image outline icon"></i>
+        Open Image</label>
+      <input type="file" style="display: none;" id="create_photo" accept="image/*">
+    </div>
+    <button class="ui button" onclick="create();" type="button">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+footer {
+  background-color: #515151;
+  color: #dcdcdc;
+}
+
+footer > div > div > p {
+  float: left;
+}
+
+footer > div > div > address {
+  text-align: right;
+}
