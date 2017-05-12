@@ -4,13 +4,13 @@ import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import com.faceRecognition.utils.database.model.Credentials;
 import com.faceRecognition.utils.database.model.UserEntity;
 import com.faceRecognition.utils.database.repository.CredentialsRepository;
 import com.faceRecognition.utils.database.repository.UserEntitiesRepository;
 
-@Service
+@Component
 public class DatabaseServiceImpl implements AdminService, UserService, AuthenticationService {
 
 	@Autowired

@@ -13,6 +13,7 @@ import com.faceRecognition.utils.database.repository.CredentialsRepository;
 import com.faceRecognition.utils.database.service.AdminService;
 import com.faceRecognition.utils.database.service.AuthenticationService;
 import com.faceRecognition.utils.database.service.UserService;
+
 import junit.framework.TestCase;
 
 @RunWith(SpringRunner.class)
