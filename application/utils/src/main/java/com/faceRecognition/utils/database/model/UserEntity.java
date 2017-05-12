@@ -5,9 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Length;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +19,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @EqualsAndHashCode(of = { "id" }, callSuper = false)
 @ToString
-@Table(name = "userEntity")
+@Table(name = "user_entity")
 public class UserEntity {
 
 	@Id
@@ -37,7 +35,7 @@ public class UserEntity {
 	@NonNull
 	@Getter
 	@Setter
-	@Column(name = "personalNumber")
+	@Column(name = "personal_number")
 	@Length(max = 12)
 	private String personalNumber;
 }

@@ -36,6 +36,7 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 		if (entity != null) {
 			entity.setId(id);
 			entity.setPersonalNumber(personalNumber);
+			this.userEntitiesRepository.saveAndFlush(entity);
 		} else
 			throw new NotFoundException();
 	}
