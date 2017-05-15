@@ -48,6 +48,11 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 		else
 			throw new NotFoundException();
 	}
+	
+	public UserEntity getUserEntity(String id){
+		UserEntity entity = this.userEntitiesRepository.findOne(id);
+		return entity == null ? null : entity;
+	}
 
 	public List<UserEntity> getUserEntities() {
 		List<UserEntity> entities = userEntitiesRepository.findAll();

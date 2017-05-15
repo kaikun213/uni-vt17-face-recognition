@@ -12,5 +12,7 @@ public interface AdminService {
 	
 	void deleteUserEntity(String id) throws NotFoundException;
 	
+	UserEntity getUserEntity(String id);
+	
 	List<UserEntity> getUserEntities();
 }
