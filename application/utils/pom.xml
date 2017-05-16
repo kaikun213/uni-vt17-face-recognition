@@ -19,6 +19,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<mysql-version>5.1.9</mysql-version>
 	</properties>
 
 	<dependencies>
@@ -43,9 +44,9 @@
 			<artifactId>spring-boot-actuator</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.0-801.jdbc4</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -63,6 +64,17 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- Lightweight Client HTTP Requests -->
+		<dependency>
+		    <groupId>com.mashape.unirest</groupId>
+		    <artifactId>unirest-java</artifactId>
+		    <version>1.4.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.mhendred.face4j</groupId>
+			<artifactId>face4j-core</artifactId>
+			<version>1.6.2</version>
 		</dependency>
 	</dependencies>
 
