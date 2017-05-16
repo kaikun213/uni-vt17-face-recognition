@@ -1,5 +1,7 @@
 package com.faceRecognition.utils.database;
 
+import javax.naming.directory.InvalidAttributeValueException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +35,7 @@ public class DatabaseServiceTest extends TestCase {
 	CredentialsRepository credentialsRepository;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws InvalidAttributeValueException {
 		admin.addUserEntity("1", "199501310271");
 	}
 
