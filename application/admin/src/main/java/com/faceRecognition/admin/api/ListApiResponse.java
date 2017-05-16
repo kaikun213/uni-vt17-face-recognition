@@ -34,7 +34,7 @@ public class ListApiResponse {
         return status;
     }
 
-    public List<Object> getData() {
+    public List<UserEntity> getData() {
         return data;
     }
 
