@@ -3,36 +3,39 @@
 \contentsline {subsection}{\numberline {1.2}Priorities}{3}
 \contentsline {subsection}{\numberline {1.3}Overview}{3}
 \contentsline {section}{\numberline {2}Major Design Issues}{3}
-\contentsline {section}{\numberline {3}Architectural Design}{3}
-\contentsline {subsection}{\numberline {3.1}Languages \& Frameworks}{4}
-\contentsline {subsubsection}{\numberline {3.1.1}Server-side}{4}
-\contentsline {subsubsection}{\numberline {3.1.2}Client-side}{4}
-\contentsline {subparagraph}{To summarize}{5}
-\contentsline {subsection}{\numberline {3.2}Platforms \& Technologies}{5}
-\contentsline {subsubsection}{\numberline {3.2.1}Communication}{5}
-\contentsline {subsubsection}{\numberline {3.2.2}Platform Server}{5}
-\contentsline {subsubsection}{\numberline {3.2.3}Platform Client}{6}
-\contentsline {subsection}{\numberline {3.3}External Services}{6}
-\contentsline {subsubsection}{\numberline {3.3.1}Cloud Platform}{6}
-\contentsline {subsubsection}{\numberline {3.3.2}External Face Recognition API}{6}
-\contentsline {subsection}{\numberline {3.4}Application specific}{7}
-\contentsline {subsection}{\numberline {3.5}Database and data format}{7}
+\contentsline {subsection}{\numberline {2.1}Architectural Design}{3}
+\contentsline {subsection}{\numberline {2.2}Languages \& Frameworks}{4}
+\contentsline {subsubsection}{\numberline {2.2.1}Server-side}{4}
+\contentsline {subsubsection}{\numberline {2.2.2}Client-side}{4}
+\contentsline {subsection}{\numberline {2.3}Communication Technology}{5}
+\contentsline {subsubsection}{\numberline {2.3.1}Communication}{5}
+\contentsline {subsection}{\numberline {2.4}External Services}{5}
+\contentsline {subsubsection}{\numberline {2.4.1}External Face Recognition API}{5}
+\contentsline {subsection}{\numberline {2.5}Application specific}{6}
+\contentsline {subsection}{\numberline {2.6}Data format}{6}
+\contentsline {section}{\numberline {3}Technology choices}{6}
+\contentsline {subsection}{\numberline {3.1}Client technology}{6}
+\contentsline {subparagraph}{To summarize}{7}
+\contentsline {subsection}{\numberline {3.2}Development Platforms}{7}
+\contentsline {subsubsection}{\numberline {3.2.1}Platform Server}{7}
+\contentsline {subsubsection}{\numberline {3.2.2}Platform Client}{7}
+\contentsline {subsection}{\numberline {3.3}Database}{7}
 \contentsline {section}{\numberline {4}Architecture (Component Diagram)}{7}
-\contentsline {paragraph}{Component list}{7}
-\contentsline {paragraph}{Component details}{7}
-\contentsline {subparagraph}{1. authentication}{7}
+\contentsline {paragraph}{Component list}{8}
+\contentsline {paragraph}{Component details}{8}
+\contentsline {subparagraph}{1. authentication}{8}
 \contentsline {subparagraph}{2. admin}{8}
 \contentsline {subparagraph}{4. user}{8}
 \contentsline {subparagraph}{4. face}{8}
-\contentsline {subparagraph}{5. database}{8}
-\contentsline {subparagraph}{6. storage}{8}
-\contentsline {subparagraph}{7. skyBiometry}{8}
-\contentsline {subparagraph}{8. imgur}{8}
-\contentsline {subparagraph}{9. MySQL}{8}
-\contentsline {paragraph}{Architecture Pattern}{8}
+\contentsline {subparagraph}{5. database}{9}
+\contentsline {subparagraph}{6. storage}{9}
+\contentsline {subparagraph}{7. skyBiometry}{9}
+\contentsline {subparagraph}{8. imgur}{9}
+\contentsline {subparagraph}{9. MySQL}{9}
+\contentsline {paragraph}{Architecture Pattern}{9}
 \contentsline {subparagraph}{Conclusion}{9}
 \contentsline {subsubsection}{\numberline {4.0.1}Diagrams}{9}
-\contentsline {paragraph}{Component Diagram}{9}
-\contentsline {paragraph}{Deployment Diagram}{10}
-\contentsline {section}{\numberline {5}Components - Static modeling (Class Diagrams)}{10}
-\contentsline {section}{\numberline {6}Use cases - Behavioral modeling (Sequence Diagrams)}{10}
+\contentsline {paragraph}{Component Diagram}{10}
+\contentsline {paragraph}{Deployment Diagram}{11}
+\contentsline {section}{\numberline {5}Components - Static modeling (Class Diagrams)}{11}
+\contentsline {section}{\numberline {6}Use cases - Behavioral modeling (Sequence Diagrams)}{11}
