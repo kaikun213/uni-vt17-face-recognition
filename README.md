@@ -19,9 +19,9 @@ Software Design course. Development of an application matching photos to persona
 | 04/05/17 | Walid | 2h | Designing part on the Sequence diagrams |
 | 08/05/17 | Jakob | 2h | Planning & Organizing |
 | 08/05/17 | All | 2h | Meeting Impl Challenges |
-| 09/05/17 | Walid | 3h | v1 of all Sequence diagrams done and added in the design document | 
+| 09/05/17 | Walid | 3h | v1 of all Sequence diagrams done and added in the design document |
 | 15/05/17 | Jakob | 2h | Implementation Admin |
-| 16/05/17 | Jakob | 3h | Implementation Admin | 
+| 16/05/17 | Jakob | 3h | Implementation Admin |
 | 16/05/17 | Jakob | 2h | Documentation Design Issues |
 
 
@@ -79,3 +79,4 @@ Portability - Where in the requirements? Usability too.
 | Reorder | [] |
 | Reference | [] |
 | Make sure to follow tree order (design space - mauro lecture) | [] |
+| Sequence Diagrams | 
