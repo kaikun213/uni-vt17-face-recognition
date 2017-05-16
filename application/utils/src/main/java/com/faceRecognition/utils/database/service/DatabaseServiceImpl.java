@@ -2,6 +2,7 @@ package com.faceRecognition.utils.database.service;
 
 import java.util.Collections;
 import java.util.List;
+import javax.naming.directory.InvalidAttributeValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Component;
@@ -21,13 +22,15 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 
 	public String getPersonalNumber(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
-		if (entity != null) {
+		if (entity != null)
 			return entity.getPersonalNumber();
-		}
 		throw new NotFoundException();
 	}
 
-	public void addUserEntity(String id, String personalNumber) {
+	// PN Format = YYYYMMDDXXXX
+	public void addUserEntity(String id, String personalNumber) throws InvalidAttributeValueException {
+		if (personalNumber.length() != 12 || !personalNumber.matches("\\d+"))
+			throw new InvalidAttributeValueException();
 		this.userEntitiesRepository.saveAndFlush(new UserEntity(id, personalNumber));
 	}
 
@@ -48,10 +51,12 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 		else
 			throw new NotFoundException();
 	}
-	
-	public UserEntity getUserEntity(String id){
+
+	public UserEntity getUserEntity(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
-		return entity == null ? null : entity;
+		if (entity != null)
+			return entity;
+		throw new NotFoundException();
 	}
 
 	public List<UserEntity> getUserEntities() {

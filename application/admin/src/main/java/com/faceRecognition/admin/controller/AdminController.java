@@ -1,5 +1,6 @@
 package com.faceRecognition.admin.controller;
 
+import javax.naming.directory.InvalidAttributeValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +22,7 @@ import com.faceRecognition.utils.database.service.AdminService;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-	
+
 	@Autowired
 	AdminService databaseService;
 	
@@ -34,11 +35,14 @@ public class AdminController {
 		databaseService.addUserEntity(faceId, personalNumber);
 		return new ApiResponse(Status.OK, userEntity);
 	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ApiResponse retrieve(@PathVariable String id){
-		UserEntity userEntity = databaseService.getUserEntity(id);
-		return new ApiResponse(Status.OK, userEntity);
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ApiResponse retrieve(@PathVariable String id) {
+		try {
+			return new ApiResponse(Status.OK, databaseService.getUserEntity(id));
+		} catch (NotFoundException e) {
+			return new ApiResponse(Status.ERROR, null, new ApiError(404, "Not Found"));
+		}
 	}
 	
 	@PutMapping("/{id}")
