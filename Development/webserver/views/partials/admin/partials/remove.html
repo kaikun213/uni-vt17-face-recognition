@@ -5,13 +5,17 @@
   <form class="ui form">
     <div class="field">
       <label>Client ID</label>
-      <input type="text" id="update_id" placeholder="Client ID">
+      <input type="text" id="remove_id" placeholder="Client ID">
     </div>
     <!-- maybe some password requirement, for now a popup will do -->
     <button class="ui button" onclick="removeBtn();" type="button">Submit</button>
   </form>
-  <div class="ui error message">
+  <div class="ui negative message">
     <div class="header">Error</div>
+    <p></p>
+  </div>
+  <div class="ui success message">
+    <div class="header">Success</div>
     <p></p>
   </div>
 </div>
