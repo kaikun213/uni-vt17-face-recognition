@@ -1,6 +1,8 @@
 package com.faceRecognition.utils.database.service;
 
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+
 public interface UserService {
 
-	Long getPersonalNumber(Long id);
+	String getPersonalNumber(String id) throws NotFoundException;
 }
