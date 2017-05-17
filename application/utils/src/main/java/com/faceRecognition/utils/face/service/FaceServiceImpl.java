@@ -1,8 +1,8 @@
 package com.faceRecognition.utils.face.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import com.github.mhendred.face4j.DefaultFaceClient;
@@ -15,9 +15,6 @@ import com.github.mhendred.face4j.model.Photo;
 @Component
 public class FaceServiceImpl implements AdminService, UserService{
 	
-	@Autowired
-	private Environment env;
-	
 	@Value( "${skybio.api.key}" )
 	private String apiKey;
 	
@@ -27,7 +24,12 @@ public class FaceServiceImpl implements AdminService, UserService{
 	// SkyBioMetric Namespace
 	private static final String NAMESPACE = "lnuFace";
 	
-	FaceClient faceClient;// = new DefaultFaceClient(apiKey, apiSecret);
+	FaceClient faceClient;
+	
+	@PostConstruct
+    public void init() {
+        this.faceClient = new DefaultFaceClient(apiKey, apiSecret); 
+    }
 
 	@Override
 	public String get(String id) {

@@ -16,7 +16,7 @@ import com.faceRecognition.utils.face.service.UserService;
 @SpringBootTest
 public class SkybiometricAPITest {
 	
-	String exampleImage = "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.uni-regensburg.de%2FFakultaeten%2Fphil_Fak_II%2FPsychologie%2FPsy_II%2Fbeautycheck%2Fenglish%2Fprototypen%2Fm_unsexy_gr.jpg&f=1";
+	String exampleImage = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
 
 	@Autowired
 	AdminService afs;
@@ -31,7 +31,6 @@ public class SkybiometricAPITest {
 	
 	@Test
 	public void getPicture() throws FaceClientException, FaceServerException{
-		afs.get("001");
 //		afs.create("001", exampleImage);
 //		usf.match(exampleImage);
 	}
