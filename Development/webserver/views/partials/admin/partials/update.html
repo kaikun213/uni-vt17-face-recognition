@@ -14,9 +14,19 @@
     <div class="field">
       <label for="update_photo" style="width: 180px;" class="ui icon button">
         <i class="file image outline icon"></i>
-        Open Image</label>
+        <span>Open Image</span></label>
       <input type="file" style="display: none;" id="update_photo" accept="image/*">
     </div>
     <button class="ui button" onclick="update();" type="button">Submit</button>
   </form>
+  <div class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">Error</div>
+    <p></p>
+  </div>
+  <div class="ui success message">
+    <i class="close icon"></i>
+    <div class="header">Success</div>
+    <p></p>
+  </div>
 </div>

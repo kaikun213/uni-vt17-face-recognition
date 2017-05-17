@@ -40,6 +40,9 @@ server.get('/', function(req, res){
     type: 'login',
     title: 'Face - login'
   });
+}).post('/login/hej', function(req, res){
+  console.log(req);
+  res.status(200).send('0');
 }).get('*', function(req, res){ // any other paths
   res.status(404).send('404 not found');
 });

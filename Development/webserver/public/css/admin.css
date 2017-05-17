@@ -14,6 +14,17 @@ body > div > div {
   text-align: center !important;
 }
 
-.ui.error.message {
+.ui.message {
   display: none;
+}
+
+#bajs {
+  display: none !important;
+}
+.ui.modal {
+  top: 30%;
+}
+
+td {
+  text-overflow: ellipsis;
 }
