@@ -7,6 +7,7 @@
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
 \usepackage[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{enumitem}
+\usepackage{graphicx}
 
 % ------------ Title section
 
@@ -123,7 +124,7 @@ The rest of this document contains an overall description of the Face Recognitio
 \subsection{Product perspective}
 In some services such as financial or official matters there is a need to identify a person fast and securely. The FRS can provide this functionality and make the process easier and more reliable.
 
-\subsubsection{System Interfaces}
+\subsubsection{System Interfaces} \label{ReqSystemInterfaces}
 The FRS depends on an external face recognition API to compare the photos. This service can be developed in house or made use of existing systems. Beside the external dependency it consists of four different modules: the User Application Module (UCM), the User Repository Module (URM), the Admin Repository Module (ARM) and a database. (see figure 1)
 \begin{figure}[h!]
 	\centering
@@ -136,9 +137,9 @@ The FRS depends on an external face recognition API to compare the photos. This 
 The UCM allows User services to log on to the FRS and request a personal number with a given image. The URM is a daemon that accepts connections from the UCM and serves with the requested information. The URM is dependent on the External Face Recogntion API (EFR) to match the given photo to a registered one. The Admin Repository Module serves the API for the ACM to register, delete, update and get user data. It directly interacts with the PN-Database and indirectly uses the EFR to modify the Image-Database.
 \newline
 \noindent
-The User Application Module can be \textit{any} verified and registered Application which depends on the URM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies.
+The User Application Module can be \textit{any} verified and registered Application which depends on the URM API. The given UCM will be an example service. The gray marked components are external components that are not in the scope of this document and will only be mentioned in context of dependencies. From the other modules our primary product will be the server (URM and ARM) with a clear defined API. Additionally - as the customer required - we develop a simple client which can show usage and integration of the API how a customer developed application could use it.
 
-\subsubsection{User Interfaces}
+\subsubsection{User Interfaces} \label{User_Interfaces}
 The User Application Module must provide an interface to manage the API. This will be a mobile (e.g. Android/iOS) or web (WWW Browser) interface.
 \subsubsection{Hardware Interfaces}
 All components must be able to execute on a personal computer.
@@ -153,7 +154,7 @@ The PN-database will be located locally or interacted remotely over an Internet 
 \subsubsection{Security constraints}
 All sent personal numbers must be encrypted end to end. Services must be authenticated to interact with the API. The external service does not have any information about the personal numbers or other high security informations saved and only the images are shared.
 
-\subsection{Product functions}
+\subsection{Product functions} \label{ReqProductFunctions}
 The two main functions of the Face Recognition System are to allow user services to retrieve a PN corresponding to a photo of a face, and to allow administrators to manage User-Entities.
 \newline
 \noindent
@@ -162,7 +163,7 @@ For managerial purposes it is useful to have the option to \textit{RETRIEVE} all
 \subsection{User characteristics}
 The User as defined in \ref{Roles} is a verified and registered service which provides the User Application Module to interact with the URM.
 
-\subsection{Constraints}
+\subsection{Constraints} \label{ReqConstraints}
 The system should enforce User and Admin authentication security and guarantee encrypted communication of critical data.
 The system should not take more than 5seconds response time when retrieving a PN with a photo.
 
@@ -201,6 +202,13 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item \label{ARMRequest} The ARM should only process requests from authenticated admins.
 		\item The ARM should be able to READ, DELETE, CREATE, UPDATE User-Entities.
 \end{enumerate}
+\newpage
+\section{Domain Model}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{Domain.jpg}
+	\caption{Domain Model \label{Domain Model}}
+\end{figure}
 
 \newpage
 \section{Modeling of functional requirements (Usecases \& Scenarios)}
@@ -530,4 +538,23 @@ The FRS will depend on an external face recognition API to compare photos. This 
     
     \\ \hline   
 \end{tabular} 
+<<<<<<< Updated upstream
 \end{document}
+
+\section{The Domain Model}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{Domain.jpg}
+	\caption{The Domain Model \label{overflow}}
+\end{figure}
+
+=======
+<<<<<<< Updated upstream
+\end{document}
+=======
+
+
+\end{document}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

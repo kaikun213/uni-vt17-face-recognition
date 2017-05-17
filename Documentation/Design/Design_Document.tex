@@ -15,6 +15,7 @@
 \usepackage[none]{hyphenat}
 \usepackage{xcolor,colortbl}
 \definecolor{Gray}{rgb}{0.9,0.9,0.9}
+\usepackage{graphicx}
 
 % ------------ Title section
 \title{
@@ -82,24 +83,26 @@ Usability: The system should have clear defined methods and structure that will 
 This design document is for the face recognition software. The FRS purpose is to provide a PN (swedish Personal Number) using a comparison of a user provided image of a person's face. There should also be authentication to both users and administrators in place. Administrators should also have access to a list of the PNs from the database. Administrators are also able to add, edit and delete entries from the database.
 Additionally to the FRS a user application will also be developed to present the user functionality of the system. Said application should include the ability to authenticate the user and request PNs using images.
 
-\section{Major Design Issues}
+\section{Major Design Issues} \label{Major_Design_Issues}
 In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented and the detail of evaluating the alternatives depends on the trade off the decision has.
 
-\section{Architectural Design}
-As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference Server or Client in general if  the reference is to both components - User and Admin module.
+\subsection{Architectural Design} 
+As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference URM or ARM as Server and UAM and AAM as Client. It is important to note that as defined in the requirements Req. Doc. \ref{ReqSystemInterfaces} our developed product is only the Server with a clear API and the Client application we talk about is the desired example client to show how integration and usage could be done.
+The architecture of the server is defined in detail in \ref{Architecture}.
 
 \subsection{Languages \& Frameworks}
 \subsubsection{Server-side}
-For the Server the \textbf{Java programming language} is one of the most used. Especially REST functionality is supported by various frameworks with large communities. Rationals which led to the choice are listed below.
+As choice of programming language we choose the \textbf{Java programming language}. It is one of the most widely used ones on the server side. Especially the  in \ref{ReqProductFunctions} of the Requirements Elicitation defined REST functionality is supported by various frameworks with large communities. Rationals which led to the choice are listed below.
 \begin{itemize}
 \item Great flexibility \& portability due to platform independence with the JVM.
+\item Scalable solution based on proven enterprise solutions
 \item High productivity because of existing frameworks and solutions
 \item Good support by a large community of developers
 \end{itemize}
-\textit{Concerns are that it is more difficult for multi-threaded development and reactive programming. The scalability can still be guaranteed because ... => frameworks}
 
-The Spring Framework will be used on the server side of the system. More detailed the Spring Web, Security, Data and Boot modules.
-The Spring Framework allows fast, enterprise scale development of applications by providing features for security, RESTful applications and Data Management. Rationals for using the different modules are listed below.
+The Spring Framework will be used on the server side of the system.
+More detailed the Spring Web, Security, Data and Boot modules. This modules support the 
+The Spring Framework allows fast, enterprise scale development of applications by providing features for security, RESTful applications and Data Management and thus is the perfect fit for the requirements defined in the Requirements Elicitation \ref{ReqProductFunctions} and \ref{ReqConstraints} such as authentication, encryption and REST functionality. The Rationals for using the different modules are listed more detailed below.
 \begin{itemize}
 \item Great Portability and Integration - it is supported by various cloud providers to make deployment and continuous development possible.
 \item Spring Boot provides an embedded application server which allows fast and easy setup of an application.
@@ -110,13 +113,7 @@ The Spring Framework allows fast, enterprise scale development of applications b
 \end{itemize}
 
 \subsubsection{Client-side}
-
-
-\noindent The client application has to be working on iOS, Android, Microsoft
-phone and WEB, there is a ton of Cross Platform Mobile development tools
-out there.
-
-\noindent For example
+\noindent The client application as defined in \ref{User_Interfaces} of the Requirements Elicitation has to be working on mobile or web browsers. It is therefore suitable to make a web browser interface which is also responsive on mobile. Thus the application will be able to run on iOS, Android, Microsoft phone and WEB. Alternatively it could be developed with one of various Cross Platform Mobile development tools out there. Some of them are listed below.
 
 \begin{itemize}
 \item
@@ -133,19 +130,37 @@ out there.
   uses common HTML and CSS), and lastly it is free.
 \end{itemize}
 
-\noindent There is plenty more but there is one last option that we want to
-consider which is to create it only to WEB, the question we need to ask
-ourselves is: \emph{are we going to produce a app for the different app
-stores or do we only want it to work on the different devices (Android,
-iOS, Microsoft phone)?} We will not create an app for the different app
-stores out there since that is not in the requirements, because of this
-the application will be built using common WEB languages. We will use
-responsive design to style our app so it will be desktop, tablet and
-mobile friendly. For this we will use a CSS framework, all CSS
-frameworks comes also with a JavaScript framework for design purpose
-(animation etc.).
+\noindent There is plenty more but since we only want to show the usage of the API by example as written in the Requirement Elicitation \ref{ReqSystemInterfaces} we will not need a native application. Using common WEB languages to create a browser alternative fulfills the requirements. No requirements constrain the decision among various alternatives for the Web development. Thus this will be discussed in the next section \ref{Technology_choices}
 
-\noindent CSS frameworks:
+\subsection{Communication Technology}
+
+\subsubsection{Communication}
+The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application. It provides the encryption and security defined in \ref{ReqConstraints} of the Requirements Elicitation.
+
+\subsection{External Services}
+
+\subsubsection{External Face Recognition API}
+One of the core features as defined in \ref{ReqProductFunctions} of the Requirements Elicitation is to match a photo of a face with an existing one to a certain factor of equivalence/similarity. For this purpose as defined in the requirements an external service will be used. Following we compare some of the most known ones. Important aspects are cost factor, usability for the specific needs and security support.
+There are some External Face Recognition API out there such as
+\begin{itemize}
+\item \emph{SkyBiometry: } It is a cloud-based face detection and recognition software which provides a high-precision biometric identification for over 20 years. In addition, it also provide API client libraries in various languages such as Java, C\#, Pyton etc for giving a quick start to the developers. Regarding the usage limits, it has a free subscription which allows 100 methods calls hourly and 5000 monthly. It provide SSL support and its API uses REST interface which means all the API methods are called over the Internet using standard HTTP methods and responses are generated in XML or JSON.
+\item \emph{Lambda Labs: } It permits developers to send an image link to their service for the identification. In addition, it also allow to create an album of photos, analyze and compare new images with existing ones. Regarding the usage limits, it has a no free subscription and minimum cost is \$9/month. It does not provide SSL support and its API also uses REST interface and responses are generated in JSON.
+\item \emph{OpenFace: } It is a open source web service which provide facial detection technologies. Its API uses REST interface and accept image from the developer and return a JSON response. Currently, it does not support SSL and can only detect up to 80 points on a given image.
+\end{itemize}
+We have found that \emph{OpenFace} does not provide sufficient functionality as compared to others. Wheres \emph{Lamba Labs} does provide needed functionality but with a cost of \$9/month. In result, \emph{\textbf{SkyBiometry}} is the free and suitable option for our project.
+
+\subsection{Application specific}
+Authentication as defined in \ref{ReqConstraints} of the Requirements Elicitation will be done by providing a username and password for registered Users and Admins. The Registration will be exclusive over  a non automated channel by contacting the Customer/Developers to verify a service. The in \ref{ReqConstraints} the Requirements Elicitation mentioned credentials refer further to a user name and password.
+
+\subsection{Data format}
+The data will be formatted in standard JSON for communications between the server and the client. The format is human-readable and widely supported. It also supports the requirements of a RESTful application.(Req.Elic. \ref{ReqProductFunctions})
+
+\section{Technology choices} \label{Technology_choices}
+In this section we will discuss technology choices which are not constrained by the requirements and thus do not belong directly into the design space defined in \ref{Major_Design_Issues}
+
+\subsection{Client technology}
+ In this section we will shortly discuss the technologies used for developing the WEB Client. \textit{It is important to mention that this is not a client in the classical sense as that the browser is the communicating instance and the client only consists of the pages served from a web-server. So it is more only a user interface to access the API.} \\
+ We will use responsive design to style our app so it will be desktop, tablet and mobile friendly. For this we will use a CSS framework, all CSS frameworks comes also with a JavaScript framework for design purpose (animation etc.). Further a list of recent CSS frameworks:
 
 \begin{itemize}
 \item
@@ -161,20 +176,13 @@ frameworks comes also with a JavaScript framework for design purpose
   which is easy to use and has great AJAX calls which can be helpful.
 \end{itemize}
 
-\noindent This is only a design option and we will go with the Semantic UI because
-it has a suiting design, and for the use of jQuery.
+\noindent This is only a design option and we will go with the Semantic UI because it has a suiting design, and for the use of jQuery. 
 
 \subparagraph{To summarize}\label{to-summarize}
-We will use basic WEB development for our application as the requirement
-only says that it should work on iOS, Android etc.\\
 The framework that will be in used for WEB development is Semantic UI
 for CSS and jQuery for JavaScript as it comes with Semantic UI.
 
-\subsection{Platforms \& Technologies}
-
-\subsubsection{Communication}
-The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application.
-\textit{=> Read up about SSL/TLS and HTTPS what does it secure how does it work?}
+\subsection{Development Platforms}
 
 \subsubsection{Platform Server}
 The Server will run on a cloud platform. This gives several advantages which are listed below. Especially easy setup and management are essential for this project during development and by using Java the components are platform independent which allows later changes during production.
@@ -184,16 +192,6 @@ The Server will run on a cloud platform. This gives several advantages which are
 \item Cheap and scalable solution
 \end{itemize}
 
-\subsubsection{Platform Client}
-The Client, more specific the in the to be developed UAM will be Web compatible. Since it is written in Javascript
-Mobile Development = iOs/ Android / WEB
-	- Market share
-	- Cross platform frameworks
-	- WEB can be accessed by every device with a browser
-
-\subsection{External Services}
-
-\subsubsection{Cloud Platform}
 For the development in the cloud, Heroku is among AWS, Microsoft Azure, Google application engine and others a common choice. It supports good conditions for development and support frameworks for features such as database deployment. This gives a convenient way to get the system fastly up and working. Listed are features it provides.
 \begin{itemize}
 \item Native support for Java and Spring Boot application deployment
@@ -202,35 +200,17 @@ For the development in the cloud, Heroku is among AWS, Microsoft Azure, Google a
 \item Free use for small scale applications (development)
 \end{itemize}
 
-\subsubsection{External Face Recognition API}
-%\textit{Comparison of
-%	- SkyBioMetric(Free), LambdaLabs(Best support, but costly), OpenFace(OpenSource, more work)}
-%
-There are some External Face Recognition API out there such as
-\begin{itemize}
-\item \emph{SkyBiometry: } It is a cloud-based face detection and recognition software which provides a high-precision biometric identification for over 20 years. In addition, it also provide API client libraries in various languages such as Java, C\#, Pyton etc for giving a quick start to the developers. Regarding the usage limits, it has a free subscription which allows 100 methods calls hourly and 5000 monthly. It provide SSL support and its API uses REST interface which means all the API methods are called over the Internet using standard HTTP methods and responses are generated in XML or JSON.
-\item \emph{Lambda Labs: } It permits developers to send an image link to their service for the identification. In addition, it also allow to create an album of photos, analyze and compare new images with existing ones. Regarding the usage limits, it has a no free subscription and minimum cost is \$9/month. It does not provide SSL support and its API also uses REST interface and responses are generated in JSON.
-\item \emph{OpenFace: } It is a open source web service which provide facial detection technologies. Its API uses REST interface and accept image from the developer and return a JSON response. Currently, it does not support SSL and can only detect up to 80 points on a given image.
-\end{itemize}
-We have found that \emph{OpenFace} does not provide sufficient functionality as compare to others wheres \emph{Lamba Labs} does provide needed functionality but with a cost of \$9/month. In result, \emph{SkyBiometry} is the free and suitable option for our project.
+\subsubsection{Platform Client}
+The Client, more specific the in the to be developed UAM will be Web compatible. Since it is written in Javascript for mobile development it runs on iOs, Android and every system supporting modern web browsers.
 
-
-
-
-\subsection{Application specific}
-Authentication will be done by providing a username and password for registered Users and Admins. The Registration will be exclusive over  a non automated channel by contacting the Customer/Developers to verify a service. The in the Requirements Elicitation mentioned credentials refer further to a user name and password.
-
-\subsection{Database and data format}
-The data will be formatted in standard JSON for communications between the server and the client. The format is human-readable and widely supported. It also supports the requirements of a RESTful application.
-\newline
-\newline
-\noindent
+\subsection{Database}
 The database will be MYSQL a rational database.
 It is one of the most used rational databases and therefore provides sufficient features, support and scalability for the application. It is also compatible with the used Spring framework and the Heroku cloud platform. It validates data and ensures integrity.
 
-\section{Architecture (Component Diagram)}
 
 
+
+\section{Architecture (Component Diagram)} \label{Architecture}
 The subsystems of our system must be reusable and independent from each
 other, as that will make it easier to implement and test. The different
 subsystems or components are then combined by the application (which is
@@ -388,7 +368,50 @@ components).
 
 \section{Components - Static modeling (Class Diagrams)}
 
+
 \section{Use cases - Behavioral modeling (Sequence Diagrams)}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/GetPN.jpg}
+	\caption{Sequence diagram referred to "5.2 UAM: GET Personal Number" in the requirement document. \label{1}}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/FetchAllUsers.jpg}
+	\caption{Sequence diagram referred to "5.3 ARM: Get List of User-Entities" in the requirement document. \label{2}}
+\end{figure}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/Create.jpg}
+	\caption{Sequence diagram referred to "5.4 ARM: Add an User-Entity" in the requirement document. \label{3}}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/Delete.jpg}
+	\caption{Sequence diagram referred to "5.5 ARM: Delete an User-Entity" in the requirement document. \label{4}}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/Update.jpg}
+	\caption{Sequence diagram referred to "5.6 ARM: Update User-Entity" in the requirement document. \label{5}}
+\end{figure}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/AdminAuth.jpg}
+	\caption{Sequence diagram referred to "5.7 ARM: Authenticate Admin" in the requirement document. \label{6}}
+\end{figure}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{SequenceDiagrams/UserAuth.jpg}
+	\caption{Sequence diagram referred to "5.8 URM: Authenticate User" in the requirement document. \label{7}}
+\end{figure}
+
+
 
 
 \end{document}
