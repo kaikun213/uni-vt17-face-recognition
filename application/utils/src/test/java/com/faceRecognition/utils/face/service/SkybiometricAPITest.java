@@ -16,7 +16,10 @@ import com.faceRecognition.utils.face.service.UserService;
 @SpringBootTest
 public class SkybiometricAPITest {
 	
-	String exampleImage = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
+	String exampleImage  = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
+	String exampleImage2 = "http://pngimg.com/uploads/face/face_PNG11756.png";
+	String exampleImage3 = "http://pngimg.com/uploads/face/face_PNG5659.png";
+
 
 	@Autowired
 	AdminService afs;
@@ -25,13 +28,27 @@ public class SkybiometricAPITest {
 	UserService usf;
 	
 	@Before
-	public void setup(){
-		
+	public void setup() throws FaceClientException, FaceServerException{
+
 	}
 	
 	@Test
-	public void getPicture() throws FaceClientException, FaceServerException{
-//		afs.create("001", exampleImage);
-//		usf.match(exampleImage);
+	public void delete() throws FaceClientException, FaceServerException{
+		String tid1 = afs.create("001",exampleImage);
+		String tid2 = afs.create("002",exampleImage2);
+		String tid3 = afs.create("003",exampleImage3);
+		
+		String matchId = usf.match(exampleImage2);
+		System.out.println("Image2 Matched with:" +matchId);
+		matchId = usf.match(exampleImage3);
+		System.out.println("Image3 Matched with:" +matchId);
+		afs.delete("001");
 	}
+	
+	@Test
+	public void match() throws FaceClientException, FaceServerException{
+		usf.match(exampleImage2);
+
+	}	
+	
 }
