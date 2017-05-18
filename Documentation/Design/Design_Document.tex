@@ -248,7 +248,7 @@ be used and what they will require.
 \subparagraph{1. authentication}\label{authentication}
 
 The authentication component is required for security and divides the
-system based on whether the connected client is an user or an admin. The
+system based on whether the connected client is an user or an admin \ref{2.1.6 Security constraints}. The
 required interface for authentication is the database component, the
 provided interface is a login functionality that returns an integer 0 -
 no match, 1 - user and 2 - admin and a check which checks if current
@@ -259,7 +259,7 @@ client is logged in (user or admin).
 The admin component is a core component that will hold all the admin
 responsibilities which is management of client users (faces). The
 required interface is the face, storage and database component. The
-provided interface is the CRUD methods.
+provided interface is the CRUD methods check \ref{3.3 Admin Repository Module} at line 3.3.4.
 
 \begin{itemize}
 \item
@@ -275,9 +275,9 @@ provided interface is the CRUD methods.
 \subparagraph{4. user}\label{user}
 
 The user component is also a core component that will be responsible of
-getting a Swedish social security number based on a image. The required
+getting a Swedish social security number based on a image check \ref{User Repository Module} in the requirements elicitation. The required
 interface is the face, database and the provided interface is
-``\emph{uploading a picture}''
+``\emph{uploading a picture}''. 
 
 \subparagraph{4. face}\label{face}
 
@@ -285,20 +285,20 @@ The face is the main component of this system (FRS), this needs to be as
 independent as possible in order of our system to be adaptive to changes
 (i.e.~face-recognition algorithm may be replaced in the future for a
 better one). The required interface that is needed is skyBiometry (the
-face-recognition api) and the provided interface is CRUD methods which
+face-recognition api) and the provided interface is CRUD methods \ref{Admin Repository Module}, which
 allows admins to manage client faces as well as letting user component
-get a PN based on a picture.
+get a PN based on a picture, see \ref{User Repository Module}.
 
 \subparagraph{5. database}\label{database}
 
 The database or actually database-access component is the component that
-will directly talk with the remote database. The required interface is
-MYSQL-database and the provided is CRUD methods and a login method.
+will directly talk with the remote database. The required interface is a
+MYSQL-database since it is flexible and easy to use, but can easily be replaced. The provided is CRUD methods as well as a login method. This is a nessesary component check \ref{System Interfaces} in the requirements elicitation: ``\emph{Personal number database}'' will also hold information of login-users.
 
 \subparagraph{6. storage}\label{storage}
 
 The storage component is the component that will save the client-face
-picture to the storage, now we will use imgur.com api to store pictures
+picture to the storage, see \ref{System Interfaces}, the ``\emph{Image Database}'' now we will use imgur.com api to store pictures
 as space is an issue but in future this can be changed into storing
 images directly in our server. The required interface is imgur.com-api
 and the provided interface is upload picture.
@@ -318,15 +318,15 @@ MySQL is the database type we will use by the database-access component.
 
 \paragraph{Architecture Pattern}\label{architecture-pattern}
 
-We want good reusability, good cohesion, low coupling, abstraction and
+We already mentioned that the system will have client-server structure in \ref{2.1 Architectural Design}, but now we focus only on the server part as it is our only implementation part, clients then can connect and use our service the server provide.
+We want good reusability, good cohesion, low coupling, abstraction, security and
 portability all this because components should be easily changeable,
 independent so development can be as well and portable so the system can
 easily be changed to other servers (in the future). Our system is a
 layer type where the application (which will act as the glue code) will
 use authentication, admin and user component and these will use the
 others. See the component diagram to clearly see why it will be a
-layered system. Since our system will only be a server the client-server
-pattern can be excluded. The patterns that meets our required types
+layered system. The patterns that meets our required types
 i.e.~cohesion, coupling, abstraction and portability is:
 
 \begin{itemize}
@@ -356,15 +356,26 @@ We will use a combined pattern, Multi-layers pattern (for developed
 component) and Service-oriented pattern (for communication with remote
 components).
 
+\newpage
+
 \subsubsection{Diagrams}\label{diagrams}
 
 \paragraph{Component Diagram}\label{component-diagram}
 
-\includegraphics{Architecture/ComponentDiagram.png}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{Architecture/ComponentDiagram.png}
+	\caption{ComponentDiagram}
+\end{figure}
 
 \paragraph{Deployment Diagram}\label{deployment-diagram}
 
-\includegraphics{Architecture/DeploymentDiagram.png}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{Architecture/DeploymentDiagram.png}
+	\caption{DeploymentDiagram}
+\end{figure}
+\newpage
 
 \section{Components - Static modeling (Class Diagrams)}
 

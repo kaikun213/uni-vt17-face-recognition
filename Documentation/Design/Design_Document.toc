@@ -34,8 +34,8 @@
 \contentsline {subparagraph}{9. MySQL}{9}
 \contentsline {paragraph}{Architecture Pattern}{9}
 \contentsline {subparagraph}{Conclusion}{9}
-\contentsline {subsubsection}{\numberline {4.0.1}Diagrams}{9}
+\contentsline {subsubsection}{\numberline {4.0.1}Diagrams}{10}
 \contentsline {paragraph}{Component Diagram}{10}
-\contentsline {paragraph}{Deployment Diagram}{11}
+\contentsline {paragraph}{Deployment Diagram}{10}
 \contentsline {section}{\numberline {5}Components - Static modeling (Class Diagrams)}{11}
 \contentsline {section}{\numberline {6}Use cases - Behavioral modeling (Sequence Diagrams)}{11}
