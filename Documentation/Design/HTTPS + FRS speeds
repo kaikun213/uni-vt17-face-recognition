@@ -1,0 +1,44 @@
+NOTE there are some parts of the text I was unsure of including these will encapsulated with the $ sign. 
+
+HTTPS
+
+The face recognition system will be using HTTPS using the SSL/TLS transport layer protocols.
+
+HTTP (Hypertext Transfer Protocol) is the current industry standard for communications over the world wide web and is also the main communications method used by the skybiometry api. Communications over the FRS will have to be encrypted therefore the encryption method will be HTTPS SSL/TLS, an extension of HTTP. The system will be using TLS 1.2 which is the most recent successor of SSL. SSL being deemed no longer secure. TLS 1.0 could also be considered.
+
+Certificate
+The FRS concerns sensitive user information, because of this HTTPS is the only viable solution for the encryption problem, as there are currently no other encryption standards that can guarantee the same security necessary for the FRS. A SSL/TLS certificate will have to be provided by the stakeholders for implementation. $Early builds of the FRS system will not implement the encryption specified in the requirements until a SSL/TLS certificate is provided.$ 
+
+Functionality 
+The client verifies the TLS certificate with the certificate host
+The client tells the server the potential encryption methods and the server selects one dependant on the implemented encryption table.
+The server sends the certificate with the public key.
+Both computers then calculate a code based on the certificate and encryption methods chosen.
+The server complies with a final encrypted message and the encrypted communications start.
+
+Implementation
+In order for implementation to take place a certificate must be provided. Potential providers include:
+Symantec
+Comodo
+Digicert
+
+
+
+Face recognition speeds
+
+The FRS is to be required to have a 5 second response time when retrieving a PN via photo (see constraints, requirements). This entails the management of both upload speeds and the external SkyBiometry api.
+
+SkyBiometry optimization
+
+As SkyBiometry is an external api and is not developed by the team, it is hard to predict how fast images are able to be compared with a larger database. $Unfortunately when testing the skybiometry face recognition demo it takes approximately five seconds to recognize a face.$ Therefore, attaining this goal will be challenging. There are however, a number of methods in place to optimize face recognition speeds. The two primary methods that will be used with skybiometry are DETECT and RECOGNIZE.
+
+DETECT :The DETECT function of skybiometry will detect and return tags for a given face. To minimize the amount of faces to be processed within the database the FRS system will have to save and sort each photo using the skybiometry tags.
+
+Tags to be considered include: geometric information, eyes, nose, mouth, gender and age.
+
+When admin calls the ADD function photos added should be processed using skybiometrys detect function. Images should then be sorted by tag within the database. This way when users call the primary GET function we can use skybiometrys DETECT function to minimize the amount of images that will have to be processed by skybiometrys RECOGNIZE function.
+
+RECOGNIZE: If the sorting of tags is handled correctly there will be fewer images for the FRS to sort through. The RECOGNIZE method has parameters for both normal and fast scan. As the DETECT function will have sorted images by tag it may not be necessary to use the normal parameters and then fast can be used instead. Accuracy will have to be tested with these functions when the skybiometry api has been implemented. Lastly the skybiometry api rescales larger images to match 1024 pixels width and height, so it maybe more effective for images to be smaller or equal in size.
+
+
+Note: API automatically rescales images to maximum width/height of 1024 pixels. Higher sized images will be automatically resized.
