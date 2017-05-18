@@ -23,7 +23,7 @@ Software Design course. Development of an application matching photos to persona
 | 15/05/17 | Jakob | 2h | Implementation Admin |
 | 16/05/17 | Jakob | 3h | Implementation Admin |
 | 16/05/17 | Jakob | 2h | Documentation Design Issues |
-
+| 18/05/17 | All | 2h | General meeting with the teacher | 
 
 
 # TODO
@@ -79,4 +79,4 @@ Portability - Where in the requirements? Usability too.
 | Reorder | [] |
 | Reference | [] |
 | Make sure to follow tree order (design space - mauro lecture) | [] |
-| Sequence Diagrams | 
+| Sequence Diagrams |
