@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-version}</version>
+			<!--<version>${mysql-version}</version> -->
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -55,9 +55,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
 		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.3</version>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
 		</dependency>
 		<!-- Dependencies for RESTful Web Services -->
 		<dependency>
@@ -70,27 +70,28 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+
 		<!-- Lightweight Client HTTP Requests -->
 		<dependency>
-		    <groupId>com.mashape.unirest</groupId>
-		    <artifactId>unirest-java</artifactId>
-		    <version>1.4.9</version>
+			<groupId>com.mashape.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.4.9</version>
 		</dependency>
+
 		<!-- Local dependency face recognition api -->
 		<dependency>
-		    <groupId>com.github.mhendred.face4j</groupId>
-		    <artifactId>face4j-core</artifactId>
-		    <version>1.6.3</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</systemPath>
+			<groupId>com.github.mhendred.face4j</groupId>
+			<artifactId>face4j-core</artifactId>
+			<version>1.6.2</version>
 		</dependency>
-		<dependency>
-		    <groupId>com.github.mhendred.face4j</groupId>
-		    <artifactId>face4j-core</artifactId>
-		    <version>1.6.3</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</systemPath>
-		</dependency>
+
+	<!--<dependency> 
+			<groupId>com.github.mhendred.face4j</groupId> 
+			<artifactId>face4j-core</artifactId> 
+			<version>1.6.3</version> 
+			<scope>system</scope> 
+			<systemPath>${project.basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</systemPath> 
+		</dependency> -->
 	</dependencies>
 
 	<build>
@@ -109,28 +110,28 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-install-plugin</artifactId>
-			    <version>2.5.2</version>
-			    <executions>
-			        <execution>
-			            <id>install-external</id>
-			            <phase>clean</phase>
-			            <configuration>
-			                <file>${basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</file>
-			                <repositoryLayout>default</repositoryLayout>
-			                <groupId>com.github.mhendred.face4j</groupId>
-			                <artifactId>face4j-core</artifactId>
-			                <version>1.6.3</version>
-			                <packaging>jar</packaging>
-			                <generatePom>true</generatePom>
-			            </configuration>
-			            <goals>
-			                <goal>install-file</goal>
-			            </goals>
-			        </execution>
-			    </executions>
+			<!--  <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<executions>
+					<execution>
+						<id>install-external</id>
+						<phase>clean</phase>
+						<configuration>
+							<file>${basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</file>
+							<repositoryLayout>default</repositoryLayout>
+							<groupId>com.github.mhendred.face4j</groupId>
+							<artifactId>face4j-core</artifactId>
+							<version>1.6.3</version>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+						</configuration>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin> -->
 		</plugins>
 	</build>
