@@ -17,6 +17,9 @@
   ],
   "author": "Henry Pap",
   "license": "MIT",
+  "engines": {
+    "node": "6.9.5"
+  },
   "bugs": {
     "url": "https://github.com/kaikun213/Uni_VT17_FaceRecognition/issues"
   },
