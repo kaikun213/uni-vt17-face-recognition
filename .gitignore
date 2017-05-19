@@ -20,3 +20,6 @@ Documentation/\.DS_Store
 
 \.DS_Store
 a/
+
+application/.settings
+application/.project
