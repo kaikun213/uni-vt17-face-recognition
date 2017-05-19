@@ -6,22 +6,30 @@ import javax.naming.directory.InvalidAttributeValueException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.stereotype.Component;
 
 import com.faceRecognition.utils.database.model.UserEntity;
+import com.github.mhendred.face4j.exception.FaceClientException;
+import com.github.mhendred.face4j.exception.FaceServerException;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
-// TODO: add storage/face Service, add pagination support, add database returns userEntity
+@Component
 public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	com.faceRecognition.utils.database.service.AdminService databaseService;
+	
+	@Autowired
+	com.faceRecognition.utils.face.service.AdminService faceService;
+	
+	@Autowired
+	com.faceRecognition.utils.storage.service.StorageService storageService;
 
 	@Override
-	public UserEntity create(MultipartFile file, String personalNumber) throws InvalidAttributeValueException {
-		String link = "linkToFile";		// link = storageService.store(file);
-		String faceId = "1";			// faceId = faceService.save(link)	
-		UserEntity userEntity = null; 	// database should return result
-		databaseService.addUserEntity(faceId, personalNumber);
+	public UserEntity create(String file, String personalNumber) throws InvalidAttributeValueException, UnirestException, FaceClientException, FaceServerException {
+		String url = storageService.store(file);
+		UserEntity userEntity = databaseService.addUserEntity(url, personalNumber);
+		faceService.create(userEntity.getId(), url);
 		return userEntity;
 	}
 
@@ -31,18 +39,16 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public UserEntity update(MultipartFile file, String id, String personalNumber) throws NotFoundException {
-		String link = "linkToFile";			// link = storageService.store(file);
-		// faceService.update(id, link);
-		UserEntity userEntity = null;		// database should return result	
-		databaseService.updateUserEntity(id, personalNumber);
-		String faceId = "1";				// faceId = faceService.save(link)
+	public UserEntity update(String file, String id, String personalNumber) throws NotFoundException, UnirestException, FaceClientException, FaceServerException {
+		String url = storageService.store(file);
+		UserEntity userEntity = databaseService.updateUserEntity(url, personalNumber);
+		faceService.update(userEntity.getId(), url);
 		return userEntity;
 	}
 
 	@Override
-	public void delete(String id) throws NotFoundException {
-		// faceService.delete(id);
+	public void delete(String id) throws NotFoundException, FaceClientException, FaceServerException {
+		faceService.delete(id);
 		databaseService.deleteUserEntity(id);
 	}
 
