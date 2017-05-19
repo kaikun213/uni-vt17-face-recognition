@@ -150,22 +150,31 @@ function upload(){
   if(file.length == 1) getimage(file[0],
         function(err, img){
           if(err) showError('Loading image error', 'An error occured while loading picture');
-          else sendData(img);
+          else {
+            sendData(img.substr(img.indexOf(",") + 1, img.length));
+          }
       });
-  else if (picTaken) sendData(c.toDataURL());
+  else if (picTaken) {
+    var img = c.toDataURL();
+    sendData(img.substr(img.indexOf(",") + 1, img.length));
+  }
   else {
     showError('Nothing to upload', 'You must select/take picture first.');
   }
 }
-
 function sendData(file){
-  var url = '#some-awesome-face-server'; // add in the real url later
+  var url = '#some-cool-website'; // add in the real url later
   $.ajax({
     url: url,
     type: 'post',
-    data: file,
+    data: {
+      image: file
+    },
     success: function(data, textstatus, xhr){
-      if(xhr.status == 200) $('.nocam').text('Social Security Number: ' + http.responseText).show();
+      if(xhr.status == 200) {
+          $('.nocam').text('Social Security Number: ' + data).show();
+          console.log(data);
+      }
       else {
         console.log(data, textstatus, xhr.responseText);
         if(xhr.responseText.length > 100) showError('Error', 'check console for more info');
@@ -173,7 +182,7 @@ function sendData(file){
       }
     },
     error: function(xhr){
-      console.log(xhr.responseText);
+      console.log(xhr);
       if(xhr.responseText.length > 100) showError('Error', 'check console for more info');
       else showError('Error', xhr.responseText);
     }
@@ -182,7 +191,7 @@ function sendData(file){
 function getimage(image, callback){
   var reader = new FileReader();
 
-  reader.onloadend = function(){
+  reader.onload = function(e){
     if(reader.error) callback(reader.error);
     else callback(null, reader.result);
   }

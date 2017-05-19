@@ -12,8 +12,8 @@ server.set('view engine', 'ejs');
 server.use(exp.static(path.join(__dirname, 'semantic')));
 server.use(exp.static(path.join(__dirname, 'public')));
 
-server.use(bodyParser.json()); // for parsing application/json
-server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+// server.use(bodyParser.json()); // for parsing application/json
+// server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
 // main path
