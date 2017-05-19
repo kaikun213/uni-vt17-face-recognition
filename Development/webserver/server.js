@@ -40,8 +40,6 @@ server.get('/', function(req, res){
     type: 'user',
     title: 'Face - user'
   });
-}).post('/user', function(req, res){
-  res.status(200).send('bajskorv');
 }).get('/login', function(req, res){
   res.status(200).render('index', {
     type: 'login',

@@ -159,7 +159,7 @@ function upload(){
 }
 
 function sendData(file){
-  var url = '/user'; // add in the real url later
+  var url = '#some-awesome-face-server'; // add in the real url later
   $.ajax({
     url: url,
     type: 'post',
