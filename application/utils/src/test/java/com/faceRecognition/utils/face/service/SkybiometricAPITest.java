@@ -32,11 +32,11 @@ public class SkybiometricAPITest {
 
 	}
 	
-	@Test
+	//@Test
 	public void delete() throws FaceClientException, FaceServerException{
-		String tid1 = afs.create("001",exampleImage);
-		String tid2 = afs.create("002",exampleImage2);
-		String tid3 = afs.create("003",exampleImage3);
+		afs.create("001",exampleImage);
+		afs.create("002",exampleImage2);
+		afs.create("003",exampleImage3);
 		
 		String matchId = usf.match(exampleImage2);
 		System.out.println("Image2 Matched with:" +matchId);
