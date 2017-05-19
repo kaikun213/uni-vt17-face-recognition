@@ -2,7 +2,7 @@
   "name": "face_webserver",
   "version": "1.0.0",
   "description": "just a example display how to use our face application",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -18,7 +18,7 @@
   "author": "Henry Pap",
   "license": "MIT",
   "engines": {
-    "node": "6.9.5"
+    "node": "6.9.4"
   },
   "bugs": {
     "url": "https://github.com/kaikun213/Uni_VT17_FaceRecognition/issues"
