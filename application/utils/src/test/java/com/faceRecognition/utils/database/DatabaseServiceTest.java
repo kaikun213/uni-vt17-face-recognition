@@ -1,25 +1,27 @@
 package com.faceRecognition.utils.database;
 
 import javax.naming.directory.InvalidAttributeValueException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import com.faceRecognition.utils.database.model.Credentials;
 import com.faceRecognition.utils.database.model.UserEntity;
 import com.faceRecognition.utils.database.repository.CredentialsRepository;
 import com.faceRecognition.utils.database.service.AdminService;
 import com.faceRecognition.utils.database.service.AuthenticationService;
 import com.faceRecognition.utils.database.service.UserService;
-
 import junit.framework.TestCase;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
+@Rollback
 public class DatabaseServiceTest extends TestCase {
 
 	@Autowired
@@ -36,7 +38,7 @@ public class DatabaseServiceTest extends TestCase {
 
 	@Before
 	public void setUp() throws InvalidAttributeValueException {
-		admin.addUserEntity("1", "199501310271");
+		admin.addUserEntity("201705181234", "photoLink");
 	}
 
 	@Test
@@ -54,7 +56,8 @@ public class DatabaseServiceTest extends TestCase {
 	public void adminShouldAddUserEntity() {
 		UserEntity result = admin.getUserEntities().get(0);
 		assertEquals("1", result.getId());
-		assertEquals("199501310271", result.getPersonalNumber());
+		assertEquals("201705181234", result.getPersonalNumber());
+		assertEquals("photoLink", result.getPhotoLink());
 	}
 
 	@Test
@@ -70,15 +73,16 @@ public class DatabaseServiceTest extends TestCase {
 
 	@Test
 	public void adminShouldUpdateUserEntity() throws NotFoundException {
-		admin.updateUserEntity("1", "100000000000");
+		admin.updateUserEntity("1", "100000000000", "newPhotoLink");
 		UserEntity result = admin.getUserEntities().get(0);
 		assertEquals("1", result.getId());
 		assertEquals("100000000000", result.getPersonalNumber());
+		assertEquals("newPhotoLink", result.getPhotoLink());
 	}
 
 	@Test(expected = NotFoundException.class)
 	public void adminShouldNotUpdateUserEntity() throws NotFoundException {
-		admin.updateUserEntity("100", "1000000000000");
+		admin.updateUserEntity("100", "1000000000000", "newPhotoLink");
 	}
 
 	@Test
