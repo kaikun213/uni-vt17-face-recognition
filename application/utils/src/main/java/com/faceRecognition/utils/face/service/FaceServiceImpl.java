@@ -45,12 +45,11 @@ public class FaceServiceImpl implements AdminService, UserService{
 	}
 
 	@Override
-	public String create(String id, String url) throws FaceClientException, FaceServerException {
+	public void create(String id, String url) throws FaceClientException, FaceServerException {
     	Photo photo = faceClient.detect(url).get(0);
     	Face f = photo.getFace();
     	faceClient.saveTags(f.getTID(), USER_ID+NAMESPACE, "label from: " + id);
     	faceClient.train(USER_ID+NAMESPACE);
-    	return f.getTID();
 	}
 
 	@Override
