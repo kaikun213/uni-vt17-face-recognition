@@ -2,7 +2,8 @@
 const
   exp = require('express'),
   server = exp(),
-  path = require('path');
+  path = require('path'),
+  bodyParser = require('body-parser');
 
 // application settings
 server.set('port', process.env.PORT || 80);
@@ -10,6 +11,10 @@ server.set('view engine', 'ejs');
 
 server.use(exp.static(path.join(__dirname, 'semantic')));
 server.use(exp.static(path.join(__dirname, 'public')));
+
+// server.use(bodyParser.json()); // for parsing application/json
+// server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 
 // main path
 server.get('/', function(req, res){
@@ -40,9 +45,6 @@ server.get('/', function(req, res){
     type: 'login',
     title: 'Face - login'
   });
-}).post('/login/hej', function(req, res){
-  console.log(req);
-  res.status(200).send('0');
 }).get('*', function(req, res){ // any other paths
   res.status(404).send('404 not found');
 });

@@ -20,11 +20,12 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 	@Autowired
 	private CredentialsRepository credentialsRepository;
 
+	@Override
 	public String getPersonalNumber(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
-		if (entity != null)
-			return entity.getPersonalNumber();
-		throw new NotFoundException();
+		if (entity == null)
+			throw new NotFoundException();
+		return entity.getPersonalNumber();
 	}
 
 	// PN Format = YYYYMMDDXXXX
@@ -36,34 +37,38 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 
 	public UserEntity updateUserEntity(String id, String personalNumber) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
-		if (entity != null) {
-			entity.setId(id);
+		if (entity == null)
+			throw new NotFoundException();
+		if (!personalNumber.isEmpty() && personalNumber != null)
 			entity.setPersonalNumber(personalNumber);
 			return this.userEntitiesRepository.saveAndFlush(entity);
 		} else
 			throw new NotFoundException();
 	}
 
+	@Override
 	public void deleteUserEntity(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
-		if (entity != null)
-			this.userEntitiesRepository.delete(entity);
-		else
+		if (entity == null)
 			throw new NotFoundException();
+		this.userEntitiesRepository.delete(entity);
 	}
 
+	@Override
 	public UserEntity getUserEntity(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
-		if (entity != null)
-			return entity;
-		throw new NotFoundException();
+		if (entity == null)
+			throw new NotFoundException();
+		return entity;
 	}
 
+	@Override
 	public List<UserEntity> getUserEntities() {
 		List<UserEntity> entities = userEntitiesRepository.findAll();
 		return entities == null ? Collections.emptyList() : entities;
 	}
 
+	@Override
 	public boolean isValidCredentials(String username, String password) {
 		Credentials credentials = this.credentialsRepository.findOne(username);
 		return credentials == null ? false : credentials.getPassword().equals(password);

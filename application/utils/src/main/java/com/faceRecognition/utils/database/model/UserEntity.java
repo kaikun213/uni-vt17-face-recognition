@@ -2,6 +2,8 @@ package com.faceRecognition.utils.database.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,8 +25,7 @@ import lombok.ToString;
 public class UserEntity {
 
 	@Id
-	@NotNull
-	@NonNull
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Getter
 	@Setter
 	@Column(name = "id")
@@ -38,4 +39,12 @@ public class UserEntity {
 	@Column(name = "personal_number")
 	@Length(max = 12)
 	private String personalNumber;
+
+	@NotNull
+	@NonNull
+	@Getter
+	@Setter
+	@Column(name = "photo_link")
+	@Length(max = 1024)
+	private String photoLink;
 }

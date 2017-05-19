@@ -1,5 +1,6 @@
 // global vairable
 let clientLength = null; //init value
+let adminURL = ''; //future admin Face server
 
 
 $(document).ready(function(){
@@ -60,7 +61,7 @@ function initList(index){
   if(clientLength == null || index >= 0 && index < clientLength){
     // $.ajax({
     //   type: 'get',
-    //   url: '', // comes later
+    //   url: adminURL, // comes later
     //   success: function(clientCount){
         var tfoot = $('tfoot > tr > th > div');
         var before = Number(tfoot.attr('index')) || 0;
@@ -120,7 +121,7 @@ function create(){
       else {
         $.ajax({
           type: 'post',
-          url: '', // comes later
+          url: adminURL, // comes later
           data: {
             pn: pn,
             image: data
@@ -143,7 +144,7 @@ function create(){
 function list(index){
   $.ajax({
     type: 'get',
-    url: '', // comes later
+    url: adminURL, // comes later
     data: {
       index: index*8,
       limit: 8
@@ -190,7 +191,7 @@ function update(){
       else {
         $.ajax({
           type: 'put',
-          url: '', // comes later,
+          url: adminURL, // comes later,
           data: {
             id: id,
             pn: pn,
@@ -216,7 +217,7 @@ function remove(){
   else {
     $.ajax({
       type: 'delete',
-      url: '', // update later
+      url: adminURL, // update later
       data: {id: id},
       success: function(response){
         // do something

@@ -1,12 +1,11 @@
 function login(){
   var usn = document.getElementById('company').value,
       psw = document.getElementById('password').value,
-      url = 'login/hej';
+      url = 'Future-Face-Server-URL';
 
   var http = new XMLHttpRequest();
-  http.open('post', url, true);
-  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
+  http.open('POST', url, true);
+  http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   http.onload = function(){
     if(http.readyState == 4 && http.status == 200) {
       if (http.responseText == '2') location.href = '/admin';
@@ -17,5 +16,5 @@ function login(){
       document.querySelectorAll('div.ui.error.message').innerHTML = http.responseText;
     }
   }
-  http.send('company='+usn+'&password='+psw);
+  http.send(JSON.stringify({company:usn,password:psw}));
 }

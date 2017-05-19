@@ -1,9 +1,8 @@
 package com.faceRecognition.admin.service;
 
+import java.io.IOException;
 import java.util.List;
-
 import javax.naming.directory.InvalidAttributeValueException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 @Component
 public class AdminServiceImpl implements AdminService {
-	
+
 	@Autowired
 	com.faceRecognition.utils.database.service.AdminService databaseService;
 	
@@ -24,6 +23,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	com.faceRecognition.utils.storage.service.StorageService storageService;
+
+	@Autowired
+	private StorageService storageService;
 
 	@Override
 	public UserEntity create(String file, String personalNumber) throws InvalidAttributeValueException, UnirestException, FaceClientException, FaceServerException {
@@ -54,8 +56,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<UserEntity> list(int size, int page) {
-		List<UserEntity> userEntities = databaseService.getUserEntities();	// page and size
+		List<UserEntity> userEntities = databaseService.getUserEntities(); // page
+																			// and
+																			// size
 		return userEntities;
 	}
-
 }

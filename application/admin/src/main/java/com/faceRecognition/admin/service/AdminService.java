@@ -1,7 +1,7 @@
 package com.faceRecognition.admin.service;
 
+import java.io.IOException;
 import java.util.List;
-
 import javax.naming.directory.InvalidAttributeValueException;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
@@ -17,5 +17,4 @@ public interface AdminService {
 	UserEntity update(String file, String id, String personalNumber) throws NotFoundException, UnirestException, FaceClientException, FaceServerException;
 	void delete(String id) throws NotFoundException, FaceClientException, FaceServerException;
 	List<UserEntity> list(int size, int page);
-
 }
