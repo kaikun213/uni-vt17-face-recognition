@@ -7,9 +7,9 @@ import com.faceRecognition.utils.database.model.UserEntity;
 
 public interface AdminService {
 	
-	UserEntity addUserEntity(String id, String personalNumber) throws InvalidAttributeValueException;
+	UserEntity addUserEntity(String url, String personalNumber) throws InvalidAttributeValueException;
 	
-	UserEntity updateUserEntity(String id, String personalNumber) throws NotFoundException;
+	UserEntity updateUserEntity(String id, String personalNumber, String url) throws NotFoundException;
 	
 	void deleteUserEntity(String id) throws NotFoundException;
 	

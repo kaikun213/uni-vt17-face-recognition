@@ -35,10 +35,12 @@ public class DatabaseServiceTest extends TestCase {
 
 	@Autowired
 	CredentialsRepository credentialsRepository;
+	
+	UserEntity tester;
 
 	@Before
 	public void setUp() throws InvalidAttributeValueException {
-		admin.addUserEntity("201705181234", "photoLink");
+		tester = admin.addUserEntity("photolink", "201705181234");
 	}
 
 	@Test
@@ -47,47 +49,34 @@ public class DatabaseServiceTest extends TestCase {
 	}
 
 	@Test
-	public void adminShoulGetEmptyUserEntitiesList() throws NotFoundException {
-		admin.deleteUserEntity("1");
-		assertEquals(true, admin.getUserEntities().isEmpty());
-	}
-
-	@Test
 	public void adminShouldAddUserEntity() {
 		UserEntity result = admin.getUserEntities().get(0);
-		assertEquals("1", result.getId());
 		assertEquals("201705181234", result.getPersonalNumber());
-		assertEquals("photoLink", result.getPhotoLink());
-	}
-
-	@Test
-	public void adminShouldDeleteUserEntity() throws NotFoundException {
-		admin.deleteUserEntity("1");
-		assertEquals(0, admin.getUserEntities().size());
+		assertEquals("photolink", result.getPhotoLink());
 	}
 
 	@Test(expected = NotFoundException.class)
 	public void adminShouldNotDeleteUserEntity() throws NotFoundException {
-		admin.deleteUserEntity("100");
+		admin.deleteUserEntity("10001");
 	}
 
 	@Test
 	public void adminShouldUpdateUserEntity() throws NotFoundException {
-		admin.updateUserEntity("1", "100000000000", "newPhotoLink");
+		admin.updateUserEntity(tester.getId(), "100000000000", "newPhotoLink");
 		UserEntity result = admin.getUserEntities().get(0);
-		assertEquals("1", result.getId());
+		assertEquals(tester.getId(), result.getId());
 		assertEquals("100000000000", result.getPersonalNumber());
 		assertEquals("newPhotoLink", result.getPhotoLink());
 	}
 
 	@Test(expected = NotFoundException.class)
 	public void adminShouldNotUpdateUserEntity() throws NotFoundException {
-		admin.updateUserEntity("100", "1000000000000", "newPhotoLink");
+		admin.updateUserEntity("10001", "1000000000000", "newPhotoLink");
 	}
 
 	@Test
 	public void userShouldGetPN() throws NotFoundException {
-		assertEquals("199501310271", user.getPersonalNumber("1"));
+		assertEquals(tester.getPersonalNumber(), user.getPersonalNumber(tester.getId()));
 	}
 
 	@Test(expected = NotFoundException.class)

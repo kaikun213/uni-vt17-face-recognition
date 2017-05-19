@@ -29,20 +29,21 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 	}
 
 	// PN Format = YYYYMMDDXXXX
-	public UserEntity addUserEntity(String id, String personalNumber) throws InvalidAttributeValueException {
+	public UserEntity addUserEntity(String url, String personalNumber) throws InvalidAttributeValueException {
 		if (personalNumber.length() != 12 || !personalNumber.matches("\\d+"))
 			throw new InvalidAttributeValueException();
-		return this.userEntitiesRepository.saveAndFlush(new UserEntity(id, personalNumber));
+		return this.userEntitiesRepository.saveAndFlush(new UserEntity(personalNumber, url));
 	}
 
-	public UserEntity updateUserEntity(String id, String personalNumber) throws NotFoundException {
+	public UserEntity updateUserEntity(String id, String personalNumber, String url) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
 		if (entity == null)
 			throw new NotFoundException();
-		if (!personalNumber.isEmpty() && personalNumber != null)
+		if (!personalNumber.isEmpty() && personalNumber != null){
 			entity.setPersonalNumber(personalNumber);
+			entity.setPhotoLink(url);
 			return this.userEntitiesRepository.saveAndFlush(entity);
-		} else
+		} else 
 			throw new NotFoundException();
 	}
 

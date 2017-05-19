@@ -18,14 +18,13 @@ import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
-@RequiredArgsConstructor
 @EqualsAndHashCode(of = { "id" }, callSuper = false)
 @ToString
 @Table(name = "user_entity")
 public class UserEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
 	@Setter
 	@Column(name = "id")
@@ -47,4 +46,10 @@ public class UserEntity {
 	@Column(name = "photo_link")
 	@Length(max = 1024)
 	private String photoLink;
+	
+	public UserEntity(String personalNumber, String photoLink) {
+		super();
+		this.personalNumber = personalNumber;
+		this.photoLink = photoLink;
+	}
 }

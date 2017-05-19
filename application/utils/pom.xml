@@ -82,7 +82,9 @@
 		<dependency>
 			<groupId>com.github.mhendred.face4j</groupId>
 			<artifactId>face4j-core</artifactId>
-			<version>1.6.2</version>
+			<version>1.6.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</systemPath>
 		</dependency>
 	</dependencies>
 
