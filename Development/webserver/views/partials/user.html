@@ -1,1 +1,32 @@
-<h1>user</h1>
+<script src="js/user.js"></script>
+
+<div class="container">
+  <div class="webcam">
+    <video autoplay></video>
+    <canvas>Your browser does not support HTML5</canvas>
+    <div class="ui negative message">
+      <i class="close icon" onclick="$('.ui.negative.message').hide()"></i>
+      <div class="header">
+        Your browser cannot access webcam
+      </div>
+      <p>Please choose file instead.</p>
+    </div>
+  </div>
+  <div class="upload">
+    <div class="center">
+      <button class="circular ui icon button">
+        <i class="big camera retro icon"></i>
+      </button>
+    </div>
+    <div class="center">
+      <p class="nocam" style="display: none;">Upload a picture, make sure the face is in the middle</p>
+      <label for="photo" style="width: 180px;" class="ui icon button">
+        <i class="file image outline icon"></i>
+        <span>Open Image</span></label>
+        <input type="file" style="display: none;" id="photo" accept="image/*">
+        <button onclick="upload()" class="ui secondary button icon">
+          Upload <i class="level up icon"></i>
+        </button>
+    </div>
+  </div>
+</div>
