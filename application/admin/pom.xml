@@ -11,47 +11,38 @@
   </parent>
   
   <dependencies>
-  	<!-- Internal modules Dependencies -->
-    <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>utils</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <scope>compile</scope>
-    </dependency>
+	  <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+	<dependency>
+	    <groupId>org.springframework.data</groupId>
+	    <artifactId>spring-data-jpa</artifactId>
+	    <version>1.11.3.RELEASE</version>
+	</dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <!-- Internal modules Dependencies -->
     <dependency>
 	    <groupId>com.faceRecognition</groupId>
 	    <artifactId>utils</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
 	    <scope>system</scope>
-	    <systemPath>${project.basedir}/src/main/resources/utils-0.0.1-SNAPSHOT.jar</systemPath>
+	    <systemPath>${project.basedir}/src/main/resources/utils-0.0.1-SNAPSHOT.jar.original</systemPath>
+	</dependency>
+	<!-- Transitive dependencies from utils-->
+	<dependency>
+		<groupId>com.github.mhendred.face4j</groupId>
+		<artifactId>face4j-core</artifactId>
+		<version>1.6.3</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/resources/face4j-core-1.6.3-SNAPSHOT.jar</systemPath>
+	</dependency>
+	<dependency>
+	    <groupId>com.mashape.unirest</groupId>
+	    <artifactId>unirest-java</artifactId>
+	    <version>1.4.9</version>
 	</dependency>
   </dependencies>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
-	</parent>
-
-	<dependencies>
-		<!-- Internal modules Dependencies -->
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>utils</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-	</dependencies>
-
 
 	<properties>
 		<java.version>1.8</java.version>
