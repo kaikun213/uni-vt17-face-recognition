@@ -20,7 +20,7 @@ public interface AdminService {
 	 * @throws FaceClientException 
 	 * @throws FaceServerException
 	 */
-	String create(String id, String url) throws FaceClientException, FaceServerException;
+	void create(String id, String url) throws FaceClientException, FaceServerException;
 	
 	/** Delete the entity identified by the id
 	 * 

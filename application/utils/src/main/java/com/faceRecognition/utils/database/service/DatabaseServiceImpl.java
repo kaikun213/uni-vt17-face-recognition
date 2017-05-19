@@ -28,18 +28,18 @@ public class DatabaseServiceImpl implements AdminService, UserService, Authentic
 	}
 
 	// PN Format = YYYYMMDDXXXX
-	public void addUserEntity(String id, String personalNumber) throws InvalidAttributeValueException {
+	public UserEntity addUserEntity(String id, String personalNumber) throws InvalidAttributeValueException {
 		if (personalNumber.length() != 12 || !personalNumber.matches("\\d+"))
 			throw new InvalidAttributeValueException();
-		this.userEntitiesRepository.saveAndFlush(new UserEntity(id, personalNumber));
+		return this.userEntitiesRepository.saveAndFlush(new UserEntity(id, personalNumber));
 	}
 
-	public void updateUserEntity(String id, String personalNumber) throws NotFoundException {
+	public UserEntity updateUserEntity(String id, String personalNumber) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(id);
 		if (entity != null) {
 			entity.setId(id);
 			entity.setPersonalNumber(personalNumber);
-			this.userEntitiesRepository.saveAndFlush(entity);
+			return this.userEntitiesRepository.saveAndFlush(entity);
 		} else
 			throw new NotFoundException();
 	}
