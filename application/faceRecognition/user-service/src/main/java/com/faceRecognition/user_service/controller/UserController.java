@@ -1,4 +1,4 @@
-package com.faceRecognition.user_service.service.controller;
+package com.faceRecognition.user_service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

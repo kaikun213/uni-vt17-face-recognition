@@ -45,3 +45,11 @@ application/faceRecognition/utils-service/\.project
 application/faceRecognition/user-service/\.settings/
 
 application/faceRecognition/faceRecognition-service-api/\.settings/
+
+application/faceRecognition/faceRecognition-service-api/\.classpath
+
+application/faceRecognition/faceRecognition-service-api/\.project
+
+application/faceRecognition/user-service/\.classpath
+
+application/faceRecognition/user-service/\.project
