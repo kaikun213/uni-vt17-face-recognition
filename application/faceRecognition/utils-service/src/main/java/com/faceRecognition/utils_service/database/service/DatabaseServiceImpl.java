@@ -31,10 +31,7 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 	public UserEntity addUserEntity(String url, String personalNumber) throws InvalidAttributeValueException {
 		if (personalNumber.length() != 12 || !personalNumber.matches("\\d+"))
 			throw new InvalidAttributeValueException();
-		UserEntity entity = new UserEntity(personalNumber, url);
-		System.out.println(entity.toString());
-		this.userEntitiesRepository.saveAndFlush(entity);
-		return entity;
+		return  this.userEntitiesRepository.saveAndFlush(new UserEntity(personalNumber, url));
 	}
 
 	public UserEntity updateUserEntity(String id, String personalNumber, String url) throws NotFoundException {
