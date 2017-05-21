@@ -15,6 +15,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserFaceService faceService;
 
+	@Override
 	public String retrieve(String id) throws NotFoundException, FaceClientException, FaceServerException {
 		if (faceService.match(id) != null) {
 			return databaseService.getPersonalNumber(id);

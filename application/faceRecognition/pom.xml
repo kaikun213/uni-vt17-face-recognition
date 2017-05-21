@@ -9,6 +9,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>faceRecognition</name>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
 	<modules>
 		<module>faceRecognition-service-api</module>
 		<module>admin-service</module>

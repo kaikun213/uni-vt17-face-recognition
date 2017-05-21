@@ -20,6 +20,7 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 	@Autowired
 	private CredentialsRepository credentialsRepository;
 
+	@Override
 	public String getPersonalNumber(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(new Long(id));
 		if (entity == null)
@@ -27,13 +28,14 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 		return entity.getPersonalNumber();
 	}
 
-	// PN Format = YYYYMMDDXXXX
+	@Override // PN Format = YYYYMMDDXXXX
 	public UserEntity addUserEntity(String url, String personalNumber) throws InvalidAttributeValueException {
 		if (personalNumber.length() != 12 || !personalNumber.matches("\\d+"))
 			throw new InvalidAttributeValueException();
-		return  this.userEntitiesRepository.saveAndFlush(new UserEntity(personalNumber, url));
+		return this.userEntitiesRepository.saveAndFlush(new UserEntity(personalNumber, url));
 	}
 
+	@Override
 	public UserEntity updateUserEntity(String id, String personalNumber, String url) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(new Long(id));
 		if (entity == null)
@@ -46,6 +48,7 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 			throw new NotFoundException();
 	}
 
+	@Override
 	public void deleteUserEntity(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(new Long(id));
 		if (entity == null)
@@ -53,6 +56,7 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 		this.userEntitiesRepository.delete(entity);
 	}
 
+	@Override
 	public UserEntity getUserEntity(String id) throws NotFoundException {
 		UserEntity entity = this.userEntitiesRepository.findOne(new Long(id));
 		if (entity == null)
@@ -60,11 +64,13 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 		return entity;
 	}
 
+	@Override
 	public boolean isValidCredentials(String username, String password) {
 		Credentials credentials = this.credentialsRepository.findOne(username);
 		return credentials == null ? false : credentials.getPassword().equals(password);
 	}
 
+	@Override
 	public List<UserEntity> getUserEntities() {
 		List<UserEntity> entites = this.userEntitiesRepository.findAll();
 		return entites == null ? Collections.<UserEntity>emptyList() : entites;

@@ -34,11 +34,13 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 		this.faceClient = new DefaultFaceClient(apiKey, apiSecret);
 	}
 
+	@Override
 	public void update(String id, String url) throws FaceClientException, FaceServerException {
 		delete(id);
 		create(id, url);
 	}
 
+	@Override
 	public void create(String id, String url) throws FaceClientException, FaceServerException {
 		Photo photo = faceClient.detect(url).get(0);
 		Face f = photo.getFace();
@@ -46,6 +48,7 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 		faceClient.train(USER_ID + NAMESPACE);
 	}
 
+	@Override
 	public void delete(String id) throws FaceClientException, FaceServerException {
 		List<Photo> tags = faceClient.getTags("", id + NAMESPACE, "", "", false, 1);
 		String TID = tags.get(0).getFace().getTID();
@@ -55,6 +58,7 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 		faceClient.train(USER_ID + NAMESPACE);
 	}
 
+	@Override
 	public String match(String url) throws FaceClientException, FaceServerException {
 		Photo photo = faceClient.recognize(url, "all" + NAMESPACE).get(0);
 		System.out.println("Faces:");

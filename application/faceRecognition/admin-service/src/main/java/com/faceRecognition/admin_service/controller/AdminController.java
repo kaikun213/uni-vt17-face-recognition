@@ -1,6 +1,7 @@
 package com.faceRecognition.admin_service.controller;
 
 import javax.naming.directory.InvalidAttributeValueException;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,6 +45,8 @@ public class AdminController {
 			return new ApiResponse(Status.ERROR, null, new ApiError(4, "FaceClient Error:" + e.getMessage()));
 		} catch (FaceServerException e) {
 			return new ApiResponse(Status.ERROR, null, new ApiError(5, "FaceServer Error:" + e.getMessage()));
+		} catch (JSONException e) {
+			return new ApiResponse(Status.ERROR, null, new ApiError(5, "JSON Error:" + e.getMessage()));
 		}
 	}
 
@@ -71,6 +74,8 @@ public class AdminController {
 			return new ApiResponse(Status.ERROR, null, new ApiError(4, "FaceClient Error:" + e.getMessage()));
 		} catch (FaceServerException e) {
 			return new ApiResponse(Status.ERROR, null, new ApiError(5, "FaceServer Error:" + e.getMessage()));
+		} catch (JSONException e) {
+			return new ApiResponse(Status.ERROR, null, new ApiError(5, "JSON Error:" + e.getMessage()));
 		}
 	}
 
