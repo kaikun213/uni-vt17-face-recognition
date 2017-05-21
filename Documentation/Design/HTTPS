@@ -1,6 +1,6 @@
 HTTPS
 
-The face recognition system will be using HTTPS using the SSL/TLS transport layer protocols.
+The face recognition system will be using HTTPS using the SSL/TLS transport layer protocols. Implementation will prove simple as mySQL supports TLS already. 
 
 HTTPS: HTTP (Hypertext Transfer Protocol) is the current industry standard for communications over the world wide web and is also the main communications method used by the skybiometry api. The images and personal numbers sent over the FRS will have to be encrypted therefore the encryption method will be HTTPS SSL/TLS, an extension of HTTP.
 
@@ -18,7 +18,6 @@ The server sends the certificate with the public key.
 Both computers then calculate a code based on the certificate and encryption methods chosen.
 The server complies with a final encrypted message and the encrypted communications start.
 
-
 Providers:
 Potential providers of a TLS certificate should be reasoned with the stakeholders and include companies such as:
 
@@ -26,4 +25,7 @@ Symantec
 Comodo
 Digicert
 GlobalSign 
-godaddy
+Godaddy
+
+Implementation.
+MySQL already supports HTTPS so simple encryption should not be difficult to implement. However there are two possible implementations of TLS, simple and mutual. If possible a Mutual implementation of HTTPS should be considered, as mutual is more secure but requires a personal client certificate in order to work. However we are developing both the client and server sides of the software thus the implementation of this certificate can be controlled by the development team. 
