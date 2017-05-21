@@ -93,8 +93,8 @@ public class AdminController {
 		}
 	}
 
-	@GetMapping("/")
-	public ListApiResponse list(@PathVariable int size, @PathVariable int page) {
+	@GetMapping
+	public ListApiResponse list(@RequestParam(value = "size", required = false, defaultValue="20") int size, @RequestParam(value = "page", required = false, defaultValue="1") int page) {
 		return new ListApiResponse(Status.OK, adminService.list(size, page), null, page, "nextPage", new Long(1));
 	}
 }
