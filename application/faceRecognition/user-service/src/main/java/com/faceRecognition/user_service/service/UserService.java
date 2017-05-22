@@ -1,8 +1,8 @@
 package com.faceRecognition.user_service.service;
 
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import com.github.mhendred.face4j.exception.FaceClientException;
-import com.github.mhendred.face4j.exception.FaceServerException;
+import com.faceRecognition.face_library.exception.FaceClientException;
+import com.faceRecognition.face_library.exception.FaceServerException;
 
 public interface UserService {
 

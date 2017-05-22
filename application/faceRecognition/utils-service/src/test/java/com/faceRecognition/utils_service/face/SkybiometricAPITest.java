@@ -6,10 +6,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.faceRecognition.face_library.exception.FaceClientException;
+import com.faceRecognition.face_library.exception.FaceServerException;
 import com.faceRecognition.utils_service.face.service.AdminFaceService;
 import com.faceRecognition.utils_service.face.service.UserFaceService;
-import com.github.mhendred.face4j.exception.FaceClientException;
-import com.github.mhendred.face4j.exception.FaceServerException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
