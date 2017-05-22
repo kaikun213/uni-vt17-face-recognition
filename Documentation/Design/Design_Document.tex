@@ -137,6 +137,37 @@ The Spring Framework allows fast, enterprise scale development of applications b
 \subsubsection{Communication}
 The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application. It provides the encryption and security defined in \ref{ReqConstraints} of the Requirements Elicitation.
 
+\subsubsection{Encryption HTTPS SSL/TLS}
+The face recognition system will be using HTTPS using the SSL/TLS transport layer protocols. Implementation will prove simple as mySQL supports TLS already. 
+
+HTTPS: HTTP (Hypertext Transfer Protocol) is the current industry standard for communications over the world wide web and is also the main communications method used by the skybiometry api. The images and personal numbers sent over the FRS will have to be encrypted therefore the encryption method will be HTTPS SSL/TLS, an extension of HTTP.
+
+SSL 3.0: Secure Socket layer 3.0 is the previous security protocol used for HTTPS. SSL is no longer secure enough for commercial use such as the FRS. Therefore the FRS will implement the most recent successor to SSL, TLS. TLS is still often referred to as SSL which is why the differences must be made clear.
+
+TLS 1.2: The Transport Layer Security 1.2 is the current standard used in today's online banking software. The FRS will be implementing TLS 1.2 as it’s security protocol, as it is both the most recent of its kind and has been tested and used in online commercial software. It is good to note that TLS 1.2 is no longer supported by certain windows XP and vista servers. For that reason the older version TLS 1.0 could be considered.
+
+Certificate:
+The FRS concerns sensitive user information, because of this HTTPS is the only viable solution for encryption, as there are currently no other standards that can guarantee the same security necessary for the FRS. A SSL/TLS certificate will have to be provided by the stakeholders for implementation. Early builds of the FRS system will not implement the encryption specified in the requirements until a SSL/TLS certificate is provided. 
+
+Functionality:
+The client verifies the TLS certificate and sends hello message
+The client tells the server the potential encryption methods and the server selects one dependant on the implemented encryption table.
+The server sends the certificate with the public key.
+Both computers then calculate a code based on the certificate and encryption methods chosen.
+The server complies with a final encrypted message and the encrypted communications start.
+
+Providers:
+Potential providers of a TLS certificate should be reasoned with the stakeholders and include companies such as:
+
+Symantec
+Comodo
+Digicert
+GlobalSign 
+Godaddy
+
+Implementation:
+MySQL already supports HTTPS so simple encryption should not be difficult to implement. However there are two possible implementations of TLS, simple and mutual. If possible a Mutual implementation of HTTPS should be considered, as mutual is more secure but requires a personal client certificate in order to work. However we are developing both the client and server sides of the software thus the implementation of this certificate can be controlled by the development team. 
+
 \subsection{External Services}
 
 \subsubsection{External Face Recognition API}
