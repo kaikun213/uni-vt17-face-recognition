@@ -1,18 +1,20 @@
 package com.faceRecognition.admin_service.service;
 
 import java.util.List;
+
 import javax.naming.directory.InvalidAttributeValueException;
 
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.faceRecognition.face_library.exception.FaceClientException;
+import com.faceRecognition.face_library.exception.FaceServerException;
 import com.faceRecognition.utils_service.database.model.UserEntity;
 import com.faceRecognition.utils_service.database.service.AdminDBService;
 import com.faceRecognition.utils_service.face.service.AdminFaceService;
 import com.faceRecognition.utils_service.storage.service.StorageService;
-import com.github.mhendred.face4j.exception.FaceClientException;
-import com.github.mhendred.face4j.exception.FaceServerException;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 @Service

@@ -1,6 +1,7 @@
 package com.faceRecognition.admin_service.controller;
 
 import javax.naming.directory.InvalidAttributeValueException;
+
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -13,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.faceRecognition.admin_service.api.ApiResponse;
 import com.faceRecognition.admin_service.api.ApiResponse.ApiError;
 import com.faceRecognition.admin_service.api.ApiResponse.Status;
 import com.faceRecognition.admin_service.api.ListApiResponse;
 import com.faceRecognition.admin_service.service.AdminService;
+import com.faceRecognition.face_library.exception.FaceClientException;
+import com.faceRecognition.face_library.exception.FaceServerException;
 import com.faceRecognition.utils_service.database.model.UserEntity;
-import com.github.mhendred.face4j.exception.FaceClientException;
-import com.github.mhendred.face4j.exception.FaceServerException;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 @RestController
@@ -94,7 +96,8 @@ public class AdminController {
 	}
 
 	@GetMapping
-	public ListApiResponse list(@RequestParam(value = "size", required = false, defaultValue="20") int size, @RequestParam(value = "page", required = false, defaultValue="1") int page) {
+	public ListApiResponse list(@RequestParam(value = "size", required = false, defaultValue = "20") int size,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		return new ListApiResponse(Status.OK, adminService.list(size, page), null, page, "nextPage", new Long(1));
 	}
 }

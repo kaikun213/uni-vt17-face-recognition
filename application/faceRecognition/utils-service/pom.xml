@@ -72,9 +72,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.mhendred.face4j</groupId>
-			<artifactId>face4j-core</artifactId>
-			<version>1.6.2</version>
+			<groupId>com.faceRecognition</groupId>
+			<artifactId>face-library</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

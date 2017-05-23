@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -53,3 +52,9 @@ application/faceRecognition/faceRecognition-service-api/\.project
 application/faceRecognition/user-service/\.classpath
 
 application/faceRecognition/user-service/\.project
+
+application/faceRecognition/face-library/\.settings/
+
+application/faceRecognition/face-library/\.classpath
+
+application/faceRecognition/face-library/\.project

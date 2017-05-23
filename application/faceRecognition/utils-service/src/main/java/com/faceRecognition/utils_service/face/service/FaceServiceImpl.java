@@ -1,16 +1,19 @@
 package com.faceRecognition.utils_service.face.service;
 
 import java.util.List;
+
 import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.github.mhendred.face4j.DefaultFaceClient;
-import com.github.mhendred.face4j.FaceClient;
-import com.github.mhendred.face4j.exception.FaceClientException;
-import com.github.mhendred.face4j.exception.FaceServerException;
-import com.github.mhendred.face4j.model.Face;
-import com.github.mhendred.face4j.model.Photo;
-import com.github.mhendred.face4j.model.RemovedTag;
+
+import com.faceRecognition.face_library.DefaultFaceClient;
+import com.faceRecognition.face_library.FaceClient;
+import com.faceRecognition.face_library.exception.FaceClientException;
+import com.faceRecognition.face_library.exception.FaceServerException;
+import com.faceRecognition.face_library.model.Face;
+import com.faceRecognition.face_library.model.Photo;
+import com.faceRecognition.face_library.model.RemovedTag;
 
 @Service
 public class FaceServiceImpl implements AdminFaceService, UserFaceService {

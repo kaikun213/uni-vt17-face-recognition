@@ -25,5 +25,6 @@
 		<module>admin-service</module>
 		<module>user-service</module>
 		<module>utils-service</module>
+		<module>face-library</module>
 	</modules>
 </project>

@@ -1,7 +1,7 @@
 package com.faceRecognition.utils_service.face.service;
 
-import com.github.mhendred.face4j.exception.FaceClientException;
-import com.github.mhendred.face4j.exception.FaceServerException;
+import com.faceRecognition.face_library.exception.FaceClientException;
+import com.faceRecognition.face_library.exception.FaceServerException;
 
 public interface UserFaceService {
 	/**

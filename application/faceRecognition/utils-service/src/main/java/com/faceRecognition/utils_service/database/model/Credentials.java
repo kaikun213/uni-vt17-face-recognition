@@ -2,12 +2,10 @@ package com.faceRecognition.utils_service.database.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +15,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(of = { "username" }, callSuper = false)
