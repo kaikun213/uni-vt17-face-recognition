@@ -18,8 +18,9 @@ public class UserServiceImpl implements UserService {
 	private UserFaceService faceService;
 
 	@Override
-	public String retrieve(String id) throws NotFoundException, FaceClientException, FaceServerException {
-		if (faceService.match(id) != null) {
+	public String retrieve(String image) throws NotFoundException, FaceClientException, FaceServerException {
+		String id = faceService.match(image);
+		if (id != null) {
 			return databaseService.getPersonalNumber(id);
 		}
 		throw new NotFoundException();

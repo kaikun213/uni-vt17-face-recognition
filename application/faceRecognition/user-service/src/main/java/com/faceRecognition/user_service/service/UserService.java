@@ -6,5 +6,5 @@ import com.faceRecognition.face_library.exception.FaceServerException;
 
 public interface UserService {
 
-	String retrieve(String id) throws NotFoundException, FaceClientException, FaceServerException;
+	String retrieve(String image) throws NotFoundException, FaceClientException, FaceServerException;
 }
