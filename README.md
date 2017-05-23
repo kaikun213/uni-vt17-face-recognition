@@ -24,7 +24,10 @@ Software Design course. Development of an application matching photos to persona
 | 16/05/17 | Jakob | 3h | Implementation Admin |
 | 16/05/17 | Jakob | 2h | Documentation Design Issues |
 | 18/05/17 | All | 2h | General meeting with the teacher | 
-
+| 18/05/17 | Jakob | 5h | Implementing Face Service |
+| 19/05/17 | Jakob | 6h | Storage and Integration |
+| 21/05/17 | Jakob | 2h | Bug fixes |
+| 22/05/17 | Jakob | 3h | Deployment and Integration |
 
 # TODO
 -----------------------------------
