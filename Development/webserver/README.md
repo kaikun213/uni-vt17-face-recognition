@@ -22,7 +22,7 @@ This is what the API has to look like!!
 | Create user | /admin | POST | <ul><li>id</li><li>pn</li></ul> | <ul><li>203 : (created)</li></li><li>400 : (error)</li><li>403 : unauthorized</li></ul> |
 | Remove user | /admin | DELETE | id | <ul><li>200 : (user removed)</li><li>400 : (error)</li><li>403 : unauthorized</li></ul> |
 
-
+Actual API at the moment: (Error codes are only some shown)
 
 | meaning | url | type | Request param (url) | response code + {response},(meaning)   |
 | :-- | :---- | :----- | :----- | :-------- |
