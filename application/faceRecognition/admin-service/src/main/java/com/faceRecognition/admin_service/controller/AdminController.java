@@ -37,7 +37,7 @@ public class AdminController {
 			@RequestParam(value = "personalNumber", required = true) String personalNumber) {
 		try {
 			UserEntity userEntity = adminService.create(file, personalNumber);
-			return new ResponseEntity<UserEntity>(userEntity, HttpStatus.OK);
+			return new ResponseEntity<UserEntity>(userEntity, HttpStatus.CREATED);
 		} catch (InvalidAttributeValueException e) {
 			return new ResponseEntity<String>("Invalid Attribute Value. (Personal Number incorrect?)", HttpStatus.BAD_REQUEST);
 		} catch (UnirestException e) {
