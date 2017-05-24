@@ -166,7 +166,22 @@ GlobalSign
 Godaddy
 
 Implementation:
-MySQL already supports HTTPS so simple encryption should not be difficult to implement. However there are two possible implementations of TLS, simple and mutual. If possible a Mutual implementation of HTTPS should be considered, as mutual is more secure but requires a personal client certificate in order to work. However we are developing both the client and server sides of the software thus the implementation of this certificate can be controlled by the development team. 
+MySQL already supports HTTPS so simple encryption should not be difficult to implement. However there are two possible implementations of TLS, simple and mutual. If possible a Mutual implementation of HTTPS should be considered, as mutual is more secure but requires a personal client certificate in order to work. However we are developing both the client and server sides of the software thus the implementation of this certificate can be controlled by the development team.
+
+\subsubsection{Comunication speeds}
+ 
+The FRS is to be required to have a 5 second response time when retrieving a PN via photo \ref{ReqConstraints}. This entails the management of both upload speeds and the external SkyBiometry api.
+ 
+SkyBiometry optimization
+ 
+As SkyBiometry is an external api and is not developed by the team, it is hard to predict how fast images are able to be compared with a larger database. There are however, a number of methods in place to optimize face recognition speeds. The two primary methods that will be used with skybiometry are DETECT and RECOGNIZE. For any further details then these functions, see skybiometry documentation.
+ 
+DETECT :The DETECT function of skybiometry will detect and return tags for a given face. To minimize the amount of faces to be processed within the database the FRS system will have to save and sort each photo using the skybiometry tags.
+Tags to be considered include: geometric information, eyes, nose, mouth, gender and age.
+When admin calls the ADD function photos added should be processed using the skybiometry detect function. Images should then be sorted by tag within the database. This way when users call the primary GET function we can use the skybiometry DETECT function to minimize the amount of images that will have to be processed by the skybiometry RECOGNIZE function.
+ 
+RECOGNIZE: If the sorting of tags is handled correctly there will be fewer images for the FRS to sort through. The RECOGNIZE method has parameters for both normal and fast scan. As the DETECT function will have sorted images by tag it may not be necessary to use the normal parameters and then fast can be used instead. Accuracy will have to be tested with these functions when the skybiometry api has been implemented. Lastly the skybiometry api rescales larger images to match 1024 pixels width and height, so it maybe more effective for images to be smaller or equal in size. 
+
 
 \subsection{External Services}
 
