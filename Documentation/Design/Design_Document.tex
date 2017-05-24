@@ -64,6 +64,16 @@ The FRS \ref{ReqDefinitions} design document is intended to be the groundwork of
 \subsection{Purpose}
 The design documentation of the FRS is intended to create a mutual understanding of the software's functionality and contents. This document should contain all necessary information to start development of the face recognition system. This includes all known technologies, pitfalls and the architecture that are necessary to the FRS as a whole. 
 
+\subsection{Definitions, acronyms and abbreviations}
+\begin{itemize}
+ 
+\item \textbf{FRS : Face Recognition System to be developed} \ref{ReqDefinitions}
+\item \textbf{PN : Swedish Personal Number} \ref{ReqDefinitions}
+\item \textbf{User-Entity: A User entity consists of a personal number and a picture of the person} \ref{ReqDefinitions}
+\end{itemize}
+ 
+See Requirements doc for requirements related acronyms \ref{ReqDefinitions}
+
 
 \subsection{Priorities}
 %Priorities
@@ -91,6 +101,7 @@ As desired from the customer the system will have a Client-Server structure. Whe
 The architecture of the server is defined in detail in \ref{Architecture}.
 
 \subsection{Languages \& Frameworks}
+In this section Technology's concerning language and frameworks will be reasoned and concluded. This includes both client and server side of the FRS.
 \subsubsection{Server-side}
 As choice of programming language we choose the \textbf{Java programming language}. It is one of the most widely used ones on the server side. Especially the  in \ref{ReqProductFunctions} of the Requirements Elicitation defined REST functionality is supported by various frameworks with large communities. Rationals which led to the choice are listed below.
 \begin{itemize}
@@ -133,6 +144,7 @@ The Spring Framework allows fast, enterprise scale development of applications b
 \noindent There is plenty more but since we only want to show the usage of the API by example as written in the Requirement Elicitation \ref{ReqSystemInterfaces} we will not need a native application. Using common WEB languages to create a browser alternative fulfills the requirements. No requirements constrain the decision among various alternatives for the Web development. Thus this will be discussed in the next section \ref{Technology_choices}
 
 \subsection{Communication Technology}
+All technologies and protocols regarding communications will be discussed in this section. 
 
 \subsubsection{Communication}
 The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application. It provides the encryption and security defined in \ref{ReqConstraints} of the Requirements Elicitation.
@@ -180,6 +192,7 @@ DETECT :The DETECT function of skybiometry will detect and return tags for a giv
 RECOGNIZE: If the sorting of tags is handled correctly there will be fewer images for the FRS to sort through. The RECOGNIZE method has parameters for both normal and fast scan. As the DETECT function will have sorted images by tag it may not be necessary to use the normal parameters and then fast can be used instead. Accuracy will have to be tested with these functions when the skybiometry api has been implemented. Lastly the skybiometry api rescales larger images to match 1024 pixels width and height, so it maybe more effective for images to be smaller or equal in size. 
 
 \subsection{External Services}
+The external services needed to develop the FRS will be discussed and covered here. If there are multiple technologies that could be considered, they will be reasoned and selected within this section. 
 
 \subsubsection{External Face Recognition API}
 One of the core features as defined in \ref{ReqProductFunctions} of the Requirements Elicitation is to match a photo of a face with an existing one to a certain factor of equivalence/similarity. For this purpose as defined in the requirements an external service will be used. Following we compare some of the most known ones. Important aspects are cost factor, usability for the specific needs and security support.
@@ -225,6 +238,7 @@ The framework that will be in used for WEB development is Semantic UI
 for CSS and jQuery for JavaScript as it comes with Semantic UI.
 
 \subsection{Development Platforms}
+This section will cover the platforms used to develop each major component. Such as, Server, client and databases used. This will also include reasoning and conclusions for each platform chosen.
 
 \subsubsection{Platform Server}
 The Server will run on a cloud platform. This gives several advantages which are listed below. Especially easy setup and management are essential for this project during development and by using Java the components are platform independent which allows later changes during production.
@@ -317,7 +331,7 @@ provided interface is the CRUD methods check \ref{3.3 Admin Repository Module} a
 \subparagraph{4. user}\label{user}
 
 The user component is also a core component that will be responsible of
-getting a Swedish social security number based on a image check \ref{User Repository Module} in the requirements elicitation. The required
+getting a PN based on a image check \ref{User Repository Module} in the requirements elicitation. The required
 interface is the face, database and the provided interface is
 ``\emph{uploading a picture}''. 
 
