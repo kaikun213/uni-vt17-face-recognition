@@ -27,8 +27,6 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 	// SkyBioMetric Namespace
 	private static final String NAMESPACE = "@lnuFace";
 
-	private static final String USER_ID = "example";
-
 	FaceClient faceClient;
 
 	@PostConstruct
@@ -47,8 +45,8 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 	public void create(String id, String url) throws FaceClientException, FaceServerException {
 		Photo photo = faceClient.detect(url).get(0);
 		Face f = photo.getFace();
-		faceClient.saveTags(f.getTID(), USER_ID + NAMESPACE, "label from: " + id);
-		faceClient.train(USER_ID + NAMESPACE);
+		faceClient.saveTags(f.getTID(), id + NAMESPACE, "label from: " + id);
+		faceClient.train(id + NAMESPACE);
 	}
 
 	@Override
@@ -56,9 +54,11 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 		List<Photo> tags = faceClient.getTags("", id + NAMESPACE, "", "", false, 1);
 		String TID = tags.get(0).getFace().getTID();
 		List<RemovedTag> removedTags = faceClient.removeTags(TID);
-
+		
+		// log
+		System.out.println("TAG REMOVED: " + removedTags.get(0).getRemovedTID());
 		// must be called to persist changes
-		faceClient.train(USER_ID + NAMESPACE);
+		faceClient.train(id + NAMESPACE);
 	}
 
 	@Override
