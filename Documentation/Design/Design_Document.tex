@@ -431,11 +431,83 @@ components).
 	\includegraphics[width=150mm]{Architecture/DeploymentDiagram.png}
 	\caption{DeploymentDiagram}
 \end{figure}
+
 \newpage
+\section{Components - Design patterns and static modeling (Class Diagrams)}
+This section describes the design patterns of each component(Database, Storage, Face, Admin, User and Authentication) of the system. In general, the system will be divided into Model-View-Controller(MVC) pattern where database, storage and face components represents the model; admin, user and authentication components represents the controller and the user who will use the API will be the view of the system. For the purpose of implementation, database, storage and face components will be embedded into one component called utils-service(these components will be independent of each other) whereas user and admin will be implemented separately; and authentication will be embedded into the main component called faceRecognition-service-api where all the components of the system will be integrated.
+\newline
 
-\section{Components - Static modeling (Class Diagrams)}
+\noindent
+Below sections will further describe the design patterns of each component as well as its class diagram:
+
+\subparagraph{1. Database: }It is one of the most important component of the system because it contains the domain of the system as well as shared by all the controllers(user, admin and authentication). The biggest problem in this component is to encapsulate the functionality so that user and authentication component cannot use admin functionality and vice versa. To overcome this problem, Facade pattern will be used. This pattern will help in various ways such as database component will provide separate interfaces for each of the controller in order to get encapsulation; controllers will not get any extra information then needed; reduce the complexity of the component etc. Below diagram shows how database component provide three separate interfaces for the admin, user and authentication component.
+
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=130mm]{ClassDiagrams/new/database.jpg}
+	\caption{Class diagram of database component}
+\end{figure}
+
+\newpage
+\subparagraph{2. Storage: }This component is not as complex as database because only admin component will interact with it. This component will interact will one outer component called imgur for saving the images into it. Like database component, Facade pattern is used to provide a simple and clear functionality to the admin component because admin component does not need to know how this component works. Below diagram shows how storage component provide nice and clear interfaces for the admin component.
+
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=110mm]{ClassDiagrams/new/storage.jpg}
+	\caption{Class diagram of storage component}
+\end{figure}
+
+\subparagraph{3. Face: }This component is more complex than storage component due to encapsulation problem like database component because user and admin component will interact with it. In addition, it also interact with outer comoponent called 'SkyBiometry' for recognizing the faces. Like database component, it also use Facade pattern and below diagram shows how this component encapsulate the functionality by providing the seprate interfaces to admin and user component .
+
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=125mm]{ClassDiagrams/new/face.jpg}
+	\caption{Class diagram of face component}
+\end{figure}
+
+\newpage
+\begin{figure}[ht!]
+ \centering
+    \includegraphics[width=170mm]{ClassDiagrams/new/utils-service.jpg}
+    \caption{Overview of database, storage and face components embeeded inside the utils-service.
+    \newline
+    NOTE: 'Utils' class is for integration purpose and 'JpaRepository' is a part of spring framework.}
+\end{figure}
+
+\newpage
+\subparagraph{4. Admin: }
+This component use most of the important functionality of the system. However, it have no big problem related to the interaction with model because it simply use the interfaces provided by the database, face and storage component. The only problem is to encapsulate the data from view because it directly interact with the user API requests. Similarly, like other components, this component use same approach (Facade pattern) to encapsulate the data. It provide an interface to which the view will interact. This pattern helps to make the design more simple, flexible and reliable. Below diagram shows how this component encapsulate the data by providing interface to the controller which will interact with the view(user).
+
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=150mm]{ClassDiagrams/new/admin.jpg}
+	\caption{Class diagram of admin component}
+\end{figure}
+
+\subparagraph{5. User: }The structure and behaviour of this component is similar to admin component. Again, the only problem is to encapsulate the data from view and it use exactly the same approach as admin component in order to overcome the problem. Below diagram show how this component encapsulate the data from view by providing an interface to the controller.
+
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=130mm]{ClassDiagrams/new/user.jpg}
+	\caption{Class diagram of user component}
+\end{figure}
+
+NOTE: 'Admin' and 'User' classes are  for integration purpose.
 
 
+\newpage
+% AUTHENTICATION COMPONENT HERE
+
+
+\subparagraph{6. Complete System: }
+For integrating the complete system, spring boot framework uses Facade pattern. Below diagram shows 'Application' class has only dependencies on the 'Admim', 'User' and 'Utils' classes rather than all the classes because these classes contains the information about their components.
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=170mm]{ClassDiagrams/new/system.jpg}
+	\caption{Class diagram of complete system}
+\end{figure}
+
+\newpage
 \section{Use cases - Behavioral modeling (Sequence Diagrams)}
 
 \begin{figure}[ht!]
@@ -477,8 +549,4 @@ components).
 	\includegraphics[width=150mm]{SequenceDiagrams/UserAuth.jpg}
 	\caption{Sequence diagram referred to "5.8 URM: Authenticate User" in the requirement document. \label{7}}
 \end{figure}
-
-
-
-
 \end{document}

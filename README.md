@@ -49,6 +49,7 @@ Software Design course. Development of an application matching photos to persona
 | 22/05/17 | Sarpreet | 3h 30m | Implementation and integration of face-library |
 | 23/05/17 | Sarpreet | 2h 30m | Implementation and updating class diagrams |
 | 24/05/17 | Sarpreet | 3h | Testing Admin and User module |
+| 25/05/17 | Sarpreet | 5h | Writing design patterns, making class diagrams for each components and for whole system|
 # TODO
 -----------------------------------
 
