@@ -83,10 +83,11 @@ Portability - Where in the requirements? Usability too.
 | Section | Done |
 | :-------------: |:-------------:|
 | **ClassDiagrams** |  |
-| Connection | [] |
-| Split | [] |
-| Include | [] |
-| Reference | [] |
+| Connection | [Done] |
+| Split | [Done] |
+| Include | [Done] |
+| Reference | [HOW?] |
+| Authentication | [] |
 | **Architecture** |  |
 | Text for Client | [] |
 | Reference | [] |
