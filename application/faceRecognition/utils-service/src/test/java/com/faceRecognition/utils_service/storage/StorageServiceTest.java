@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.faceRecognition.utils_service.storage.service.StorageService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class StorageServiceTest {
 
 	@Autowired

@@ -12,8 +12,8 @@ import com.faceRecognition.face_library.exception.FaceServerException;
 import com.faceRecognition.utils_service.face.service.AdminFaceService;
 import com.faceRecognition.utils_service.face.service.UserFaceService;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class SkybiometricAPITest {
 
 	String exampleImage = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
@@ -31,7 +31,7 @@ public class SkybiometricAPITest {
 
 	}
 
-	// @Test
+	@Test
 	public void delete() throws FaceClientException, FaceServerException {
 		afs.create("001", exampleImage);
 		afs.create("002", exampleImage2);
