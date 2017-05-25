@@ -1,12 +1,12 @@
 package com.faceRecognition.admin_service.service;
 
-import java.util.List;
-
 import javax.naming.directory.InvalidAttributeValueException;
 
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.faceRecognition.face_library.exception.FaceClientException;
@@ -59,9 +59,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<UserEntity> list(int size, int page) {
+	public Page<UserEntity> list(PageRequest request) {
 		// Page and size
-		List<UserEntity> userEntities = databaseService.getUserEntities();
+		Page<UserEntity> userEntities = databaseService.getUserEntities(request);
 		return userEntities;
 	}
 }

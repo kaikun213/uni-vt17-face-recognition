@@ -1,8 +1,10 @@
 package com.faceRecognition.utils_service.database.service;
 
-import java.util.List;
 import javax.naming.directory.InvalidAttributeValueException;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.faceRecognition.utils_service.database.model.UserEntity;
 
 public interface AdminDBService {
@@ -15,5 +17,5 @@ public interface AdminDBService {
 
 	UserEntity getUserEntity(String id) throws NotFoundException;
 
-	List<UserEntity> getUserEntities();
+	Page<UserEntity> getUserEntities(PageRequest request);
 }

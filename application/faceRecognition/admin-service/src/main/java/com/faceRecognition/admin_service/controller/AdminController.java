@@ -1,12 +1,13 @@
 package com.faceRecognition.admin_service.controller;
 
-import java.util.List;
 
 import javax.naming.directory.InvalidAttributeValueException;
 
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -95,8 +96,8 @@ public class AdminController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<UserEntity>> list(@RequestParam(value = "size", required = false, defaultValue = "20") int size,
+	public ResponseEntity<Page<UserEntity>> list(@RequestParam(value = "size", required = false, defaultValue = "20") int size,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		return new ResponseEntity<List<UserEntity>>(adminService.list(size, page), HttpStatus.OK);
+		return new ResponseEntity<Page<UserEntity>>(adminService.list(new PageRequest(page, size)), HttpStatus.OK);
 	}
 }
