@@ -38,7 +38,7 @@ Software Design course. Development of an application matching photos to persona
 | 15/05/17 | Jakob | 2h | Implementation Admin |
 | 16/05/17 | Jakob | 3h | Implementation Admin |
 | 16/05/17 | Jakob | 2h | Documentation Design Issues |
-| 18/05/17 | All | 2h | General meeting with the teacher | 
+| 18/05/17 | All | 2h | General meeting with the teacher |
 | 18/05/17 | Jakob | 5h | Implementing Face Service |
 | 18/05/17 | Sarpreet | 4h | Restructuring the implementation |
 | 19/05/17 | Jakob | 6h | Storage and Integration |
@@ -50,6 +50,7 @@ Software Design course. Development of an application matching photos to persona
 | 23/05/17 | Sarpreet | 2h 30m | Implementation and updating class diagrams |
 | 24/05/17 | Sarpreet | 3h | Testing Admin and User module |
 | 25/05/17 | Sarpreet | 5h | Writing design patterns, making class diagrams for each components and for whole system|
+| 26/05/17 | Walid | 2h | Writing the testing on apiary.io | 
 # TODO
 -----------------------------------
 

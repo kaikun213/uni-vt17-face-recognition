@@ -1,0 +1,117 @@
+FORMAT: 1A
+HOST: http://lnu-face.herokuapp.com
+
+
+# FaceNummer
+This is the development api specification of the FaceNummer Application. Press "Show" to expand on sections to see more details.
+
+## Users [/api/v1/admin]
+
++ Model (application/json;charset=UTF-8)
+
+    ```json
+    {"content": [{
+            "id":1 ,
+            "personalNumber": 199405079621,
+            "photoLink": "www.imgur.com/photo1",
+           }],
+    "last": true,
+    "totalElements": 1,
+    "totalPages": 1,
+    "size":20,
+    "number":1,
+    "first":false,
+    "sort":null,
+    "numberOfElements":0}
+    ```
+
+### GET Users [GET /admin?page={page}&size={size}]
+
++ Parameters
+    + page: `1` (int, optional)
+        + default: `1`
+    + size: `20` (int, optional) - default 20
+       + default: `20`
+
++ Response 200
+[Users][]
+
++ Response 404
+
+### User [/api/v1/admin/{id}]
+
++ Parameters
+    + id: `1` - The id of the user.
+
++ Model (application/json;charset=UTF-8)
+```json
+{
+ "id":1 ,
+ "personalNumber": 199405079621,
+ "photoLink": "www.imgur.com/photo1",
+}
+}
+```
+### ADD User [POST]
+
++ Request User (application/json;charset=UTF-8)
+```json
+{
+    "file": "Stringimage base64 ",
+    "personalNumber": 199407044785
+}
+```
+
+
++ Response 200
+[User][]
+
+
+### GET User [GET]
++ Response 200
+[User][]
+
++ Response 404
+
+
+
+### UPDATE User [PUT]
+
++ Request User (application/json;charset=UTF-8)
+```json
+{
+   "file": "Stringimage base64 ",
+    "personalNumber": 199407044785
+}
+```
+
+
++ Response 200
+[User][]
+
++ Response 404
+
+### DELETE User [DELETE]
+
++ Request deleteUser (application/json)
+
++ Response 200
+
+
++ Response 404
+
+## Customer [/api/v1/user]
+
+### GET PN [POST]
+
++ Request GETPN (application/json)
+```json
+{
+   "file": "Stringimage base64 ",
+}
+```
+
++ Response 200
+[User][]
+
++ Response 404
