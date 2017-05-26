@@ -1,10 +1,10 @@
 package com.faceRecognition.utils_service.database.service;
 
-import java.util.Collections;
-import java.util.List;
 import javax.naming.directory.InvalidAttributeValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.faceRecognition.utils_service.database.model.Credentials;
 import com.faceRecognition.utils_service.database.model.UserEntity;
@@ -71,8 +71,8 @@ public class DatabaseServiceImpl implements AdminDBService, UserDBService, Authe
 	}
 
 	@Override
-	public List<UserEntity> getUserEntities() {
-		List<UserEntity> entites = this.userEntitiesRepository.findAll();
-		return entites == null ? Collections.<UserEntity>emptyList() : entites;
+	public Page<UserEntity> getUserEntities(PageRequest request) {
+		Page<UserEntity> entites = this.userEntitiesRepository.findAll(request);
+		return entites;
 	}
 }

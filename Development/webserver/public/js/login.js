@@ -1,54 +1,36 @@
-function enterpress(e){
-    if(e.keyCode == 13){
-        login();
-    }
-}
-function enterpressReg(e){
-    if(e.keyCode == 13){
-        register();
-    }
-}
-
 function login(){
-	var mail = $('#mail').val();
-	var pass = $('#password').val();
-	if(mail != "" && pass != ""){
-		$.post('/login', {
-			mail: mail,
-			pass: pass
-		}, function(ans){
-			if(ans.error) $('#error').text(ans.error);
-			else {
-				if(ans.admin) window.location.href = '/admin';
-				else window.location.reload();
-			}
-		}).fail(function(err){
-			$('#error').text(JSON.parse(err.responseText).error);
-		});
-	} else $('#error').text('Det saknas värden!');
-}
+  var usn = document.getElementById('company').value,
+      psw = document.getElementById('password').value,
+      url = 'https://lnu-face.herokuapp.com/login';
 
-function register() {
-	var mail = $('#reg_mail').val();
-	var pass = $('#reg_password').val();
-	var repass = $('#reg_repassword').val();
+  // store the credentials to webserver
+  $.ajax({
+    type: 'post',
+    url: '/credentials',
+    data: {
+      company: usn,
+      password: psw
+    },
+    success: function(){
+      console.log('credentials stored');
+    },
+    error: function(xhr){
+      console.error(xhr);
+    }
+  });
 
-	if(pass == repass){
-		if(mail != "" && pass != ""){
-			$.post('/login/register', {
-				mail: mail,
-				pass: pass
-			}, function(ans){
-				if(ans.error) $('#error').text(ans.error);
-				else {
-					showSuccess("Ditt konto har skapats se mail för att godkänna");
-				}
-			}).fail(function(err){
-        console.log(err);
-				$('#error').text(err.responseText);
-			});
-		} else $('#error').text('Det saknas värden!');
-	} else {
-		$('#error').text('Lösenorden matchar inte varandra');
-	}
+  var http = new XMLHttpRequest();
+  http.open('POST', url, true);
+  http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  http.onload = function(){
+    if(http.readyState == 4 && http.status >= 200 && http.status <= 299) {
+      if (http.status == 200) location.href = '/admin';
+      else if (http.status == 203) location.href = '/user';
+    }
+    else {
+      if(http.status == 404) document.querySelectorAll('div.ui.error.message').innerHTML = 'Username or Password is incorrect';
+      else document.querySelectorAll('div.ui.error.message').innerHTML = http.responseText;
+    }
+  }
+  http.send(JSON.stringify({company:usn,password:psw}));
 }

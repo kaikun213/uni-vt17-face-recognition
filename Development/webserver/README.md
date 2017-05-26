@@ -1,8 +1,23 @@
-﻿# Webshop Project Norr
+# WebServer
 
-This webshop is created for a local company called *NORR* here in Sweden Växjö.
+### How to run it?
+1. Have nodeJS installed
+ - Install if not
+2. Goto webserver location with command line
+3. run command: 'npm install'
+4. run command: 'node server'
+5. enjoy
 
-The project consist of: *163704 lines of code*
-This means that theres about 2872pages of code
+That is all that is needed to run the webserver, if error occurs make sure that nothing is running on port 80.
 
-based on: "https://johnaugust.com/2004/how-many-lines-per-page" which states 55-57 lines per page
+## Now for the server part!
+This is what the API has to look like!!
+
+| meaning | url | type | body | response code + {response},(meaning)   |
+| :-- | :---- | :----- | :----- | :-------- |
+| Authorise clients | /login | POST | <ul><li>company</li><li>password</li></ul> | <ul><li>404 : (no auth)</li><li>203 : (user auth)</li><li>200 : (admin auth)</li></ul> |
+| Get PN | /user | POST | image | <ul><li>200 : {link}</li><li>>200: {errorMSG}</li></ul> |
+| Get Users | /admin | GET | <ul><li>index</li><li>limit</li></ul> | <ul><li>200 : {users}</li><li>404: (no users)</li><li>403 : unauthorized</li></ul> |
+| Update user | /admin | PUT | <ul><li>id</li><li>pn</li><li>image</li></ul> | <ul><li>200 : (user updated)</li><li>400 : (error)</li><li>403 : unauthorized</li></ul> |
+| Create user | /admin | POST | <ul><li>id</li><li>pn</li></ul> | <ul><li>203 : (created)</li></li><li>400 : (error)</li><li>403 : unauthorized</li></ul> |
+| Remove user | /admin | DELETE | id | <ul><li>200 : (user removed)</li><li>400 : (error)</li><li>403 : unauthorized</li></ul> |
