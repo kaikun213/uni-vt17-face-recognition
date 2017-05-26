@@ -1,0 +1,151 @@
+div.basket-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 30;
+  display: none;
+  padding: 0;
+}
+div.basket-container > div.basket > div.content * {
+    /*font-family: 'Josefin Sans', sans-serif;*/
+}
+div.basket-container > div.basket {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+
+  background-color: white;
+  border-left: 1px solid black;
+
+
+    width: calc(100% - 32px);
+}
+div.basket-container > div.basket > button.closes {
+  border: none;
+  color: black;
+  position: absolute;
+  background-color: white;
+  border-radius: 0;
+  text-align: center;
+
+  top: 0;
+  left: 0;
+  right: auto;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+
+  font-size: 12pt;
+}
+
+@media (max-width: 767px) {
+  div.basket-container > div.basket {
+    width: 100%;
+  }
+  div.basket-container > div.basket > button.closes {
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    line-height: 452px;
+
+    font-size: 18pt;
+  }
+}
+div.basket-container > div.basket > button.closes:focus {
+  outline: none;
+}
+div.basket-container > div.basket > button.closes:hover {
+  color: blue;
+}
+div.basket-container > div.basket > button.closes:active {
+  box-shadow: inset 0 0 5px #eee;
+}
+
+div.basket-container > div.basket > div.content > h2 {
+  text-align: center;
+}
+
+
+/* basket header */
+div.basket-container > div.basket > div.content > div.header {
+  position: relative;
+  padding: 0 2em;
+}
+div.basket-container > div.basket > div.content > div.header > .labels {
+  position: relative;
+  width: 100%;
+}
+div.basket-container > div.basket > div.content > div.header > .labels > span+span {
+  position: absolute;
+  right: 100px;
+}
+div.basket-container > div.basket > div.content > div.header > div {
+  position: relative;
+  width: 100%;
+  height: 32px;
+}
+div.basket-container > div.basket > div.content > div.header > div > a {
+  font-size: 16pt;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  height: 100%;
+
+}
+
+/* basket body */
+div.basket-container > div.basket > div.content > div.body {
+  height: 70%;
+  padding: 0 15px;
+}
+div.basket-container > div.basket > div.content > div.body > ul {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+}
+div.basket-container > div.basket > div.content > div.body > ul > li {
+  width: 100%;
+}
+
+div.basket-container > div.basket > div.content > div.body > ul > li > img {
+  max-width: 120px;
+  max-height: 100px;
+  margin: 0 10px;
+  float: left;
+}
+div.basket-container > div.basket > div.content > div.body > ul > li > p {
+  position: relative;
+}
+/*div.basket-container > div.basket > div.content > div.body > ul > li > p > span {
+  position: absolute;
+  right: 30%;
+}*/
+div.basket-container > div.basket > div.content > div.body > ul > li > div {
+  width: 100%;
+}
+/*div.basket-container > div.basket > div.content > div.body > ul > li > div > button {
+  border-radius: 0;
+  background: none;
+  border: none;
+}*/
+ul#basket_list > li > div.input-group > input + span > button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+ul#basket_list > li > p > span {
+  position: relative;
+  left: 15px;
+  padding-right: 15px;
+}
+ul#basket_list > li > p > span > span {
+  padding-left: 2px;
+}
+
+/*div.basket-container > div.basket > div.content > div.body > ul > li > div > input {
+  width: 15%;
+}*/

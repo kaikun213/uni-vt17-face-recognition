@@ -1,54 +1,26 @@
-"use strict";
-const
-  exp = require('express'),
-  server = exp(),
-  path = require('path'),
-  bodyParser = require('body-parser');
+// MODULES
+var express = require('express'),
+	http = require('http'),
+	path = require('path'),
+	bodyParser = require('body-parser'),
+	app = express(),
+	session = require('express-session');
 
-// application settings
-server.set('port', process.env.PORT || 80);
-server.set('view engine', 'ejs');
+// CUSTOM MODULES
+var routes = require('./routes/index');
 
-server.use(exp.static(path.join(__dirname, 'semantic')));
-server.use(exp.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// server.use(bodyParser.json()); // for parsing application/json
-// server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(session({secret: 'banan'}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
+app.use('/', routes);
 
+require('./routes/helpers/start')();
 
-// main path
-server.get('/', function(req, res){
-  /**
-  * is this one nessecary doe?, maybe client can check
-  * if they are logged in go directly to user or admin instead of
-  * going to login page
-  */
-  // how to do it
-  // res.status(200).render('index', {
-  //   title: 'home'
-  // });
-
-  // but for now, the login page is the simple way
-  res.redirect('/login');
-}).get('/admin', function(req, res){
-  res.status(200).render('index', {
-    type: 'admin',
-    title: 'Face - admin'
-  });
-}).get('/user', function(req, res){
-  res.status(200).render('index', {
-    type: 'user',
-    title: 'Face - user'
-  });
-}).get('/login', function(req, res){
-  res.status(200).render('index', {
-    type: 'login',
-    title: 'Face - login'
-  });
-}).get('*', function(req, res){ // any other paths
-  res.status(404).send('404 not found');
-});
-
-server.listen(server.get('port'), function(){
-  console.log('webserver is running on port:' + server.get('port'));
+var server = http.createServer(app);
+server.listen(process.env.PORT || 88, function(){
+	console.log("Running server", server.address());
 });

@@ -1,0 +1,110 @@
+div.field-container {
+  position: relative;
+
+  height: 400px;
+}
+button.field-remover {
+  position: absolute;
+  top: -1px;
+  right: -40px;
+  width: 40px;
+  height: 64px;
+}
+div.field {
+  height: 90%;
+  width: 100%;
+}
+div.field > a {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  overflow: hidden;
+
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+div.field.admin > a > img {
+  position: absolute;
+
+	outline: 1px solid black;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+div.field.admin > a > img > div.bound {
+  position: absolute;
+  outline: 5px solid blue;
+}
+div.field.admin > a > img > div.bound:hover {
+  border-color: blue;
+}
+
+div.field.admin {
+  outline:1px solid black; /*only in admin...*/
+}
+
+div.field > div.selected {
+  background-color: black;
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+div.field > div.controller {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  opacity: .8;
+}
+div.field > div.controller.cut {
+  top: auto;
+  bottom: 0;
+}
+div.field > div.controller > button:hover {
+  background-color: #888;
+}
+
+div.field > div.selected > span.split {
+  position: absolute;
+  height: 100%;
+  width: 3px;
+
+  cursor: pointer;
+  background-color: cornflowerblue;
+}
+
+
+
+.info {
+	display: none;
+	margin: 0px auto;
+	text-align: center;
+}
+.info > img {
+	max-width: 100%;
+}
+.info > p {
+	font-family: 'Raleway', sans-serif;
+	font-size: 24pt;
+	text-align: center;
+	width: 100%;
+	color: #444;
+	position: relative;
+	top: -80px;
+}

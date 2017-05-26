@@ -1,0 +1,14 @@
+<html>
+<head>
+	<% include partials/ejs/head.ejs %>
+</head>
+<body id="main">
+
+	<% if(type == 'error') { %>
+		<p><%= msg %></p>
+	<% } %>
+	<% if(type == 'bad') { %>
+		<% include partials/html/bad.html %>
+	<% } %>
+</body>
+</html>

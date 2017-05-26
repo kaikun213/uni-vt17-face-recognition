@@ -1,0 +1,33 @@
+<p><span>LOGGA IN</span> <i id="loginpin" style="display: none;" class="fa fa-thumb-tack"></i></p>
+<div>
+  <div class="login" onkeypress="enterpress(event)">
+    <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+      <input type="email" class="form-control" id="mail" placeholder="Enter Email">
+    </div>
+    <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+      <input type="password" class="form-control" id="password" placeholder="Enter Password">
+          <span class="input-group-btn">
+            <button class="btn btn-success" type="button" onclick="login()">login</button>
+          </span>
+    </div>
+  </div>
+  <div class="register" onkeypress="enterpressReg(event)">
+    <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+      <input type="email" class="form-control" id="reg_mail" placeholder="Enter Email">
+    </div>
+    <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+      <input type="password" class="form-control" id="reg_password" placeholder="Enter Password">
+    </div>
+    <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-repeat"></i></span>
+      <input type="password" class="form-control" id="reg_repassword" placeholder="Repeat Password">
+    </div>
+        <button class="btn btn-info" type="button" onclick="register()">register</button>
+  </div>
+  <p class="wall bg-danger" id="error"></p>
+  <a href="javascript:void(0)" id="changeLogin">Ej medlem?</a>
+</div>

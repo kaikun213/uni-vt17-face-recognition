@@ -1,0 +1,37 @@
+<html>
+<head>
+	<% include partials/ejs/head.ejs %>
+	<link rel="stylesheet" href="css/client/basket.css">
+
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/client/footer.js"></script>
+	<script src="js/client/heartHandle.js"></script>
+	<script src="js/client/basket.js"></script>
+</head>
+<body id="main">
+	<% include partials/ejs/header.ejs %>
+	<% if(type == 'order') { %>
+		<% include partials/ejs/client/order.ejs %>
+	<% } else { %>
+			<% include partials/ejs/client/basket.ejs %>
+	<% } %>
+
+	<% if(type == 'home') { %>
+		<% include partials/ejs/home.ejs %>
+	<% } %>
+	<% if(type == 'products') { %>
+		<% include partials/ejs/products.ejs %>
+	<% } %>
+	<% if(type == 'product') { %>
+		<% include partials/ejs/product.ejs %>
+	<% } %>
+	<% if(type == 'user') { %>
+		<% include partials/ejs/client/user.ejs %>
+	<% } %>
+	<% if(type == 'heart') { %>
+		<% include partials/ejs/client/heart.ejs %>
+	<% } %>
+
+	<% include partials/ejs/client/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<link href="css/header.css" rel="stylesheet">
+<script src="js/header.js"></script>
+<script src="js/login.js"></script>
+
+
+<header class="container-fluid">
+	<section>
+		<div><a href="#" class="badge1" data-badge="0"><i class="fa fa-heart-o"></i></a></div>
+
+		<div><a href="javacript:void(0)" onclick="basket()">VARUKORG <span id="varukorgCount">0</span></a></div>
+		<% if(typeof username == "undefined") { %>
+			<div class="loginfield">
+		<% } else { %>
+			<div class="namefield">
+		<% } %>
+			<% if(typeof username == "undefined") { %>
+				<% include ../html/login.html %>
+			<% } else { %>
+				<% if(username.admin == 0) { %>
+					<a href="/user"><%= username.mail.split('@')[0] %></a></span>
+				<% } else { %>
+					<a href="/admin"><%= username.name %></a>
+				<% } %>
+				  <a href="/logout">LOGGA UT</a>
+			<% } %>
+		</div>
+	</section>
+
+	<h1 class='logoFont' id="logo"><a href="/">NORR</a></h1>
+
+	<nav id="mainCatlist"><!-- displaying the categories -->
+	</nav>
+
+	<div id="search_container" class="col-sm-4 col-sm-offset-4">
+		<div id="custom-search-input">
+			<div class="input-group">
+				<input onkeyup="search()" id="search" type="text" class="form-control" placeholder="SÖK" />
+				<span class="input-group-btn">
+					<button class="btn btn-info" type="button" onclick="search()"><i class="glyphicon glyphicon-search"></i></button>
+	      </span>
+	    </div>
+    </div>
+		<ul id="searchResult" class="list-group"></ul>
+  </div>
+</header>
+<hr class="hidden-xs">

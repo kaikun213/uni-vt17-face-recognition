@@ -1,0 +1,125 @@
+.slider {
+	height: 80%;
+	min-height: 500px;
+	max-height: 600px;
+}
+.slide-container {
+	position: relative;
+	height: 90%;
+	/*box-shadow: 0 0 2px #555;*/
+}
+
+.slide-controller {
+	position: absolute;
+	top: 60%;
+	width: 10%;
+	height: 100%;
+	line-height: 100%;
+	text-align: center;
+}
+.slide-controller > button {
+	border: none;
+	background: none;
+	color: #333;
+}
+.slide-controller > button:focus {
+	outline: none;
+}
+.slide-controller > button:active {
+	color: black;
+}
+.right {
+	right: -8%;
+}
+.left {
+	left: -8%;
+	display: none;
+}
+
+.slide {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	/*position: absolute;
+	left: 0;
+	top: 0;*/
+	overflow: hidden;
+	/*border: 1px solid #888;*/
+	/*border-radius: 3px;*/
+}
+.slide-circles {
+	z-index: 10;
+	position: absolute;
+	text-align: center;
+	width: calc(100% - 20px);
+	bottom: 15px;
+}
+.slide-circles > i {
+	color: #e6e6e6;
+	margin: 0 10px;
+	cursor: pointer;
+}
+.slide > div {
+	z-index: 1;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: #f7f7f7;
+	/*box-sizing: border-box;*/
+	display: inline-block;
+}
+.slide > div > img {
+	position: relative;
+	/*height: 90%;*/
+	line-height: 100%;
+	z-index: 0;
+	/*margin: auto;*/
+	height: 100%;
+	/*padding: 10px;*/
+	/*border: 1px solid #444;*/
+}
+.slide > div > div {
+	position: absolute;
+}
+
+.slide-circles > .slide-selected {
+	color: #999;
+}
+
+.slide-thumbnails {
+	height: 12%;
+	z-index: 0;
+	/*position: relative;
+	top: 100%;*/
+	/*position: absolute;*/
+	/*top: calc(100% + 10px);*/
+	/*left: 0;*/
+	margin-top: 8px;
+	/*height: 30%;*/
+	/*max-height: 80px;*/
+
+	text-align: center;
+}
+.slide-thumbnails > span {
+	height: 100%;
+	display: inline-block;
+	/*margin: 0 6px;*/
+	/*box-shadow: 0 0 2px #000;*/
+	padding: 3px;
+	cursor: pointer;
+}
+.slide-thumbnails > span > img {
+	/*border: 1px solid #777;*/
+	height: 100%;
+}
+.slide-thumbnail-select {
+	background-color: #e8e8e8;
+}
+
+.slider {
+	margin-bottom: 12px;
+}
+.container > #box > section {
+
+}

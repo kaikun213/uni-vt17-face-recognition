@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="css/client/products.css">
+<script type="text/javascript" src="js/client/products.js"></script>
+<script type="text/javascript" src="js/client/heart.js"></script>
+
+<% include ../sidebar.ejs %>
+<script type="text/javascript">
+  var error = <%- JSON.stringify(error) %>;
+  var productList = <%- (products ? JSON.stringify(products) : []) %>;
+  var heartList = <%- JSON.stringify(heartList) %>;
+
+
+</script>
+
+<div class="container productsList col-md-9 col-lg-10 col-sm-8 col-xs-12">
+
+</div>

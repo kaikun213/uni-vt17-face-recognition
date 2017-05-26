@@ -1,0 +1,70 @@
+#popup-container {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+
+	width: 100%;
+}
+
+#popup {
+	width: 50%;
+	min-width: 614px;
+	margin: 2em auto;
+	opacity: 1;
+	z-index: 200;
+
+	position: relative;
+}
+#popup.strip {
+	background-color: white;
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+	cursor: pointer;
+    font-size: 12pt;
+    font-weight: 400;
+    color: white;
+    background-color: red;
+    display: inline-block;
+
+    padding: 5px 12px;
+    border-radius: 3px;
+}
+.inputfile + label > i {
+	margin-right: 12px;
+}
+
+.inputfile:hover + label,
+	.inputfile + label:hover {
+    background-color: red;
+	
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+textarea { 
+	resize:vertical;
+} 
+
+form {
+	position: relative;
+}
+form > span {
+	position: absolute;
+	right: 8%;
+}

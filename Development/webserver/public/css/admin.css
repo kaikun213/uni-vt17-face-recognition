@@ -1,30 +1,49 @@
-body > .grid {
-  height: 100%;
+header {
+	background-color: white;
+	
+	border-bottom: 5px solid white;
+	box-shadow: 0 0 5px #222;
+	padding: 0;
 }
+.container-fluid {
+	padding: 0;
+	margin: 0;
+}
+body {
+	background-color: #f3f3f3;
+}
+header > h1 {
+	margin-top: 12px;
+	color: #ccc;
+	padding: 0.3em 2em;
+	padding-bottom: 0.07em;
+	border-radius: 15px 15px 0 0;
+	font-family: 'Amatic SC', cursive;
+	font-size: 40pt;
 
-body > div > div {
-  display: none;
+	background: rgba(61,61,61,1);
+	background: -moz-linear-gradient(top, rgba(61,61,61,1) 0%, rgba(77,77,77,1) 50%, rgba(61,61,61,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(61,61,61,1)), color-stop(50%, rgba(77,77,77,1)), color-stop(100%, rgba(61,61,61,1)));
+	background: -webkit-linear-gradient(top, rgba(61,61,61,1) 0%, rgba(77,77,77,1) 50%, rgba(61,61,61,1) 100%);
+	background: -o-linear-gradient(top, rgba(61,61,61,1) 0%, rgba(77,77,77,1) 50%, rgba(61,61,61,1) 100%);
+	background: -ms-linear-gradient(top, rgba(61,61,61,1) 0%, rgba(77,77,77,1) 50%, rgba(61,61,61,1) 100%);
+	background: linear-gradient(to bottom, rgba(61,61,61,1) 0%, rgba(77,77,77,1) 50%, rgba(61,61,61,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d3d3d', endColorstr='#3d3d3d', GradientType=0 );
 }
-
-.modal {
-  display: none;
+header > nav {
+	margin: 0;
+	width: 100%;
 }
-
-.modal > .content > p, .actions {
-  text-align: center !important;
+header > nav > ul {
+	width: 100%;
+	list-style: none;
 }
-
-.ui.message {
-  display: none;
+header > nav > ul > li {
+	float: left;
+	padding: 0 12px;
 }
-
-#bajs {
-  display: none !important;
-}
-.ui.modal {
-  top: 30%;
-}
-
-td {
-  text-overflow: ellipsis;
+header > nav > ul > li > a {
+	color: black;
+	font-size: 12pt;
+    font-style: italic;
 }

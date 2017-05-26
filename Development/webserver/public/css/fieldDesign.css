@@ -1,0 +1,69 @@
+.field {
+	margin: 70px 0;
+	height: 400px;
+}
+
+.field-l {
+	height: 500px;
+}
+.field-m {
+	height: 400px;
+}
+.field-s {
+	height: 300px;
+}
+
+.field > div > div {
+	padding: 0;
+	height: 100%;
+}
+.field > div > .double {
+	border: none;
+}
+.field > div > .double > .big {
+	height: 60%;
+}
+.field > div > .double > .small {
+	height: 40%;
+}
+.field > div > div > div {
+	height: 100%;
+}
+
+.field .half {
+	height: 50%;
+}
+.field .half > .mid {
+	width: 50%;
+	float: left;
+}
+
+.field .body {
+	height: 100%;
+	/*border: 2px solid black;*/
+	padding: 2px;
+}
+
+.field .body > a {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+
+		text-align: center;
+		position: relative;
+		z-index: 5;
+}
+
+.field .body > a > img {
+	z-index: 0;
+	position: relative;
+}
+
+/*playaround*/
+.red {
+	height: 100%;
+	background-color: aqua;
+}
+.red:hover {
+	box-shadow: inset 0 0 40px #777;
+}
