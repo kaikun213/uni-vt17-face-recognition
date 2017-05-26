@@ -58,7 +58,7 @@
 
 
 \section{Introduction}
-The FRS \ref{ReqDefinitions} design document is intended to be the groundwork of how the software should be built. Members of the development team should be able to read this and have a similar understanding of how the software should be developed. Details of the known unknown will also be documented here.
+The FRS (Req. \ref{ReqDefinitions}) design document is intended to be the groundwork of how the software should be built. Members of the development team should be able to read this and have a similar understanding of how the software should be developed. Details of the known unknown will also be documented here.
 %still working on the indroduction don't want it to sound too much like purpose
 
 \subsection{Purpose}
@@ -67,12 +67,12 @@ The design documentation of the FRS is intended to create a mutual understanding
 \subsection{Definitions, acronyms and abbreviations}
 \begin{itemize}
  
-\item \textbf{FRS : Face Recognition System to be developed} \ref{ReqDefinitions}
-\item \textbf{PN : Swedish Personal Number} \ref{ReqDefinitions}
-\item \textbf{User-Entity: A User entity consists of a personal number and a picture of the person} \ref{ReqDefinitions}
+\item \textbf{FRS : Face Recognition System to be developed} (Req. \ref{ReqDefinitions})
+\item \textbf{PN : Swedish Personal Number} (Req. \ref{ReqDefinitions})
+\item \textbf{User-Entity: A User entity consists of a personal number and a picture of the person} (Req. \ref{ReqDefinitions})
 \end{itemize}
  
-See Requirements doc for requirements related acronyms \ref{ReqDefinitions}
+See Requirements document for related acronyms and references.
 
 
 \subsection{Priorities}
@@ -81,27 +81,27 @@ See Requirements doc for requirements related acronyms \ref{ReqDefinitions}
 %	- Portability/Integration \& Usability - clear defined API
 %	- Reliability
 
-Security: As we are dealing with users private information it imperative that the system is both secure and has limited access for both users and administrators. The primary methods to achieve this will be: The use of HTTPS SSL/TLS \ref{ReqConstraints}  and both admin and user authentication.
-
-Reliability: when the user requests a PN from the server there needs to be a certain guarantee that that the PN returned matches the image provided. In order to accomplish this, the skybiometry api will have to meet a certain percent level of the two compared faces. The required percent level will be achieved through testing of the skybiometry api.
-
-Speed: The primary function for the user side of the FRS, the GET request \ref{UAMRet} is to have a five second process time when returning a PN. \ref{ReqConstraints} The relevance of this number is to ensure user friendliness to the client.
+\textbf{Security}: As we are dealing with users private information it is imperative that the system is both secure and has limited access for both users and administrators. The primary methods to achieve this will be: The use of HTTPS SSL/TLS \ref{ReqConstraints}  and both admin and user authentication. \\ \\
+\noindent
+\textbf{Reliability}: When the user requests a PN from the server there needs to be a certain guarantee that that the PN returned matches the image provided. In order to accomplish this, the skybiometry api will have to meet a certain percent level of the two compared faces. The required percent level will be parameterized and on request can be defined and changed by the customer. \\ \\
+\noindent
+\textbf{Speed}: The primary function for the user side of the FRS, the GET request (Req. \ref{UAMRet}) is constrained to have a five second process time when returning a PN. (Req. \ref{ReqConstraints}) The relevance of this number is to ensure user friendliness to the client.
 %in other words this was an arbitrary number set by the client to ruin our day
-In order to achieve this, both rates of the skybiometry api and transfer rates between the client and server will have to be optimized.
-
+Since this relies heavily on the response time of the external API, this must be archived in cooperation with skybiometric. This does not effect further design decisions, since the requests for a single entity have to be handled synchronously and the process time is highly dependent on the production-deployment environment. Further handling and validation will be part of the testing phase for production deployment. 
 \subsection{Overview}
-This design document is for a face recognition software. The FRS purpose is to provide a PN \ref{ReqDefinitions} using a comparison of a user provided image of a person's face. There should also be authentication to both users and administrators in place. Administrators should also have access to a list of the PNs from the database. Administrators have the functionality of add, edit and delete user-entities from the database \ref{Admin Repository Module}.
-Additionally to the FRS a user application will also be developed to present the user functionality of the system known as the UAM \ref{ReqDefinitions}. Said application should include the ability to authenticate the user and request PNs using images.
+This design document is for a face recognition software. The FRS purpose is to provide a PN (Req. \ref{ReqDefinitions}) using a comparison of a user provided image of a person's face. There should  be authentication to both users and administrators. Administrators should have access to a list of the PNs from the database. Administrators have the functionality of add, edit, list and delete user-entities from the database (Req. \ref{ARMFunctionality}).
+Additionally to the FRS an example user application, known as the UAM (Req. \ref{ReqDefinitions}), will be developed to present the functionality of the systems API. Said application should include the ability to authenticate the user, request PNs using images and show the CRUD functionality of the administrator.
 
+\newpage
 \section{Major Design Issues} \label{Major_Design_Issues}
-In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented and the detail of evaluating the alternatives depends on the trade off the decision has.
+In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented. The detail of evaluating the alternatives depends on the trade off the decision has.
 
 \subsection{Architectural Design} 
-As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference URM or ARM as Server and UAM and AAM as Client. It is important to note that as defined in the requirements Req. Doc. \ref{ReqSystemInterfaces} our developed product is only the Server with a clear API and the Client application we talk about is the desired example client to show how integration and usage could be done.
-The architecture of the server is defined in detail in \ref{Architecture}.
+As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference URM or ARM as Server and UAM and AAM as Client. It is important to note that as defined in the requirements Req. Doc. \ref{ReqSystemInterfaces} our developed product is only the Server with a clear defined API and the Client application is the desired example client to show how integration and usage could be done.
+The architecture of the server is defined in detail in Section \ref{Architecture}.
 
 \subsection{Languages \& Frameworks}
-In this section Technology's concerning language and frameworks will be reasoned and concluded. This includes both client and server side of the FRS.
+In this section Technology's for the server concerning language and frameworks will be reasoned and concluded.
 \subsubsection{Server-side}
 As choice of programming language we choose the \textbf{Java programming language}. It is one of the most widely used ones on the server side. Especially the  in \ref{ReqProductFunctions} of the Requirements Elicitation defined REST functionality is supported by various frameworks with large communities. Rationals which led to the choice are listed below.
 \begin{itemize}
@@ -110,9 +110,9 @@ As choice of programming language we choose the \textbf{Java programming languag
 \item High productivity because of existing frameworks and solutions
 \item Good support by a large community of developers
 \end{itemize}
-
+\noindent
 The Spring Framework will be used on the server side of the system.
-More detailed the Spring Web, Security, Data and Boot modules. This modules support the 
+More detailed the Spring Web, Security, Data and Boot modules. 
 The Spring Framework allows fast, enterprise scale development of applications by providing features for security, RESTful applications and Data Management and thus is the perfect fit for the requirements defined in the Requirements Elicitation \ref{ReqProductFunctions} and \ref{ReqConstraints} such as authentication, encryption and REST functionality. The Rationals for using the different modules are listed more detailed below.
 \begin{itemize}
 \item Great Portability and Integration - it is supported by various cloud providers to make deployment and continuous development possible.
@@ -123,8 +123,76 @@ The Spring Framework allows fast, enterprise scale development of applications b
 \item Spring Security provides enterprise ready security features for authentication and encryption without much setup.
 \end{itemize}
 
+\subsection{External Services}
+The external services needed to develop the FRS will be discussed and covered here. If there are multiple technologies that could be considered, they will be reasoned and selected within this section. 
+
+\subsubsection{External Face Recognition API}
+One of the core features as defined in \ref{ReqProductFunctions} of the Requirements Elicitation is to match a photo of a face with an existing one to a certain factor of equivalence/similarity. For this purpose as defined in the requirements an external service will be used. Following we compare some of the most known ones. Important aspects are cost factor, usability for the specific needs and security support.
+There are some External Face Recognition API out there such as
+\begin{itemize}
+\item \emph{SkyBiometry: } It is a cloud-based face detection and recognition software which provides a high-precision biometric identification for over 20 years. In addition, it also provide API client libraries in various languages such as Java, C\#, Pyton etc for giving a quick start to the developers. Regarding the usage limits, it has a free subscription which allows 100 methods calls hourly and 5000 monthly. It provide SSL support and its API uses REST interface which means all the API methods are called over the Internet using standard HTTP methods and responses are generated in XML or JSON.
+\item \emph{Lambda Labs: } It permits developers to send an image link to their service for the identification. In addition, it also allow to create an album of photos, analyze and compare new images with existing ones. Regarding the usage limits, it has a no free subscription and minimum cost is \$9/month. It does not provide SSL support and its API also uses REST interface and responses are generated in JSON.
+\item \emph{OpenFace: } It is a open source web service which provide facial detection technologies. Its API uses REST interface and accept image from the developer and return a JSON response. Currently, it does not support SSL and can only detect up to 80 points on a given image.
+\end{itemize}
+We have found that \emph{OpenFace} does not provide sufficient functionality as compared to others. Wheres \emph{Lamba Labs} does provide needed functionality but with a cost of \$9/month. In result, \emph{\textbf{SkyBiometry}} is the free and suitable option for our project.
+
+
+\subsection{Communication Technology}
+All technologies and protocols regarding communications will be discussed in this section. 
+
+\subsubsection{Authentication}
+Authentication as defined in \ref{ReqConstraints} of the Requirements Elicitation will be done by providing a username and password for registered Users and Admins. As defined in the Req. \ref{HighSecurityOrganisation} the software will be used by institutions and companies with high security issues. Thus the registration will be exclusive over a non automated channel by contacting the Customer/Developers to verify a service. Further automation or implementation can be discussed with the customer in the future. The in \ref{ReqConstraints} the Requirements Elicitation mentioned credentials refer further to a user name and password.
+The authentication will be session based for usability. However the session will only be saved on the client side and the server will be completely stateless as defined in the standard for REST applications.
+
+\subsubsection{Data format}
+The data will be formatted in standard JSON as represented in the official API. (Ref. API document) The format is human-readable and widely supported. It also supports the requirements of a RESTful application.(Req.Elic. \ref{ReqProductFunctions})
+
+\subsubsection{Communication}
+The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application. It provides the encryption and security defined in \ref{ReqConstraints} of the Requirements Elicitation.
+
+\subsubsection{Encryption HTTPS SSL/TLS}
+The face recognition system will be using HTTPS using the SSL/TLS transport layer protocols. Implementation will be uncomplicated as MySQL supports TLS natively. 
+\\\\
+\textbf{HTTPS}: The \textbf{H}yper\textbf{t}ext \textbf{T}ransfer \textbf{P}rotocol  is the current industry standard for communications over the world wide web and is also the main communications method used by the skybiometry api. The images and personal numbers sent over the FRS will have to be encrypted therefore the encryption method will be HTTP\textbf{S} (Security) - SSL/TLS, an extension of HTTP.
+\\\\
+\textbf{SSL 3.0}: Secure Socket layer 3.0 is the previous security protocol used for HTTPS. SSL is no longer secure enough for commercial use such as the FRS. Therefore the FRS will implement the most recent successor to SSL, TLS. TLS is still often referred to as SSL which is why the differences must be made clear.
+\\\\
+\textbf{TLS 1.2}: The Transport Layer Security 1.2 is the current standard used in today's online banking software. The FRS will be implementing TLS 1.2 as it’s security protocol, as it is both the most recent of its kind and has been tested and used in online commercial software. It is good to note that TLS 1.2 is no longer supported by certain windows XP and vista servers. For that reason the older version TLS 1.0 could be considered.
+\\\\
+\textbf{Certificate}: The FRS concerns sensitive user information, because of this HTTPS is the only viable solution for encryption, as there are currently no other standards that can guarantee the same security and convenience necessary for the FRS. A SSL/TLS certificate will have to be provided by the stakeholders for implementation. Early builds of the FRS system will not implement the encryption specified in the requirements until a SSL/TLS certificate is provided. 
+\\\\
+\textbf{Functionality}:
+\begin{itemize}
+\item[1] The client verifies the TLS certificate and sends hello message
+\item[2] The client tells the server the potential encryption methods and the server selects one dependant on the implemented encryption table.
+\item[3] The server sends the certificate with the public key.
+\item[4] Both computers then calculate a code based on the certificate and encryption methods chosen.
+\item[5] The server complies with a final encrypted message and the encrypted communications start.
+\end{itemize}
+\textbf{Providers}: Potential providers of a TLS certificate should be reasoned with the stakeholders and include companies such as:
+\begin{itemize}
+\item   Symantec
+\item	Comodo
+\item	Digicert
+\item	GlobalSign 
+\item	Godaddy
+\end{itemize}
+\textbf{Implementation}:
+MySQL supports HTTPS so simple encryption should not be difficult to implement. However there are two possible implementations of TLS, simple and mutual. If possible a Mutual implementation of HTTPS should be considered, as mutual is more secure but requires a personal client certificate in order to work. However the registration is required to be for selected institutions with high security (Req. \ref{HighSecurityOrganisation}) and not open to any, thus the implementation of this certificate can be controlled by the development team.
+	
+\subsubsection{Comunication speeds}
+	
+The FRS is to be required to have a 5 second response time when retrieving a PN via photo \ref{ReqConstraints}. This entails the management of both upload speeds and the external SkyBiometry api.
+\\\\
+\textbf{SkyBiometry optimizatio}n: As SkyBiometry is an external api and is not developed by the team, it is hard to predict how fast images are able to be compared with a larger database. There are however, a number of methods in place to optimize face recognition speeds. The two primary methods that will be used with skybiometry are DETECT and RECOGNIZE. For any further details then these functions, see skybiometry documentation.
+\\\\
+\textbf{DETECT} :The DETECT function of skybiometry will detect and return tags for a given face. To minimize the amount of faces to be processed within the database the FRS system will have to save and sort each photo using the skybiometry tags. Tags to be considered include: geometric information, eyes, nose, mouth, gender and age. When admin calls the ADD function photos added should be processed using the skybiometry detect function. Images should then be sorted by tag within the database. This way when users call the primary GET function we can use the skybiometry DETECT function to minimize the amount of images that will have to be processed by the skybiometry RECOGNIZE function.
+\\\\
+\textbf{RECOGNIZE}: If the sorting of tags is handled correctly there will be fewer images for the FRS to sort through. The RECOGNIZE method has parameters for both normal and fast scan. As the DETECT function will have sorted images by tag it may not be necessary to use the normal parameters and then fast can be used instead. Accuracy will have to be tested with these functions when the skybiometry api has been implemented. Lastly the skybiometry api rescales larger images to match 1024 pixels width and height, so it maybe more effective for images to be smaller or equal in size. 
+
+\subsection{The example client}
 \subsubsection{Client-side}
-\noindent The client application as defined in \ref{User_Interfaces} of the Requirements Elicitation has to be working on mobile or web browsers. It is therefore suitable to make a web browser interface which is also responsive on mobile. Thus the application will be able to run on iOS, Android, Microsoft phone and WEB. Alternatively it could be developed with one of various Cross Platform Mobile development tools out there. Some of them are listed below.
+\noindent The example client application as defined in \ref{User_Interfaces} of the Requirements Elicitation has to be working on mobile or web browsers. It is therefore suitable to make a web browser interface which is also responsive on mobile. Thus the application will be able to run on iOS, Android, Microsoft phone and WEB. Alternatively it could be developed with one of various Cross Platform Mobile development tools out there. Some of them are listed below.
 
 \begin{itemize}
 \item
@@ -143,75 +211,9 @@ The Spring Framework allows fast, enterprise scale development of applications b
 
 \noindent There is plenty more but since we only want to show the usage of the API by example as written in the Requirement Elicitation \ref{ReqSystemInterfaces} we will not need a native application. Using common WEB languages to create a browser alternative fulfills the requirements. No requirements constrain the decision among various alternatives for the Web development. Thus this will be discussed in the next section \ref{Technology_choices}
 
-\subsection{Communication Technology}
-All technologies and protocols regarding communications will be discussed in this section. 
-
-\subsubsection{Communication}
-The Communication will be over IP/TCP to have reliable transport and uses HTTPS on the application layer. This ensures general security by using SSL/TLS and ensures data integrity and privacy by authenticating the application. It provides the encryption and security defined in \ref{ReqConstraints} of the Requirements Elicitation.
-
-\subsubsection{Encryption HTTPS SSL/TLS}
-The face recognition system will be using HTTPS using the SSL/TLS transport layer protocols. Implementation will prove simple as mySQL supports TLS already. 
-\\\\
-HTTPS: HTTP (Hypertext Transfer Protocol) is the current industry standard for communications over the world wide web and is also the main communications method used by the skybiometry api. The images and personal numbers sent over the FRS will have to be encrypted therefore the encryption method will be HTTPS SSL/TLS, an extension of HTTP.
-\\\\
-SSL 3.0: Secure Socket layer 3.0 is the previous security protocol used for HTTPS. SSL is no longer secure enough for commercial use such as the FRS. Therefore the FRS will implement the most recent successor to SSL, TLS. TLS is still often referred to as SSL which is why the differences must be made clear.
-\\\\
-TLS 1.2: The Transport Layer Security 1.2 is the current standard used in today's online banking software. The FRS will be implementing TLS 1.2 as it’s security protocol, as it is both the most recent of its kind and has been tested and used in online commercial software. It is good to note that TLS 1.2 is no longer supported by certain windows XP and vista servers. For that reason the older version TLS 1.0 could be considered.
-\\\\
-Certificate: The FRS concerns sensitive user information, because of this HTTPS is the only viable solution for encryption, as there are currently no other standards that can guarantee the same security necessary for the FRS. A SSL/TLS certificate will have to be provided by the stakeholders for implementation. Early builds of the FRS system will not implement the encryption specified in the requirements until a SSL/TLS certificate is provided. 
-\\\\
-Functionality:
-\begin{itemize}
-\item[1] The client verifies the TLS certificate and sends hello message
-\item[2] The client tells the server the potential encryption methods and the server selects one dependant on the implemented encryption table.
-\item[3] The server sends the certificate with the public key.
-\item[4] Both computers then calculate a code based on the certificate and encryption methods chosen.
-\item[5] The server complies with a final encrypted message and the encrypted communications start.
-\end{itemize}
-Providers: Potential providers of a TLS certificate should be reasoned with the stakeholders and include companies such as:
-\begin{itemize}
-\item   Symantec
-\item	Comodo
-\item	Digicert
-\item	GlobalSign 
-\item	Godaddy
-\end{itemize}
-Implementation:
-MySQL already supports HTTPS so simple encryption should not be difficult to implement. However there are two possible implementations of TLS, simple and mutual. If possible a Mutual implementation of HTTPS should be considered, as mutual is more secure but requires a personal client certificate in order to work. However we are developing both the client and server sides of the software thus the implementation of this certificate can be controlled by the development team.
-	
-\subsubsection{Comunication speeds}
-	
-The FRS is to be required to have a 5 second response time when retrieving a PN via photo \ref{ReqConstraints}. This entails the management of both upload speeds and the external SkyBiometry api.
-\\\\
-SkyBiometry optimization
-	
-As SkyBiometry is an external api and is not developed by the team, it is hard to predict how fast images are able to be compared with a larger database. There are however, a number of methods in place to optimize face recognition speeds. The two primary methods that will be used with skybiometry are DETECT and RECOGNIZE. For any further details then these functions, see skybiometry documentation.
-\\\\
-DETECT :The DETECT function of skybiometry will detect and return tags for a given face. To minimize the amount of faces to be processed within the database the FRS system will have to save and sort each photo using the skybiometry tags. Tags to be considered include: geometric information, eyes, nose, mouth, gender and age. When admin calls the ADD function photos added should be processed using the skybiometry detect function. Images should then be sorted by tag within the database. This way when users call the primary GET function we can use the skybiometry DETECT function to minimize the amount of images that will have to be processed by the skybiometry RECOGNIZE function.
-\\\\
-RECOGNIZE: If the sorting of tags is handled correctly there will be fewer images for the FRS to sort through. The RECOGNIZE method has parameters for both normal and fast scan. As the DETECT function will have sorted images by tag it may not be necessary to use the normal parameters and then fast can be used instead. Accuracy will have to be tested with these functions when the skybiometry api has been implemented. Lastly the skybiometry api rescales larger images to match 1024 pixels width and height, so it maybe more effective for images to be smaller or equal in size. 
-
-\subsection{External Services}
-The external services needed to develop the FRS will be discussed and covered here. If there are multiple technologies that could be considered, they will be reasoned and selected within this section. 
-
-\subsubsection{External Face Recognition API}
-One of the core features as defined in \ref{ReqProductFunctions} of the Requirements Elicitation is to match a photo of a face with an existing one to a certain factor of equivalence/similarity. For this purpose as defined in the requirements an external service will be used. Following we compare some of the most known ones. Important aspects are cost factor, usability for the specific needs and security support.
-There are some External Face Recognition API out there such as
-\begin{itemize}
-\item \emph{SkyBiometry: } It is a cloud-based face detection and recognition software which provides a high-precision biometric identification for over 20 years. In addition, it also provide API client libraries in various languages such as Java, C\#, Pyton etc for giving a quick start to the developers. Regarding the usage limits, it has a free subscription which allows 100 methods calls hourly and 5000 monthly. It provide SSL support and its API uses REST interface which means all the API methods are called over the Internet using standard HTTP methods and responses are generated in XML or JSON.
-\item \emph{Lambda Labs: } It permits developers to send an image link to their service for the identification. In addition, it also allow to create an album of photos, analyze and compare new images with existing ones. Regarding the usage limits, it has a no free subscription and minimum cost is \$9/month. It does not provide SSL support and its API also uses REST interface and responses are generated in JSON.
-\item \emph{OpenFace: } It is a open source web service which provide facial detection technologies. Its API uses REST interface and accept image from the developer and return a JSON response. Currently, it does not support SSL and can only detect up to 80 points on a given image.
-\end{itemize}
-We have found that \emph{OpenFace} does not provide sufficient functionality as compared to others. Wheres \emph{Lamba Labs} does provide needed functionality but with a cost of \$9/month. In result, \emph{\textbf{SkyBiometry}} is the free and suitable option for our project.
-
-\subsection{Application specific}
-Authentication as defined in \ref{ReqConstraints} of the Requirements Elicitation will be done by providing a username and password for registered Users and Admins. The Registration will be exclusive over  a non automated channel by contacting the Customer/Developers to verify a service. The in \ref{ReqConstraints} the Requirements Elicitation mentioned credentials refer further to a user name and password.
-
-\subsection{Data format}
-The data will be formatted in standard JSON for communications between the server and the client. The format is human-readable and widely supported. It also supports the requirements of a RESTful application.(Req.Elic. \ref{ReqProductFunctions})
-
+\newpage
 \section{Technology choices} \label{Technology_choices}
-In this section we will discuss technology choices which are not constrained by the requirements and thus do not belong directly into the design space defined in \ref{Major_Design_Issues}
+In this section we will discuss technology choices which are not constrained by the requirements and thus do not belong directly into the design space defined in \ref{Major_Design_Issues}.
 
 \subsection{Client technology}
  In this section we will shortly discuss the technologies used for developing the WEB Client. \textit{It is important to mention that this is not a client in the classical sense as that the browser is the communicating instance and the client only consists of the pages served from a web-server. So it is more only a user interface to access the API.} \\

@@ -86,7 +86,7 @@ The software system to be produced is a Face Recognition System, which will be r
 \noindent
 The Face Recognition System will allow authenticated services to request a personal number with a given photo.
 FRS could be used in bank-, state systems or other services where identification of a person is critical.
-The administrative entity could be a state or other high security organization which provides the data used from the FRS.
+The administrative entity could be a state or other high security organization which provides the data used from the FRS. \label{HighSecurityOrganisation}
 FRS administrators will be able to register, delete, update and list user data.
 Therefore the FRS is split into a user component and an administrative component, which each needs different authentication and are logically separate from each other.
 
@@ -200,7 +200,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item \label{ACMLogging} The ARM shall be able to authenticate admins.
 		\item The ARM shall be able to decrypt all incoming requests and encrypt all outgoing responses.
 		\item \label{ARMRequest} The ARM should only process requests from authenticated admins.
-		\item The ARM should be able to READ, DELETE, CREATE, UPDATE User-Entities.
+		\item The ARM should be able to READ, DELETE, CREATE, UPDATE User-Entities. \label{ARMFunctionality}
 \end{enumerate}
 \newpage
 \section{Domain Model}
