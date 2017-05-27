@@ -451,7 +451,7 @@ Below sections will further describe the design patterns of each component as we
 \end{figure}
 
 \newpage
-\subparagraph{2. Storage: }This component is not as complex as database because only admin component will interact with it. This component will interact will one outer component called imgur for saving the images into it. Like database component, Facade pattern is used to provide a simple and clear functionality to the admin component because admin component does not need to know how this component works. Below diagram shows how storage component provide nice and clear interfaces for the admin component.
+\subparagraph{2. Storage: }This component is not as complex as database because only admin component will interact with it. This component will interact with one outer component called 'imgur' for saving the images into it. Like database component, Facade pattern is used to provide a simple and clear functionality to the admin component because admin component does not need to know how this component works. Below diagram shows how storage component provide nice and clear interfaces for the admin component.
 
 \begin{figure}[ht!]
     \centering
@@ -498,16 +498,28 @@ NOTE: 'Admin' and 'User' classes are  for integration purpose.
 
 
 \newpage
-% AUTHENTICATION COMPONENT HERE
+\subparagraph{6. Authentication: } This component will be embedded into main component where all the other components will be integrated. This component will mostly use in built security functionality provided by spring framework for authenticating the user. However, for validating dynamic credentials(username and password), this component will use interface provided by database component. Below diagrams shows this component structure.
 
-
-\subparagraph{6. Complete System: }
-For integrating the complete system, spring boot framework uses Facade pattern. Below diagram shows 'Application' class has only dependencies on the 'Admim', 'User' and 'Utils' classes rather than all the classes because these classes contains the information about their components.
 \begin{figure}[ht!]
     \centering
-	\includegraphics[width=170mm]{ClassDiagrams/new/system.jpg}
-	\caption{Class diagram of complete system}
+	\includegraphics[width=130mm]{ClassDiagrams/new/authentication.jpg}
+	\caption{Class diagram of authentication component}
 \end{figure}
+
+NOTE: 'WebSecurityConfigurerAdapter' and 'WebSecurityConfig' classes are part of spring data security framework.
+
+\subparagraph{Integration: } For integrating all the components, we will use inbuild functionality provide by spring framework. Below diargram show the integration structure.
+
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[width=130mm]{ClassDiagrams/new/integration.jpg}
+		\caption{Class diagram of system integration}
+\end{figure}
+
+\newpage
+\subparagraph{Complete System: } Below class diagram shows the complete system
+		\centering
+	\includegraphics[scale=0.8]{ClassDiagrams/new/system.pdf}
 
 \newpage
 \section{Use cases - Behavioral modeling (Sequence Diagrams)}
