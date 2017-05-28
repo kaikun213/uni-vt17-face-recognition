@@ -25,6 +25,25 @@ This is the development api specification of the FaceNummer Application. Press "
     "numberOfElements":0}
     ```
 
+### ADD User [POST]
+
++ Request User (application/json;charset=UTF-8)
+	+ Body
+```json
+{
+    "file": "Stringimage base64 ",
+    "personalNumber": 199407044785
+}
+```
+	+ Headers
+
+			Authorization:Basic base64(username:password)
+
+
++ Response 200
+[User][]
+
+
 ### GET Users [GET /api/v1/admin?page={page}&size={size}]
 
 + Parameters
@@ -56,24 +75,6 @@ This is the development api specification of the FaceNummer Application. Press "
  "photoLink": "www.imgur.com/photo1",
 }
 ```
-### ADD User [POST]
-
-+ Request User (application/json;charset=UTF-8)
-	+ Body
-```json
-{
-    "file": "Stringimage base64 ",
-    "personalNumber": 199407044785
-}
-```
-	+ Headers
-
-			Authorization:Basic base64(username:password)
-
-
-+ Response 200
-[User][]
-
 
 ### GET User [GET]
 
@@ -138,6 +139,11 @@ This is the development api specification of the FaceNummer Application. Press "
 			Authorization:Basic base64(username:password)
 
 + Response 200
-[User][]
+	+ Body
+```json
+{
+   "personalNumber": 199407044785
+}
+```
 
 + Response 404
