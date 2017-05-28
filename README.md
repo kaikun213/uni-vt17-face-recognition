@@ -51,7 +51,8 @@ Software Design course. Development of an application matching photos to persona
 | 24/05/17 | Sarpreet | 3h | Testing Admin and User module |
 | 25/05/17 | Sarpreet | 5h | Writing design patterns, making class diagrams for each components and for whole system|
 | 26/05/17 | Walid | 2h | Writing the testing on apiary.io |
-| 27/05/17 | Sarpreet |3h 30m | Made class diagram for authentication, integration and system. Also read the design document. | 
+| 27/05/17 | Sarpreet |3h 30m | Made class diagram for authentication, integration and system. Also read the design document. |
+| 28/05/17 | Walid | 3h | Final version of the sequence diagrams (changed made according to the implementation)
 # TODO
 -----------------------------------
 
