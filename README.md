@@ -49,10 +49,15 @@ Software Design course. Development of an application matching photos to persona
 | 22/05/17 | Sarpreet | 3h 30m | Implementation and integration of face-library |
 | 23/05/17 | Sarpreet | 2h 30m | Implementation and updating class diagrams |
 | 24/05/17 | Sarpreet | 3h | Testing Admin and User module |
+| 24/05/17 | Jakob | 2h | Implementation changes |
 | 25/05/17 | Sarpreet | 5h | Writing design patterns, making class diagrams for each components and for whole system|
+| 25/05/17 | Jakob | 2h | Editing of document, Implementation, overview | 
 | 26/05/17 | Walid | 2h | Writing the testing on apiary.io |
+| 26/05/17 | Jakob | 4h | Review and editing | 
 | 27/05/17 | Sarpreet |3h 30m | Made class diagram for authentication, integration and system. Also read the design document. |
 | 28/05/17 | Walid | 3h | Final version of the sequence diagrams (changed made according to the implementation)
+| 28/05/17 | All | 2h | Final groupmeeting |
+| 28/05/17 | Jakob | 7h | Review and Implementation (Integration) |
 # TODO
 -----------------------------------
 
@@ -92,19 +97,19 @@ Portability - Where in the requirements? Usability too.
 | Reference | [HOW?] |
 | Authentication | [Done] |
 | **Architecture** |  |
-| Text for Client | [] |
-| Reference | [] |
+| Text for Client | [x] |
+| Reference | [x] |
 | **Sequence Diagrams** |  |
-| Update | [] |
-| Include | [] |
-| Reference | [] |
+| Update | [x] |
+| Include | [x] |
+| Reference | [x] |
 | **General** |  |
-| Encryption | [] |
-| Priorities section | [] |
-| Terminology | [] |
-| Reference | [] |
+| Encryption | [x] |
+| Priorities section | [x] |
+| Terminology | [x] |
+| Reference | [x] |
 | **Major Design Issues** | |
-| Reorder | [] |
-| Reference | [] |
-| Make sure to follow tree order (design space - mauro lecture) | [] |
+| Reorder | [x] |
+| Reference | [x] |
+| Make sure to follow tree order (design space - mauro lecture) | [x] |
 | Sequence Diagrams |
