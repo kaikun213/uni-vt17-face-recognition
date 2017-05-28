@@ -50,7 +50,8 @@ Software Design course. Development of an application matching photos to persona
 | 23/05/17 | Sarpreet | 2h 30m | Implementation and updating class diagrams |
 | 24/05/17 | Sarpreet | 3h | Testing Admin and User module |
 | 25/05/17 | Sarpreet | 5h | Writing design patterns, making class diagrams for each components and for whole system|
-| 26/05/17 | Walid | 2h | Writing the testing on apiary.io | 
+| 26/05/17 | Walid | 2h | Writing the testing on apiary.io |
+| 27/05/17 | Sarpreet |3h 30m | Made class diagram for authentication, integration and system. Also read the design document. | 
 # TODO
 -----------------------------------
 
@@ -88,7 +89,7 @@ Portability - Where in the requirements? Usability too.
 | Split | [Done] |
 | Include | [Done] |
 | Reference | [HOW?] |
-| Authentication | [] |
+| Authentication | [Done] |
 | **Architecture** |  |
 | Text for Client | [] |
 | Reference | [] |
