@@ -186,6 +186,7 @@ function upload(){
   }
 }
 function sendData(file){
+  document.getElementById('upload').innerHTML = '<i class="spinner loading icon"></i>';
   $.ajax({
     type: 'post',
     data: {
@@ -206,6 +207,10 @@ function sendData(file){
       console.log(xhr);
       if(xhr.responseText.length > 100) showError('Error', 'check console for more info');
       else showError('Error', xhr.responseText);
+    },
+    complete: function(){
+      // remove the loader
+      document.getElementById('upload').innerHTML = 'Upload <i class="level up icon"></i>';
     }
   });
 }

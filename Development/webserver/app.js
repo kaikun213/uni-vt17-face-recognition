@@ -32,15 +32,21 @@
     // but for now, the login page is the simple way
     res.redirect('/login');
   }).get('/admin', function(req, res){
-    res.status(200).render('index', {
-      type: 'admin',
-      title: 'Face - admin'
-    });
+    if(req.session.credentials && req.session.credentials.admin) {
+      res.status(200).render('index', {
+        type: 'admin',
+        title: 'Face - admin'
+      });
+    }
+    else res.redirect('login');
   }).get('/user', function(req, res){
-    res.status(200).render('index', {
-      type: 'user',
-      title: 'Face - user'
-    });
+    if(req.session.credentials) {
+      res.status(200).render('index', {
+        type: 'user',
+        title: 'Face - user'
+      });
+    }
+    else res.redirect('login');
   }).get('/login', function(req, res){
     res.status(200).render('index', {
       type: 'login',
