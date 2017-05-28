@@ -19,7 +19,7 @@ public class UserController {
 	@PostMapping
 	public ResponseEntity<String> retrieve(@RequestParam(value = "file", required = true) String image) {
 		try {
-			return new ResponseEntity<String>(this.userService.retrieve(image), HttpStatus.OK);
+			return new ResponseEntity<String>("personalNumber : " + this.userService.retrieve(image), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>("Not Found", HttpStatus.NOT_FOUND);
 		}
