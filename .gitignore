@@ -21,6 +21,7 @@ Documentation/\.DS_Store
 \.DS_Store
 a/
 Development/
+application/
 
 application/utils/\.settings/
 application/utils/target/
