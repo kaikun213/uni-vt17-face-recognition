@@ -26,7 +26,7 @@
 \vspace{3cm}
 \begin{flushleft}
     \huge Face Recognition System \\
-    \LARGE  Requirements Elicitation\\
+    \LARGE  Requirements Elicitation v1.0\\
 \end{flushleft}
 \null
 \vfill
@@ -151,7 +151,7 @@ The software interfaces of the modules will be further defined in the FRS Design
 All communication will be over the Internet.
 The PN-database will be located locally or interacted remotely over an Internet connection, this will be further defined in the FRS Design Document.
 
-\subsubsection{Security constraints}
+\subsubsection{Security constraints} \label{2.1.6 Security constraints}
 All sent personal numbers must be encrypted end to end. Services must be authenticated to interact with the API. The external service does not have any information about the personal numbers or other high security informations saved and only the images are shared.
 
 \subsection{Product functions} \label{ReqProductFunctions}
@@ -173,7 +173,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 \newpage
 \section{Specific functional requirements}
 
-\subsection{User Application Module}
+\subsection{User Application Module} 
 % Get Personal Number from Photo (Application view)
 \begin{enumerate}[leftmargin=0.8in]
 		\item \label{UAMLogging} The UAM shall support the log in of users
@@ -184,7 +184,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item The UAM shall encrypt all outgoing requests and be able to decrypt all incoming responses.
 \end{enumerate}
 
-\subsection{User Repository Module}
+\subsection{User Repository Module} \label{User Repository Module}
 % Get Personal Number from Photo (Repository view)
 \begin{enumerate}[leftmargin=0.8in]
 		\item Upon successful login request from the UAM the URM shall grant access. \ref{UAMLogging}.
@@ -194,7 +194,7 @@ The FRS will depend on an external face recognition API to compare photos. This 
 		\item The URM shall be able to send a well formated response to the UAM.
 \end{enumerate}
 
-\subsection{Admin Repository Module}
+\subsection{Admin Repository Module} \label{3.3 Admin Repository Module}
 % Add, Delete, Update, Get multiple users
 \begin{enumerate}[leftmargin=0.8in]
 		\item \label{ACMLogging} The ARM shall be able to authenticate admins.

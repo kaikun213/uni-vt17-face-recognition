@@ -69,10 +69,14 @@ The design documentation of the FRS is intended to create a mutual understanding
  
 \item \textbf{FRS : Face Recognition System to be developed} (Req. \ref{ReqDefinitions})
 \item \textbf{PN : Swedish Personal Number} (Req. \ref{ReqDefinitions})
-\item \textbf{User-Entity: A User entity consists of a personal number and a picture of the person} (Req. \ref{ReqDefinitions})
+\item \textbf{User-Entity: A User entity consists of an identifier(ID), a personal number and a link to a picture of the person} (Req. \ref{ReqDefinitions})
 \end{itemize}
  
 See Requirements document for related acronyms and references.
+
+\subsection{References}
+
+Requirements Elicitation v1.0 of the Face Recognition System for  LNU. Often mentioned as Requirement Elicitation, Requirements or "Req.", which a referenced chapter.
 
 
 \subsection{Priorities}
@@ -96,7 +100,7 @@ Additionally to the FRS an example user application, known as the UAM (Req. \ref
 \section{Major Design Issues} \label{Major_Design_Issues}
 In this section all major design issues and decisions will be discussed. Rational and alternatives will be presented. The detail of evaluating the alternatives depends on the trade off the decision has.
 
-\subsection{Architectural Design} 
+\subsection{Architectural Design} \label{2.1 Architectural Design}
 As desired from the customer the system will have a Client-Server structure. Where the in section \ref{ReqDefinitions} of the Requirements Elicitation defined UAM and AAM are the client modules and the URM and ARM are the server modules. Further we may reference URM or ARM as Server and UAM and AAM as Client. It is important to note that as defined in the requirements Req. Doc. \ref{ReqSystemInterfaces} our developed product is only the Server with a clear defined API and the Client application is the desired example client to show how integration and usage could be done.
 The architecture of the server is defined in detail in Section \ref{Architecture}.
 
@@ -267,7 +271,7 @@ It is one of the most used rational databases and therefore provides sufficient 
 
 
 
-
+\newpage
 \section{Architecture (Component Diagram)} \label{Architecture}
 The subsystems of our system must be reusable and independent from each
 other, as that will make it easier to implement and test. The different
@@ -306,18 +310,14 @@ be used and what they will require.
 \subparagraph{1. authentication}\label{authentication}
 
 The authentication component is required for security and divides the
-system based on whether the connected client is an user or an admin \ref{2.1.6 Security constraints}. The
-required interface for authentication is the database component, the
-provided interface is a login functionality that returns an integer 0 -
-no match, 1 - user and 2 - admin and a check which checks if current
-client is logged in (user or admin).
+system based on whether the connected client is an user or an admin (Req. \ref{2.1.6 Security constraints}). The component will take the credentials - username and password - and validate if they belong to an account with user or admin role to access the requested resource. To validate the credentials a query to the database have to be made, thus the required interface is the database component. The server is stateless as defined in the standard for RESTful applications, thus the client is fully keeping track of a local session and authenticates every request.
 
 \subparagraph{2. admin}\label{admin}
 
 The admin component is a core component that will hold all the admin
-responsibilities which is management of client users (faces). The
+responsibilities which is management of user-entities. The
 required interface is the face, storage and database component. The
-provided interface is the CRUD methods check \ref{3.3 Admin Repository Module} at line 3.3.4.
+provided interface is the CRUD methods as defined in Req. \ref{3.3 Admin Repository Module}.
 
 \begin{itemize}
 \item
@@ -333,7 +333,7 @@ provided interface is the CRUD methods check \ref{3.3 Admin Repository Module} a
 \subparagraph{4. user}\label{user}
 
 The user component is also a core component that will be responsible of
-getting a PN based on a image check \ref{User Repository Module} in the requirements elicitation. The required
+getting a PN based on a image (Req. \ref{User Repository Module}) in the requirements elicitation. The required
 interface is the face, database and the provided interface is
 ``\emph{uploading a picture}''. 
 
@@ -343,20 +343,20 @@ The face is the main component of this system (FRS), this needs to be as
 independent as possible in order of our system to be adaptive to changes
 (i.e.~face-recognition algorithm may be replaced in the future for a
 better one). The required interface that is needed is skyBiometry (the
-face-recognition api) and the provided interface is CRUD methods \ref{Admin Repository Module}, which
+face-recognition api) and the provided interface is CRUD methods (Req. \ref{3.3 Admin Repository Module}), which
 allows admins to manage client faces as well as letting user component
-get a PN based on a picture, see \ref{User Repository Module}.
+get a PN based on a picture, see req. \ref{User Repository Module}.
 
 \subparagraph{5. database}\label{database}
 
 The database or actually database-access component is the component that
 will directly talk with the remote database. The required interface is a
-MYSQL-database since it is flexible and easy to use, but can easily be replaced. The provided is CRUD methods as well as a login method. This is a nessesary component check \ref{System Interfaces} in the requirements elicitation: ``\emph{Personal number database}'' will also hold information of login-users.
+MYSQL-database since it is flexible and easy to use, but can easily be replaced. It provides CRUD functionality as well as a login method. This is a nessesary component, as defined in \ref{System Interfaces} in the requirements elicitation: ``\emph{Personal number database}'' will also hold information of login-users.
 
 \subparagraph{6. storage}\label{storage}
 
 The storage component is the component that will save the client-face
-picture to the storage, see \ref{System Interfaces}, the ``\emph{Image Database}'' now we will use imgur.com api to store pictures
+picture to the storage, see \ref{System Interfaces}, the ``\emph{Image Database}'' now we will use imgur.com's API to store pictures
 as space is an issue but in future this can be changed into storing
 images directly in our server. The required interface is imgur.com-api
 and the provided interface is upload picture.
@@ -373,10 +373,9 @@ The imgur or imgur.com-api will be used by our storage component.
 \subparagraph{9. MySQL}\label{mysql}
 
 MySQL is the database type we will use by the database-access component.
-
-\paragraph{Architecture Pattern}\label{architecture-pattern}
-
-We already mentioned that the system will have client-server structure in \ref{2.1 Architectural Design}, but now we focus only on the server part as it is our only implementation part, clients then can connect and use our service the server provide.
+\\ \\
+\textbf{Architecture Patterns}\label{architecture-pattern} \\
+We already mentioned that the system will have a client-server structure in \ref{2.1 Architectural Design}, but now we focus only on the server part as it is the product and client implementations may differ to the given example one.
 We want good reusability, good cohesion, low coupling, abstraction, security and
 portability all this because components should be easily changeable,
 independent so development can be as well and portable so the system can
@@ -384,7 +383,7 @@ easily be changed to other servers (in the future). Our system is a
 layer type where the application (which will act as the glue code) will
 use authentication, admin and user component and these will use the
 others. See the component diagram to clearly see why it will be a
-layered system. The patterns that meets our required types
+layered system. The patterns that meet our required types
 i.e.~cohesion, coupling, abstraction and portability is:
 
 \begin{itemize}
@@ -394,19 +393,17 @@ i.e.~cohesion, coupling, abstraction and portability is:
   Service-oriented
 \end{itemize}
 
-The Service-oriented pattern focus on the communication between the
-different web-services, in our case is with MySQL database, imgur.com
-api and skyBiometry. This will use standard communication HTTP which in
-the core basics is XML as the pattern says it should be (open
-standards). This is a very good pattern to follow when it comes to our
-remote components.
 
-The Multi-layers pattern focus on how the communication should be,
+The Service-oriented patterns focus is on the communication between the
+different web-services, in our case is with MySQL database, imgur.com
+api and skyBiometry. This will use standard communication HTTP and JSON to fulfill open standards. This is a very good pattern to follow when it comes to our
+remote components. 
+ 
+The Multi-layers patterns focus is on how the communication should be,
 i.e.~layer can only speak with the layer below it, in our case the
 different components can only speak with the required components and not
 the other way around (see component diagram to better understand). This
-is also a very good pattern for our system that focuses on the structure
-of the system.
+is also a very good pattern for our system's structure and supports extensibility and interchangeability.
 
 \subparagraph{Conclusion}\label{conclusion}
 
@@ -436,7 +433,7 @@ components).
 
 \newpage
 \section{Components - Design patterns and static modeling (Class Diagrams)}
-This section describes the design patterns of each component(Database, Storage, Face, Admin, User and Authentication) of the system. In general, the system will be divided into Model-View-Controller(MVC) pattern where database, storage and face components represents the model; admin, user and authentication components represents the controller and the user who will use the API will be the view of the system. For the purpose of implementation, database, storage and face components will be embedded into one component called utils-service(these components will be independent of each other) whereas user and admin will be implemented separately; and authentication will be embedded into the main component called faceRecognition-service-api where all the components of the system will be integrated.
+This section describes the design patterns of each component(Database, Storage, Face, Admin, User and Authentication) of the system. In general, the system will be divided into Model-View-Controller(MVC) pattern where database, storage and face components represents the model; admin, user and authentication components represents the controller and the user who will use the API will be the view of the system (possibly inc. local view-controller). For the purpose of implementation, database, storage and face components will be embedded into one component called utils-service(these components will be independent of each other) whereas user and admin will be implemented separately; and authentication will be embedded into the main component called faceRecognition-service-api where all the components of the system will be integrated.
 \newline
 
 \noindent
