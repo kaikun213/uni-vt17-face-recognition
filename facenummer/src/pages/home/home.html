@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page-home">
+  <div *ngIf="!isLoggedIn">
+    <ion-spinner class="spinner" name="circles" *ngIf="isWaitingForResponse"></ion-spinner>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button (click)="logIn()" ion-button round ion-button full>Log in</button>
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <ion-toolbar>
+      <ion-buttons end>
+        <button (click)="logOut()" ion-button color="primary" round ion-button full>Log out</button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-spinner class="spinner" name="circles" *ngIf="isWaitingForResponse"></ion-spinner>
+    <button (click)="showCheckBox()" ion-button full color="secondary" *ngIf="!isWaitingForResponse">Get Personal Number</button>
+  </div>
+</ion-content>
