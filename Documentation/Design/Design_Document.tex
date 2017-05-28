@@ -439,7 +439,7 @@ This section describes the design patterns of each component(Database, Storage, 
 \noindent
 Below sections will further describe the design patterns of each component as well as its class diagram:
 
-\subparagraph{1. Database: }It is one of the most important component of the system because it contains the domain of the system as well as shared by all the controllers(user, admin and authentication). The biggest problem in this component is to encapsulate the functionality so that user and authentication component cannot use admin functionality and vice versa. To overcome this problem, Facade pattern will be used. This pattern will help in various ways such as database component will provide separate interfaces for each of the controller in order to get encapsulation; controllers will not get any extra information then needed; reduce the complexity of the component etc. Below diagram shows how database component provide three separate interfaces for the admin, user and authentication component.
+\subparagraph{1. Database: }It is one of the most important components of the system because it contains the domain of the system and is shared by all the controllers(user, admin and authentication). The biggest problem in this component is to encapsulate the functionality so that user and authentication component cannot use admin functionality and vice versa. To overcome this problem, Facade pattern will be used. This pattern will help in various ways such as database component will provide separate interfaces for each of the controller in order to get encapsulation; controllers will not get any extra information then needed; reduce the complexity of the component etc. Below diagram shows how database component provide three separate interfaces for the admin, user and authentication component.
 
 \begin{figure}[ht!]
     \centering
@@ -448,7 +448,7 @@ Below sections will further describe the design patterns of each component as we
 \end{figure}
 
 \newpage
-\subparagraph{2. Storage: }This component is not as complex as database because only admin component will interact with it. This component will interact with one outer component called 'imgur' for saving the images into it. Like database component, Facade pattern is used to provide a simple and clear functionality to the admin component because admin component does not need to know how this component works. Below diagram shows how storage component provide nice and clear interfaces for the admin component.
+\subparagraph{2. Storage: }This component is not as complex as database because only admin component will interact with it. This component will interact with one outer component called 'imgur' for saving the images into it. Like database component, Facade pattern is used to provide a simple and clear functionality to the admin component because the admin component does not need to know how this component works. Below diagram shows how storage component provide nice and clear interfaces for the admin component.
 
 \begin{figure}[ht!]
     \centering
@@ -456,7 +456,7 @@ Below sections will further describe the design patterns of each component as we
 	\caption{Class diagram of storage component}
 \end{figure}
 
-\subparagraph{3. Face: }This component is more complex than storage component due to encapsulation problem like database component because user and admin component will interact with it. In addition, it also interact with outer comoponent called 'SkyBiometry' for recognizing the faces. Like database component, it also use Facade pattern and below diagram shows how this component encapsulate the functionality by providing the seprate interfaces to admin and user component .
+\subparagraph{3. Face: }This component is more complex than storage component due to encapsulation problem as seen before in the database component. In addition, it also interacts with the outer comoponent called 'SkyBiometry' for recognizing the faces. Like the database component, it also uses the facade pattern and below diagram shows how this component encapsulate the functionality by providing the seprate interfaces to admin and user component .
 
 \begin{figure}[ht!]
     \centering
@@ -475,7 +475,7 @@ Below sections will further describe the design patterns of each component as we
 
 \newpage
 \subparagraph{4. Admin: }
-This component use most of the important functionality of the system. However, it have no big problem related to the interaction with model because it simply use the interfaces provided by the database, face and storage component. The only problem is to encapsulate the data from view because it directly interact with the user API requests. Similarly, like other components, this component use same approach (Facade pattern) to encapsulate the data. It provide an interface to which the view will interact. This pattern helps to make the design more simple, flexible and reliable. Below diagram shows how this component encapsulate the data by providing interface to the controller which will interact with the view(user).
+This component use most of the important functionality of the system. However, it is very simple because it only structures the order of calls to the interfaces provided by the database, face and storage component. The only problem is to encapsulate the data and implementation from the view because it directly interact with the user API requests. Similarly, like other components, this component use same approach (Facade pattern) to encapsulate the data. It provides an interface to which the view will interact. This pattern helps to make the design more simple, flexible and reliable. Below diagram shows how this component encapsulate the data by providing interface to the controller which will interact with the view(user).
 
 \begin{figure}[ht!]
     \centering
@@ -483,7 +483,7 @@ This component use most of the important functionality of the system. However, i
 	\caption{Class diagram of admin component}
 \end{figure}
 
-\subparagraph{5. User: }The structure and behaviour of this component is similar to admin component. Again, the only problem is to encapsulate the data from view and it use exactly the same approach as admin component in order to overcome the problem. Below diagram show how this component encapsulate the data from view by providing an interface to the controller.
+\subparagraph{5. User: }The structure and behaviour of this component is similar to admin component. Again, the only problem is to encapsulate the data and implementation from the view and it uses exactly the same approach as the admin component in order to overcome the problem. The diagram shows how this component encapsulates the implementation from the view by providing an interface to the controller.
 
 \begin{figure}[ht!]
     \centering
@@ -495,7 +495,7 @@ NOTE: 'Admin' and 'User' classes are  for integration purpose.
 
 
 \newpage
-\subparagraph{6. Authentication: } This component will be embedded into main component where all the other components will be integrated. This component will mostly use in built security functionality provided by spring framework for authenticating the user. However, for validating dynamic credentials(username and password), this component will use interface provided by database component. Below diagrams shows this component structure.
+\subparagraph{6. Authentication: } This component will be embedded into the main component where all the other components will be integrated. This component will mostly use in built security functionality provided by spring framework for authenticating the user. However, for validating dynamic credentials(username and password), this component will use an interface provided by the database component. Below diagrams shows this component structure.
 
 \begin{figure}[ht!]
     \centering
@@ -505,7 +505,7 @@ NOTE: 'Admin' and 'User' classes are  for integration purpose.
 
 NOTE: 'WebSecurityConfigurerAdapter' and 'WebSecurityConfig' classes are part of spring data security framework.
 
-\subparagraph{Integration: } For integrating all the components, we will use inbuild functionality provide by spring framework. Below diargram show the integration structure.
+\subparagraph{Integration: } For integrating all the components, we will use inbuild functionality of the spring framework. The diagram below shows the integration structure.
 
 \begin{figure}[ht!]
     \centering
@@ -515,8 +515,24 @@ NOTE: 'WebSecurityConfigurerAdapter' and 'WebSecurityConfig' classes are part of
 
 \newpage
 \subparagraph{Complete System: } Below class diagram shows the complete system
-		\centering
-	\includegraphics[scale=0.8]{ClassDiagrams/new/system.pdf}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.18]{ClassDiagrams/new/system.jpg}
+		\caption{Class diagram of the complete system.}
+\end{figure}
+\newpage
+
+\subparagraph{API }
+The provided API is summarized inc. data format as an apib and HTML file. This documentation provides all information for a user to build a client application for it. Additionally this can be used forintegration and API testing. \\ \newline
+\noindent
+\textit{Following shows a snapshot of the API. \\ The full format can be found as compiled html or apib in API/API\_v1.0 .}
+\newline
+\begin{figure}[ht!]
+    \centering
+	\includegraphics[scale=0.3]{API/Snapshot_API.png}
+		\caption{Snapshot of the provided API (apib format)}
+\end{figure}
 
 \newpage
 \section{Use cases - Behavioral modeling (Sequence Diagrams)}
@@ -560,4 +576,5 @@ NOTE: 'WebSecurityConfigurerAdapter' and 'WebSecurityConfig' classes are part of
 	\includegraphics[width=150mm]{SequenceDiagrams/UserAuth.jpg}
 	\caption{Sequence diagram referred to "5.8 URM: Authenticate User" in the requirement document. \label{7}}
 \end{figure}
+
 \end{document}
