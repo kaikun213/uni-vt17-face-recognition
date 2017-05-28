@@ -33,6 +33,11 @@ This is the development api specification of the FaceNummer Application. Press "
     + size: `20` (int, optional) - default 20
        + default: `20`
 
++ Request
+	+ Headers
+
+			Authorization:Basic base64(username:password)
+
 + Response 200
 [Users][]
 
@@ -54,12 +59,16 @@ This is the development api specification of the FaceNummer Application. Press "
 ### ADD User [POST]
 
 + Request User (application/json;charset=UTF-8)
+	+ Body
 ```json
 {
     "file": "Stringimage base64 ",
     "personalNumber": 199407044785
 }
 ```
+	+ Headers
+
+			Authorization:Basic base64(username:password)
 
 
 + Response 200
@@ -67,6 +76,12 @@ This is the development api specification of the FaceNummer Application. Press "
 
 
 ### GET User [GET]
+
++ Request
+	+ Headers
+
+			Authorization:Basic base64(username:password)
+
 + Response 200
 [User][]
 
@@ -77,12 +92,17 @@ This is the development api specification of the FaceNummer Application. Press "
 ### UPDATE User [PUT]
 
 + Request User (application/json;charset=UTF-8)
+	+ Body
 ```json
 {
-   "file": "Stringimage base64 ",
+    "file": "Stringimage base64 ",
     "personalNumber": 199407044785
 }
 ```
+	+ Headers
+
+			Authorization:Basic base64(username:password)
+
 
 
 + Response 200
@@ -93,6 +113,9 @@ This is the development api specification of the FaceNummer Application. Press "
 ### DELETE User [DELETE]
 
 + Request deleteUser (application/json)
+	+ Headers
+
+			Authorization:Basic base64(username:password)
 
 + Response 200
 
@@ -104,11 +127,15 @@ This is the development api specification of the FaceNummer Application. Press "
 ### GET PN [POST]
 
 + Request GETPN (application/json)
+	+ Body
 ```json
 {
    "file": "Stringimage base64 ",
 }
 ```
+	+ Headers
+
+			Authorization:Basic base64(username:password)
 
 + Response 200
 [User][]
