@@ -58,6 +58,9 @@ Software Design course. Development of an application matching photos to persona
 | 28/05/17 | Walid | 3h | Final version of the sequence diagrams (changed made according to the implementation)
 | 28/05/17 | All | 2h | Final groupmeeting |
 | 28/05/17 | Jakob | 7h | Review and Implementation (Integration) |
+
+--> Henry's times are documented in Worklog.md
+
 # TODO
 -----------------------------------
 
