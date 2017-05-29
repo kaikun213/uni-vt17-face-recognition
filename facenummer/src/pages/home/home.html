@@ -1,33 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title *ngIf="!isLoggedIn">Home</ion-title>
+    <ion-title *ngIf="isLoggedIn">Menus</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="page-home">
-  <div *ngIf="!isLoggedIn">
-    <ion-spinner class="spinner" name="circles" *ngIf="isWaitingForResponse"></ion-spinner>
+  <ion-spinner class="spinner" name="circles" *ngIf="isWaitingForResponse"></ion-spinner>
+
+  <div *ngIf="!isLoggedIn && !isWaitingForResponse">
     <ion-list>
       <ion-item>
-        <ion-label floating>Username</ion-label>
+        <ion-label stacked>Username</ion-label>
         <ion-input type="text" [(ngModel)]="username"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Password</ion-label>
+        <ion-label stacked>Password</ion-label>
         <ion-input type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
+
+      <br />
+      <button (click)="logIn()" ion-button round ion-button full>Log in</button>
     </ion-list>
-    <button (click)="logIn()" ion-button round ion-button full>Log in</button>
+
   </div>
 
-  <div *ngIf="isLoggedIn">
+  <div *ngIf="isLoggedIn && !isWaitingForResponse">
     <ion-toolbar>
       <ion-buttons end>
         <button (click)="logOut()" ion-button color="primary" round ion-button full>Log out</button>
       </ion-buttons>
     </ion-toolbar>
-    <ion-spinner class="spinner" name="circles" *ngIf="isWaitingForResponse"></ion-spinner>
-    <button (click)="showCheckBox()" ion-button full color="secondary" *ngIf="!isWaitingForResponse">Get Personal Number</button>
+
+    <ion-list inset>
+      <button ion-item (click)="getPN()">Get personal number</button>
+    </ion-list>
   </div>
 </ion-content>
