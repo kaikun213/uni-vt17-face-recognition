@@ -92,7 +92,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.2",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-camera": "2.4.1"
+    "cordova-plugin-camera": "2.4.1",
+    "cordova-plugin-browsersync": "0.1.1"
 };
 // BOTTOM OF METADATA
 });

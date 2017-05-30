@@ -33,7 +33,7 @@ export class HomePage {
     setTimeout(() => {
       this.username = "";
       this.password = "";
-      this.isLoggedIn = null;
+      this.isLoggedIn = false;
       this.isWaitingForResponse = false;
     }, 300);
     this.isWaitingForResponse = true;
@@ -52,24 +52,28 @@ export class HomePage {
         this.camera.getPicture({
           quality: 100,
           destinationType: this.camera.DestinationType.DATA_URL,
-          encodingType: this.camera.EncodingType.JPEG,
           mediaType: this.camera.MediaType.PICTURE,
           sourceType: data == "camera" ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.PHOTOLIBRARY
-        }).then(imageData => {
-          this.http.post("https://lnu-face.herokuapp.com/user/", 'file=' + imageData, {
-            headers: this.makeHeaders()
-          }).map((response: Response) => response.json()).subscribe(
-            success => {
-              this.presentAlert('Success', 'PN received!');
-              this.isWaitingForResponse = false;
-              //Todo: display the PN
-            }, err => {
-              this.presentAlert('No result found!', 'Please try again.');
-              this.isWaitingForResponse = false;
-            });
-        }, err => {
-          this.isWaitingForResponse = false;;
-        });
+        }).
+          then(imageData => {
+            this.http.post("https://lnu-face.herokuapp.com/api/v1/user/", 'file=' + encodeURIComponent(imageData), {
+              headers: this.makeHeaders()
+            }).
+              map((response: Response) => response.json()).subscribe(
+              success => {
+                console.log(success);
+                this.presentAlert('Received!', 'Personal number (YYYYDDMMXXX): ' + success);
+                this.isWaitingForResponse = false;
+              },
+              err => {
+                console.log(err);
+                this.presentAlert('No result found!', 'Please try again.');
+                this.isWaitingForResponse = false;
+              });
+          },
+          err => {
+            this.isWaitingForResponse = false;;
+          });
       }
     });
     alert.present();
@@ -79,7 +83,6 @@ export class HomePage {
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     headers.append('Authorization', 'Basic ' + btoa(this.username + ':' + this.password));
-    console.log(btoa(this.username + ':' + this.password));
     return headers;
   }
 
