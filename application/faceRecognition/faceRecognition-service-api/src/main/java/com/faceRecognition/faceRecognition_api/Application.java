@@ -25,9 +25,9 @@ public class Application {
 	    return new WebMvcConfigurerAdapter() {
 	        @Override
 	        public void addCorsMappings(CorsRegistry registry) {
+	            registry.addMapping("/admin/*").allowedOrigins("*");
 	            registry.addMapping("/admin").allowedOrigins("*");
 	            registry.addMapping("/admin").allowedMethods("POST, GET, OPTIONS, DELETE");
-	            registry.addMapping("/admin/*").allowedOrigins("*");
 	            registry.addMapping("/user").allowedOrigins("*");
 	            registry.addMapping("/user").allowedMethods("POST, GET, OPTIONS, DELETE");
 	            registry.addMapping("/login").allowedOrigins("*");
