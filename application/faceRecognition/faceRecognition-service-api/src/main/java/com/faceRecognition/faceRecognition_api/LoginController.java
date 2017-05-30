@@ -1,6 +1,5 @@
 package com.faceRecognition.faceRecognition_api;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 	
 	@PostMapping
-	public HttpStatus login(@RequestParam(value = "company", required = true)String company,@RequestParam(value = "password", required = true) String password){
+	public String login(@RequestParam(value = "company", required = true)String company,@RequestParam(value = "password", required = true) String password){
 		// User role
-		if (company == "user")
-			return HttpStatus.NON_AUTHORITATIVE_INFORMATION;
+		if (company.equals("user"))
+			return "user";
 		// Admin role
-		if (company == "admin")
-			return HttpStatus.OK;
+		if (company.equals("admin"))
+			return "admin";
 		// User not found
 		else 
-			return HttpStatus.NOT_FOUND;
+			return "rejected";
 	}
 
 }

@@ -70,6 +70,6 @@ public class FaceServiceImpl implements AdminFaceService, UserFaceService {
 			System.out.print(" : " + face.getTID() + "\n");
 		}
 		// return userId if confidence is higher than 85%
-		return photo.getFace().getGuess().second > 85 ? photo.getFace().getGuess().first : null;
+		return photo.getFace().getGuess().second > 65 ? photo.getFace().getGuess().first.substring(0, photo.getFace().getGuess().first.indexOf('@')) : null;
 	}
 }
