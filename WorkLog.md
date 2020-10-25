@@ -22,3 +22,4 @@ Log your work with start and end [*date*+*time*]
 | Henry | 2017-05-10 10:00 | 3h | implementing webserver |
 | Henry | 2017-05-10 19:18 | 1h 40min | implementing webserver |
 | Henry | 2017-05-11 08:10 | 2h | implementing webserver |
+| Henry | 2017-05-08 12:00 | 2h | group meeting |
