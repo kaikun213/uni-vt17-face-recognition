@@ -1,0 +1,48 @@
+body > .grid {
+  height: 100%;
+}
+
+body > div > div {
+  display: none;
+}
+
+.modal {
+  display: none;
+}
+
+.modal > .content > p, .actions {
+  text-align: center !important;
+}
+
+.ui.message {
+  display: none;
+}
+
+#bajs {
+  display: none !important;
+}
+.ui.modal {
+  top: 30%;
+}
+
+td {
+  text-overflow: ellipsis;
+}
+
+th {
+  padding: 14px;
+  color: #777;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:last-child > th {
+  border-bottom: none;
+}
+
+/*.dimmer, .loader {
+  position: absolute !important;
+
+}
+.dimmer {
+  height: 500px !important;
+}*/

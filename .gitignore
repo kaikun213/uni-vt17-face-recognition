@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -20,3 +19,42 @@ Documentation/\.DS_Store
 
 \.DS_Store
 a/
+
+application/.settings
+application/.project
+
+application/faceRecognition/\.settings/
+
+application/faceRecognition/admin-service/\.settings/
+
+application/faceRecognition/admin-service/\.classpath
+
+application/faceRecognition/admin-service/\.project
+
+application/faceRecognition/\.project
+
+application/faceRecognition/utils-service/target/
+
+application/faceRecognition/utils-service/\.settings/
+
+application/faceRecognition/utils-service/\.classpath
+
+application/faceRecognition/utils-service/\.project
+
+application/faceRecognition/user-service/\.settings/
+
+application/faceRecognition/faceRecognition-service-api/\.settings/
+
+application/faceRecognition/faceRecognition-service-api/\.classpath
+
+application/faceRecognition/faceRecognition-service-api/\.project
+
+application/faceRecognition/user-service/\.classpath
+
+application/faceRecognition/user-service/\.project
+
+application/faceRecognition/face-library/\.settings/
+
+application/faceRecognition/face-library/\.classpath
+
+application/faceRecognition/face-library/\.project

@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let member of members">
+    <img [src]="member.src">
+    <ion-card-content>
+      <ion-card-title [innerHTML]="member.name"></ion-card-title>
+      <p [innerHTML]="member.email"></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

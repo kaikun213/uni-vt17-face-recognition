@@ -1,0 +1,39 @@
+<h3 class="ui top attached header">
+  Create new Client
+</h3>
+<div class="ui attached segment">
+  <form class="ui form">
+    <div class="field">
+      <label>Client PN</label>
+      <input type="text" id="create_pn" placeholder="YYYYMMDD-XXXX">
+    </div>
+    <div class="field">
+      <label for="create_photo" style="width: 180px;" class="ui icon button">
+        <i class="file image outline icon"></i>
+        <span>Open Image</span></label>
+      <input type="file" style="display: none;" id="create_photo" accept="image/*">
+    </div>
+    <button class="ui button" onclick="create();" type="button">Submit</button>
+  </form>
+
+  <div class="ui segment create loaders">
+    <div class="ui active inverted dimmer">
+      <div class="ui indeterminate text loader" id="crt_file_load">Preparing Files</div>
+      <div class="ui text loader" id="crt_load">Loading</div>
+    </div>
+    <br>
+    <br>
+    <br>
+  </div>
+
+  <div class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">Error</div>
+    <p></p>
+  </div>
+  <div class="ui success message">
+    <i class="close icon"></i>
+    <div class="header">Success</div>
+    <p></p>
+  </div>
+</div>

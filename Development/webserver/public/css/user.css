@@ -1,0 +1,55 @@
+body {
+  height: 80%;
+}
+footer {
+  display: none;
+}
+div.ui.negative.message {
+  position: relative;
+  z-index: 4;
+}
+div.webcam {
+  margin: 10px 0;
+  position: relative;
+}
+video, canvas {
+  /*Do the magic flip.. tududududuururur*/
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  filter: FlipH;
+
+  /*border-radius: 5px;*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.nocam {
+  font-style: italic;
+}
+canvas {
+  /*initial value*/
+  z-index: 2;
+}
+
+.upload {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+}
+
+.center {
+  margin: 20px 0;
+  text-align: center;
+}
+.circular.button {
+  width: 80px;
+  height: 80px;
+}
+.ui.negative.message {
+  display: none;
+}

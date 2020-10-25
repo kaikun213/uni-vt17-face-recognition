@@ -18,3 +18,8 @@ Log your work with start and end [*date*+*time*]
 | Henry | 2017-05-03 12:00 | 1h 30min | group meeting |
 | Henry | 2017-05-05 06:15 | 1h 49min | component diagrams |
 | Henry | 2017-05-08 12:00 | 2h | group meeting |
+| Henry | 2017-05-08 18:00 | 2h | implementing webserver |
+| Henry | 2017-05-10 10:00 | 3h | implementing webserver |
+| Henry | 2017-05-10 19:18 | 1h 40min | implementing webserver |
+| Henry | 2017-05-11 08:10 | 2h | implementing webserver |
+| Henry | 2017-05-08 12:00 | 2h | group meeting |
